@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>zwei | fünf | null </title>
+  <title>zwei | fünf | null — Wohnen auf kleinem Grund</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -11,9 +11,6 @@
       font-family: 'Segoe UI', Arial, sans-serif;
       background: #0a1628;
       color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
     /* HEADER */
@@ -24,170 +21,235 @@
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid rgba(24,95,165,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .logo-wrap img {
-      height: 160px;
-      width: auto;
-    }
+    .logo-wrap { display: flex; align-items: center; gap: 16px; }
+    .logo-wrap img { height: 160px; width: auto; }
 
-    nav {
-      display: flex;
-      gap: 2rem;
+    .brand-text .name {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
     }
-
-    nav a {
+    .brand-text .name span { color: #185FA5; font-weight: 300; padding: 0 5px; }
+    .brand-text .tagline {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       color: #8899aa;
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-      transition: color 0.2s;
+      margin-top: 3px;
     }
 
+    nav { display: flex; gap: 2rem; }
+    nav a { color: #8899aa; text-decoration: none; font-size: 0.9rem; letter-spacing: 0.5px; transition: color 0.2s; }
     nav a:hover { color: #fff; }
 
     /* HERO */
     .hero {
-      background: #000;
+      position: relative;
+      height: 90vh;
+      min-height: 500px;
+      overflow: hidden;
+    }
+
+    .hero-slider {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      height: 100%;
+      transition: transform 0.8s ease;
+    }
+
+    .hero-slide {
+      min-width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .hero-slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(10,22,40,0.85) 100%);
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: 4rem;
+      left: 50%;
+      transform: translateX(-50%);
       text-align: center;
-      padding: 5rem 2rem 4rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 10;
+      width: 100%;
+      padding: 0 2rem;
     }
 
     .badge {
-      background: rgba(24, 95, 165, 0.2);
-      border: 1px solid rgba(24, 95, 165, 0.4);
+      display: inline-block;
+      background: rgba(24,95,165,0.25);
+      border: 1px solid rgba(24,95,165,0.5);
       color: #85B7EB;
       font-size: 0.72rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       padding: 6px 18px;
       border-radius: 20px;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 4.5rem);
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
       font-weight: 600;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+      line-height: 1.15;
+      margin-bottom: 1rem;
       letter-spacing: -1px;
     }
+    .hero h1 .blue { color: #185FA5; }
 
-    h1 .blue { color: #185FA5; }
-
-    .subtitle {
-      font-size: 1.05rem;
-      color: #8899aa;
-      max-width: 500px;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
+    .hero p {
+      font-size: 1rem;
+      color: #aabbcc;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
     }
 
     .coming-soon {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255,255,255,0.05);
-      border: 0.5px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.06);
+      border: 0.5px solid rgba(255,255,255,0.12);
       border-radius: 12px;
-      padding: 0.9rem 2rem;
-      font-size: 0.88rem;
+      padding: 0.8rem 1.8rem;
+      font-size: 0.85rem;
       color: #8899aa;
     }
 
     .dot {
-      width: 8px;
-      height: 8px;
+      width: 8px; height: 8px;
       border-radius: 50%;
       background: #185FA5;
       flex-shrink: 0;
       animation: pulse 2s infinite;
     }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+    /* SLIDER CONTROLS */
+    .slider-dots {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
     }
+    .slider-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .slider-dot.active { background: #185FA5; }
 
-    /* FEATURES */
-    .features {
-      padding: 5rem 3rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-    }
+    /* SECTION */
+    section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 
     .section-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 2px;
       color: #185FA5;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
-
     .section-title {
       font-size: clamp(1.6rem, 3vw, 2.4rem);
       font-weight: 600;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
       letter-spacing: -0.5px;
     }
 
+    /* CARDS */
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
     }
-
     .card {
       background: rgba(255,255,255,0.04);
       border: 0.5px solid rgba(255,255,255,0.08);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 1.75rem;
     }
+    .card-icon { font-size: 1.8rem; margin-bottom: 0.9rem; }
+    .card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.85rem; color: #8899aa; line-height: 1.7; }
 
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    /* GALERIE */
+    .galerie-wrap {
+      background: rgba(0,0,0,0.2);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 5rem 3rem;
     }
+    .galerie-inner { max-width: 1100px; margin: 0 auto; }
 
-    .card h3 {
-      font-size: 1.05rem;
-      font-weight: 500;
-      margin-bottom: 0.6rem;
-      color: #fff;
+    .galerie-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
     }
+    .galerie-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s, opacity 0.3s;
+      border: 0.5px solid rgba(255,255,255,0.08);
+    }
+    .galerie-grid img:hover { transform: scale(1.02); opacity: 0.9; }
 
-    .card p {
-      font-size: 0.88rem;
+    /* GRUNDRISSE */
+    .grundriss-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .grundriss-card {
+      background: rgba(255,255,255,0.03);
+      border: 0.5px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .grundriss-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+    .grundriss-card p {
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
       color: #8899aa;
-      line-height: 1.7;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    /* CONTACT */
+    /* KONTAKT */
     .contact-section {
       background: rgba(0,0,0,0.3);
       border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 5rem 3rem;
     }
-
-    .contact-inner {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact-inner .section-title {
-      margin-bottom: 0.75rem;
-    }
-
-    .contact-inner .subtitle {
-      margin-bottom: 2.5rem;
-    }
+    .contact-inner { max-width: 680px; margin: 0 auto; text-align: center; padding: 5rem 2rem; }
+    .contact-inner .section-title { margin-bottom: 0.75rem; }
+    .contact-inner .sub { font-size: 1rem; color: #8899aa; margin-bottom: 2.5rem; line-height: 1.7; }
 
     .contact-card {
       background: rgba(255,255,255,0.04);
@@ -199,44 +261,45 @@
       gap: 14px;
       text-align: left;
     }
-
     .contact-card-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #185FA5;
       margin-bottom: 4px;
     }
-
-    .contact-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #cdd8e3;
-      font-size: 0.95rem;
-    }
-
+    .contact-row { display: flex; align-items: center; gap: 12px; color: #cdd8e3; font-size: 0.95rem; }
     .contact-row .icon {
-      width: 34px;
-      height: 34px;
+      width: 34px; height: 34px;
       border-radius: 8px;
-      background: rgba(24, 95, 165, 0.15);
-      display: flex;
+      background: rgba(24,95,165,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; flex-shrink: 0;
+    }
+    .contact-row a { color: #85B7EB; text-decoration: none; }
+    .divider { height: 0.5px; background: rgba(255,255,255,0.08); }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 999;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
-      flex-shrink: 0;
     }
-
-    .contact-row a {
-      color: #85B7EB;
-      text-decoration: none;
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #fff;
+      opacity: 0.7;
     }
-
-    .divider {
-      height: 0.5px;
-      background: rgba(255,255,255,0.08);
-    }
+    .lightbox-close:hover { opacity: 1; }
 
     /* FOOTER */
     footer {
@@ -249,12 +312,15 @@
     }
 
     /* MOBILE */
-    @media (max-width: 600px) {
-      header { padding: 1rem 1.5rem; }
+    @media (max-width: 700px) {
+      header { padding: 0.75rem 1rem; }
+      .logo-wrap img { height: 80px; }
       nav { display: none; }
-      .features { padding: 3rem 1.5rem; }
-      .contact-section { padding: 3rem 1.5rem; }
-      .contact-card { padding: 1.5rem; }
+      section { padding: 3rem 1.5rem; }
+      .galerie-wrap { padding: 3rem 1.5rem; }
+      .galerie-grid { grid-template-columns: 1fr 1fr; }
+      .grundriss-grid { grid-template-columns: 1fr; }
+      .contact-inner { padding: 3rem 1.5rem; }
     }
   </style>
 </head>
@@ -262,37 +328,43 @@
 
   <!-- HEADER -->
   <header>
-    <div class="logo-wrap" style="display:flex; align-items:center; gap:16px;">
+    <div class="logo-wrap">
       <img src="logo.png" alt="zwei | fünf | null" />
-      <div>
-        <div style="font-size:1.4rem; font-weight:600; letter-spacing:-0.3px; line-height:1.2;">
-          zwei<span style="color:#185FA5; font-weight:300; padding:0 5px;">|</span>fünf<span style="color:#185FA5; font-weight:300; padding:0 5px;">|</span>null
-        </div>
-        <div style="font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:#8899aa; margin-top:3px;">Wohnen auf kleinem Grund</div>
+      <div class="brand-text">
+        <div class="name">zwei<span>|</span>fünf<span>|</span>null</div>
+        <div class="tagline">Wohnen auf kleinem Grund</div>
       </div>
     </div>
     <nav>
       <a href="#konzept">Konzept</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#grundrisse">Grundrisse</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="badge">Wohnen auf kleinem Grund</div>
-    <h1>Kompaktes Grundstück.<br/><span class="blue">Modernes Leben.</span></h1>
-    <p class="subtitle">
-      Kompaktes Grundstück. Moderner Holzrahmenbau.<br/>
-      Effizient und nachhaltig.
-    </p>
-    <div class="coming-soon">
-      <div class="dot"></div>
-      Website wird gerade aufgebaut — bald mehr Infos
+  <!-- HERO SLIDER -->
+  <div class="hero">
+    <div class="hero-slider" id="slider">
+      <div class="hero-slide" style="background-image:url('haus3.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('haus5.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('haus6.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('haus1.jpg')"></div>
     </div>
-  </section>
+    <div class="hero-content">
+      <div class="badge">Wohnen auf kleinem Grund</div>
+      <h1>Kompaktes Grundstück.<br/><span class="blue">Modernes Leben.</span></h1>
+      <p>Moderner Holzrahmenbau auf 250 m² —<br/>effizient, nachhaltig und durchdacht geplant.</p>
+      <div class="coming-soon">
+        <div class="dot"></div>
+        Website wird gerade aufgebaut — bald mehr Infos
+      </div>
+    </div>
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
 
   <!-- KONZEPT -->
-  <section class="features" id="konzept">
+  <section id="konzept">
     <p class="section-label">Das Konzept</p>
     <h2 class="section-title">Wohnen neu gedacht — auf <span style="color:#185FA5">250 m²</span></h2>
     <div class="cards">
@@ -309,7 +381,7 @@
       <div class="card">
         <div class="card-icon">☀️</div>
         <h3>Energieeffizient</h3>
-        <p>Moderne Haustechnik, Photovoltaik und Wärmerückgewinnung — für niedrige Betriebskosten.</p>
+        <p>Photovoltaik, Wärmerückgewinnung und moderne Haustechnik für niedrige Betriebskosten.</p>
       </div>
       <div class="card">
         <div class="card-icon">📐</div>
@@ -319,17 +391,49 @@
     </div>
   </section>
 
+  <!-- GALERIE -->
+  <div class="galerie-wrap" id="galerie">
+    <div class="galerie-inner">
+      <p class="section-label">Visualisierungen</p>
+      <h2 class="section-title" style="margin-bottom:2rem">Das Haus im Überblick</h2>
+      <div class="galerie-grid">
+        <img src="haus1.jpg" alt="Hausansicht 1" onclick="openLightbox(this.src)" />
+        <img src="haus2.jpg" alt="Hausansicht 2" onclick="openLightbox(this.src)" />
+        <img src="haus3.jpg" alt="Hausansicht 3" onclick="openLightbox(this.src)" />
+        <img src="haus4.jpg" alt="Hausansicht 4" onclick="openLightbox(this.src)" />
+        <img src="haus5.jpg" alt="Hausansicht 5" onclick="openLightbox(this.src)" />
+        <img src="haus6.jpg" alt="Hausansicht 6" onclick="openLightbox(this.src)" />
+      </div>
+    </div>
+  </div>
+
+  <!-- GRUNDRISSE -->
+  <section id="grundrisse">
+    <p class="section-label">Grundrisse</p>
+    <h2 class="section-title">Erdgeschoss &amp; Obergeschoss</h2>
+    <div class="grundriss-grid">
+      <div class="grundriss-card">
+        <img src="eg.jpg" alt="Erdgeschoss" onclick="openLightbox(this.src)" style="cursor:pointer" />
+        <p>Erdgeschoss</p>
+      </div>
+      <div class="grundriss-card">
+        <img src="og.jpg" alt="Obergeschoss" onclick="openLightbox(this.src)" style="cursor:pointer" />
+        <p>Obergeschoss</p>
+      </div>
+    </div>
+  </section>
+
   <!-- KONTAKT -->
-  <section class="contact-section" id="kontakt">
+  <div class="contact-section" id="kontakt">
     <div class="contact-inner">
       <p class="section-label">Kontakt</p>
       <h2 class="section-title">Interesse? Sprechen wir.</h2>
-      <p class="subtitle">Wir freuen uns auf deine Nachricht — ob Fragen zum Konzept, zum Grundstück oder zum Bauprozess.</p>
+      <p class="sub">Wir freuen uns auf deine Nachricht — ob Fragen zum Konzept, zum Grundstück oder zum Bauprozess.</p>
       <div class="contact-card">
-        <p class="contact-card-label">zwei | fünf | null</p>
+        <p class="contact-card-label">Johann &amp; Nina Knodel</p>
         <div class="contact-row">
           <div class="icon">📱</div>
-          0151 – 7777777
+          0151 – 20758777
         </div>
         <div class="divider"></div>
         <div class="contact-row">
@@ -339,15 +443,54 @@
         <div class="divider"></div>
         <div class="contact-row">
           <div class="icon">📍</div>
-          Hinter der Wiese, 27356 Rotenburg
+          Fischotterweg 4, 27356 Rotenburg
         </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">✕</span>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
 
   <footer>
-    © 2026 zwei | fünf | null 
+    © 2026 zwei | fünf | null — Johann &amp; Nina Knodel &nbsp;·&nbsp; Fischotterweg 4, 27356 Rotenburg
   </footer>
+
+  <script>
+    // SLIDER
+    const slides = document.querySelectorAll('.hero-slide');
+    const dotsContainer = document.getElementById('sliderDots');
+    let current = 0;
+
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goTo(i);
+      dotsContainer.appendChild(d);
+    });
+
+    function goTo(n) {
+      current = n;
+      document.getElementById('slider').style.transform = `translateX(-${n * 100}%)`;
+      document.querySelectorAll('.slider-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === n);
+      });
+    }
+
+    setInterval(() => goTo((current + 1) % slides.length), 5000);
+
+    // LIGHTBOX
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  </script>
 
 </body>
 </html>
