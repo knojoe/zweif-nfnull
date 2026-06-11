@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>zwei | fünf | null</title>
+  <title>zwei | fünf | null — Wohnen auf kleinem Grund</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -16,48 +16,53 @@
       flex-direction: column;
     }
 
+    /* HEADER */
     header {
-      padding: 2rem 3rem;
+      background: #000;
+      padding: 1rem 3rem;
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(24,95,165,0.3);
     }
 
-    .brand {
-      font-size: 1.6rem;
-      font-weight: 600;
-      letter-spacing: -0.3px;
+    .logo-wrap img {
+      height: 80px;
+      width: auto;
     }
 
-    .brand span.div {
-      color: #185FA5;
-      font-weight: 300;
-      padding: 0 6px;
+    nav {
+      display: flex;
+      gap: 2rem;
     }
 
-    .accent-bar {
-      width: 3px;
-      height: 32px;
-      background: #185FA5;
-      border-radius: 2px;
-      margin-right: 4px;
+    nav a {
+      color: #8899aa;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
     }
 
+    nav a:hover { color: #fff; }
+
+    /* HERO */
     .hero {
-      flex: 1;
+      background: #000;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 4rem 2rem;
+      padding: 5rem 2rem 4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
     .badge {
       background: rgba(24, 95, 165, 0.2);
       border: 1px solid rgba(24, 95, 165, 0.4);
       color: #85B7EB;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       padding: 6px 18px;
@@ -66,7 +71,7 @@
     }
 
     h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
       font-weight: 600;
       line-height: 1.1;
       margin-bottom: 1.5rem;
@@ -76,11 +81,11 @@
     h1 .blue { color: #185FA5; }
 
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #8899aa;
-      max-width: 480px;
-      line-height: 1.7;
-      margin-bottom: 3rem;
+      max-width: 500px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
     }
 
     .coming-soon {
@@ -90,10 +95,9 @@
       background: rgba(255,255,255,0.05);
       border: 0.5px solid rgba(255,255,255,0.1);
       border-radius: 12px;
-      padding: 1rem 2rem;
-      font-size: 0.9rem;
+      padding: 0.9rem 2rem;
+      font-size: 0.88rem;
       color: #8899aa;
-      margin-bottom: 3rem;
     }
 
     .dot {
@@ -101,12 +105,88 @@
       height: 8px;
       border-radius: 50%;
       background: #185FA5;
+      flex-shrink: 0;
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.3; }
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #185FA5;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 600;
+      margin-bottom: 3rem;
+      letter-spacing: -0.5px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 0.5px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: #8899aa;
+      line-height: 1.7;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 5rem 3rem;
+    }
+
+    .contact-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-inner .section-title {
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-inner .subtitle {
+      margin-bottom: 2.5rem;
     }
 
     .contact-card {
@@ -117,11 +197,11 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      min-width: 320px;
+      text-align: left;
     }
 
-    .contact-card p {
-      font-size: 0.8rem;
+    .contact-card-label {
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #185FA5;
@@ -137,8 +217,8 @@
     }
 
     .contact-row .icon {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       background: rgba(24, 95, 165, 0.15);
       display: flex;
@@ -158,64 +238,109 @@
       background: rgba(255,255,255,0.08);
     }
 
+    /* FOOTER */
     footer {
+      background: #000;
       text-align: center;
       padding: 2rem;
-      color: #445566;
-      font-size: 0.8rem;
+      color: #334455;
+      font-size: 0.78rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      header { padding: 1rem 1.5rem; }
+      nav { display: none; }
+      .features { padding: 3rem 1.5rem; }
+      .contact-section { padding: 3rem 1.5rem; }
+      .contact-card { padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
-    <div class="accent-bar"></div>
-    <div class="brand">
-      zwei<span class="div">|</span>fünf<span class="div">|</span>null
+    <div class="logo-wrap">
+      <img src="zweifünfnull_LOGO_2.png" alt="zwei | fünf | null" />
     </div>
+    <nav>
+      <a href="#konzept">Konzept</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="badge">Demnächst verfügbar</div>
-
-    <h1>Wohnen auf<br/><span class="blue">250 m²</span> neu gedacht.</h1>
-
+    <div class="badge">Wohnen auf kleinem Grund</div>
+    <h1>Kompaktes Grundstück.<br/><span class="blue">Modernes Leben.</span></h1>
     <p class="subtitle">
-      Kompakte Grundstücke. Clevere Konzepte. Modernes Leben —
-      effizient, nachhaltig und bezahlbar.
+      Kompaktes Grundstück. Moderner Holzrahmenbau.<br/>
+      Effizient und nachhaltig.
     </p>
-
     <div class="coming-soon">
       <div class="dot"></div>
       Website wird gerade aufgebaut — bald mehr Infos
     </div>
+  </section>
 
-    <div class="contact-card">
-      <p>Kontakt</p>
-      <div class="contact-row">
-        <div class="icon">👤</div>
-        Johann Knodel
+  <!-- KONZEPT -->
+  <section class="features" id="konzept">
+    <p class="section-label">Das Konzept</p>
+    <h2 class="section-title">Wohnen neu gedacht — auf <span style="color:#185FA5">250 m²</span></h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🏡</div>
+        <h3>Kleines Grundstück</h3>
+        <p>250 m² — clever genutzt. Kein verschwendeter Raum, maximale Wohnqualität auf minimalem Grund.</p>
       </div>
-      <div class="divider"></div>
-      <div class="contact-row">
-        <div class="icon">📱</div>
-        0151 – 20758777
+      <div class="card">
+        <div class="card-icon">🌲</div>
+        <h3>Holzrahmenbau</h3>
+        <p>Nachhaltiger Baustoff, schnelle Bauzeit, hervorragende Dämmwerte — Holz als Werkstoff der Zukunft.</p>
       </div>
-      <div class="divider"></div>
-      <div class="contact-row">
-        <div class="icon">✉</div>
-        <a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a>
+      <div class="card">
+        <div class="card-icon">☀️</div>
+        <h3>Energieeffizient</h3>
+        <p>Moderne Haustechnik, Photovoltaik und Wärmerückgewinnung — für niedrige Betriebskosten.</p>
       </div>
-      <div class="divider"></div>
-      <div class="contact-row">
-        <div class="icon">📍</div>
-        Fischotterweg 4, 27356 Rotenburg
+      <div class="card">
+        <div class="card-icon">📐</div>
+        <h3>Durchdacht geplant</h3>
+        <p>Von der ersten Skizze bis zur Schlüsselübergabe — alles aus einer Hand, mit Erfahrung im Holzbau.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="contact-section" id="kontakt">
+    <div class="contact-inner">
+      <p class="section-label">Kontakt</p>
+      <h2 class="section-title">Interesse? Sprechen wir.</h2>
+      <p class="subtitle">Wir freuen uns auf deine Nachricht — ob Fragen zum Konzept, zum Grundstück oder zum Bauprozess.</p>
+      <div class="contact-card">
+        <p class="contact-card-label">Johann &amp; Nina Knodel</p>
+        <div class="contact-row">
+          <div class="icon">📱</div>
+          0151 – 20758777
+        </div>
+        <div class="divider"></div>
+        <div class="contact-row">
+          <div class="icon">✉</div>
+          <a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a>
+        </div>
+        <div class="divider"></div>
+        <div class="contact-row">
+          <div class="icon">📍</div>
+          Fischotterweg 4, 27356 Rotenburg
+        </div>
       </div>
     </div>
   </section>
 
   <footer>
-    © 2026 zwei | fünf | null — Johann Knodel
+    © 2026 zwei | fünf | null — Johann &amp; Nina Knodel &nbsp;·&nbsp; Fischotterweg 4, 27356 Rotenburg
   </footer>
 
 </body>
