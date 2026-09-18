@@ -16,43 +16,40 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Wohnen auf kleinem Grund — zwei | fünf | null","description":"250 m² Grundstück reicht für ein modernes, nachhaltiges Zuhause im Holzrahmenbau.","url":"https://zweifünfnull.de/","publisher":{"@type":"Organization","name":"zwei | fünf | null","url":"https://zweifünfnull.de","contactPoint":{"@type":"ContactPoint","email":"info@zweifünfnull.de","contactType":"Kundenservice"}}}
   </script>
-
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Reichen 250 m² Grundstück für ein vollwertiges Haus?","acceptedAnswer":{"@type":"Answer","text":"Ja — mit durchdachter Planung entstehen auf 250 m² vollwertige Einfamilienhäuser mit Wohnflächen von 100 bis 130 m² auf zwei Etagen."}},{"@type":"Question","name":"Für wen ist das zwei | fünf | null Konzept geeignet?","acceptedAnswer":{"@type":"Answer","text":"Paare und Berufstätige im mittleren Alter, die schön wohnen möchten — ohne großen Gartenpflege-Aufwand."}},{"@type":"Question","name":"Warum Holzrahmenbau?","acceptedAnswer":{"@type":"Answer","text":"Holz ist der nachhaltigste Baustoff — CO₂-speichernd, schnell verarbeitbar, hervorragend dämmend."}}]}
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Reichen 250 m² Grundstück für ein vollwertiges Haus?","acceptedAnswer":{"@type":"Answer","text":"Ja — mit durchdachter Planung entstehen auf 250 m² vollwertige Einfamilienhäuser mit Wohnflächen von 100 bis 130 m² auf zwei Etagen."}},{"@type":"Question","name":"Für wen ist das Konzept geeignet?","acceptedAnswer":{"@type":"Answer","text":"Paare und Berufstätige im mittleren Alter, die schön wohnen möchten ohne großen Gartenpflege-Aufwand."}},{"@type":"Question","name":"Warum Holzrahmenbau?","acceptedAnswer":{"@type":"Answer","text":"CO₂-speichernd, schnell verarbeitbar, hervorragend dämmend — nachhaltig und wohngesund."}}]}
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --white: #ffffff;
-      --off-white: #f5f5f7;
-      --light-gray: #d2d2d7;
-      --mid-gray: #86868b;
-      --dark-gray: #1d1d1f;
-      --black: #000000;
-      --blue: #0071e3;
-      --blue-hover: #0077ed;
-      --wood: #8B6F47;
-      --wood-light: #C4A882;
-
-      --font-display: 'Cormorant Garamond', Georgia, serif;
-      --font-ui: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-
-      --radius: 18px;
-      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --bg:        #0a0a0a;
+      --bg2:       #111111;
+      --bg3:       #161616;
+      --surface:   #1a1a1a;
+      --border:    rgba(255,255,255,0.08);
+      --border2:   rgba(255,255,255,0.04);
+      --gold:      #C9A96E;
+      --gold-dim:  rgba(201,169,110,0.15);
+      --gold-line: rgba(201,169,110,0.3);
+      --text:      #f0f0f0;
+      --muted:     #888;
+      --faint:     #444;
+      --font: 'Outfit', -apple-system, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-ui);
-      background: var(--white);
-      color: var(--dark-gray);
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ── HEADER ── */
@@ -60,85 +57,67 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 200;
-      height: 52px;
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 0.5px solid rgba(0,0,0,0.1);
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 2rem;
-      transition: background var(--transition);
+      padding: 0 2.5rem;
+      transition: background 0.5s ease, border-color 0.5s ease;
+      border-bottom: 1px solid transparent;
     }
 
-    header.dark {
-      background: rgba(0,0,0,0.72);
-      border-bottom-color: rgba(255,255,255,0.08);
+    header.scrolled {
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(20px);
+      border-color: var(--border);
     }
-
-    header.dark .nav-link { color: rgba(255,255,255,0.75); }
-    header.dark .nav-link:hover { color: #fff; }
-    header.dark .brand-name { color: #fff; }
-    header.dark .brand-sep { color: rgba(255,255,255,0.35); }
 
     .logo-wrap {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
     }
 
-    .logo-wrap img {
-      height: 34px;
-      width: auto;
-    }
+    .logo-wrap img { height: 40px; width: auto; }
 
     .brand-name {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      color: var(--dark-gray);
-      transition: color var(--transition);
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
     }
 
-    .brand-sep {
-      color: var(--light-gray);
-      padding: 0 3px;
-      transition: color var(--transition);
-    }
+    .brand-sep { color: var(--gold); padding: 0 4px; }
 
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 1.75rem;
-    }
+    nav { display: flex; align-items: center; gap: 2rem; }
 
     .nav-link {
       font-size: 0.78rem;
-      font-weight: 400;
-      color: var(--dark-gray);
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
       text-decoration: none;
-      letter-spacing: 0.2px;
-      transition: color var(--transition);
-      opacity: 0.85;
+      transition: color 0.3s;
     }
 
-    .nav-link:hover { opacity: 1; color: var(--blue); }
+    .nav-link:hover { color: var(--text); }
 
     .nav-cta {
-      background: var(--blue);
-      color: #fff !important;
-      padding: 0.4rem 1rem;
-      border-radius: 980px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      opacity: 1 !important;
-      transition: background var(--transition) !important;
+      border: 1px solid var(--gold-line);
+      color: var(--gold) !important;
+      padding: 0.45rem 1.25rem;
+      border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
     }
 
-    .nav-cta:hover { background: var(--blue-hover) !important; }
+    .nav-cta:hover {
+      background: var(--gold-dim);
+      color: var(--gold) !important;
+    }
 
     /* ── HERO ── */
     .hero {
@@ -150,26 +129,6 @@
       align-items: flex-end;
     }
 
-    .hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.05) 0%,
-        rgba(0,0,0,0.1) 40%,
-        rgba(0,0,0,0.75) 100%
-      );
-    }
-
     .hero-video-wrap {
       position: absolute;
       inset: 0;
@@ -178,8 +137,7 @@
 
     .hero-video-wrap iframe {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       width: 100vw;
       height: 56.25vw;
       min-height: 100vh;
@@ -188,181 +146,205 @@
       pointer-events: none;
     }
 
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        175deg,
+        rgba(0,0,0,0.2) 0%,
+        rgba(0,0,0,0.5) 50%,
+        rgba(10,10,10,0.95) 100%
+      );
+    }
+
     .hero-content {
       position: relative;
       z-index: 2;
-      padding: 0 3rem 7rem;
-      max-width: 800px;
+      padding: 0 2.5rem 8rem;
+      max-width: 900px;
     }
 
-    .hero-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 500;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.68rem;
+      font-weight: 400;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 1.25rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
     }
 
     .hero h1 {
-      font-family: var(--font-display);
       font-size: clamp(3rem, 7vw, 6.5rem);
-      font-weight: 300;
-      line-height: 1.02;
-      letter-spacing: -1.5px;
+      font-weight: 200;
+      line-height: 1.05;
+      letter-spacing: -2px;
       color: #fff;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
-    .hero h1 em {
-      font-style: italic;
-      font-weight: 300;
+    .hero h1 strong {
+      font-weight: 500;
+      color: var(--gold);
     }
 
     .hero-sub {
       font-size: 1rem;
       font-weight: 300;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.7;
-      max-width: 440px;
-      margin-bottom: 2.5rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 3rem;
+      letter-spacing: 0.2px;
     }
 
     .hero-actions {
       display: flex;
       align-items: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
+      gap: 2rem;
     }
 
-    .btn-primary {
-      background: #fff;
-      color: var(--dark-gray);
-      padding: 0.75rem 1.75rem;
-      border-radius: 980px;
-      font-size: 0.9rem;
+    .btn-gold {
+      background: var(--gold);
+      color: #0a0a0a;
+      padding: 0.85rem 2.25rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
       font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       text-decoration: none;
-      transition: background var(--transition), transform var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      transition: opacity 0.3s;
     }
 
-    .btn-primary:hover { background: #f0f0f0; transform: scale(1.02); }
+    .btn-gold:hover { opacity: 0.85; }
 
-    .btn-ghost-light {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: rgba(255,255,255,0.85);
+    .btn-outline {
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
       text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: color var(--transition);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 2px;
+      transition: color 0.3s, border-color 0.3s;
     }
 
-    .btn-ghost-light:hover { color: #fff; }
+    .btn-outline:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.6);
+    }
 
-    /* ── STATS BAR ── */
+    /* ── STATS ── */
     .stats-bar {
-      background: var(--off-white);
-      border-bottom: 0.5px solid var(--light-gray);
-      padding: 2rem 3rem;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
     }
 
     .stats-inner {
       max-width: 1100px;
       margin: 0 auto;
-      display: flex;
-      justify-content: space-around;
-      gap: 2rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
     }
 
     .stat-item {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border);
       text-align: center;
     }
 
+    .stat-item:last-child { border-right: none; }
+
     .stat-num {
-      font-family: var(--font-display);
-      font-size: 2.8rem;
-      font-weight: 300;
-      color: var(--dark-gray);
+      font-size: 3rem;
+      font-weight: 200;
+      color: var(--gold);
       line-height: 1;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
     }
 
     .stat-label {
-      font-size: 0.78rem;
-      color: var(--mid-gray);
-      letter-spacing: 0.3px;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    /* ── SECTION SHARED ── */
-    .section {
-      padding: 8rem 3rem;
-      max-width: 1100px;
+    /* ── FOTO SECTION ── */
+    .foto-wrap {
+      padding: 8rem 2.5rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .eyebrow {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1rem;
-    }
-
-    .section-h {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 4.5vw, 4rem);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.5px;
-      color: var(--dark-gray);
-      margin-bottom: 1.25rem;
-    }
-
-    .section-h em { font-style: italic; }
-
-    .section-lead {
-      font-size: 1rem;
-      color: var(--mid-gray);
-      line-height: 1.8;
-      max-width: 560px;
-    }
-
-    /* ── KONZEPT ── */
-    .konzept-layout {
+    .foto-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
       align-items: center;
-      padding: 8rem 3rem;
-      max-width: 1100px;
-      margin: 0 auto;
     }
 
-    .konzept-image {
-      border-radius: var(--radius);
+    .foto-img-wrap {
+      position: relative;
+      border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.12);
-      aspect-ratio: 4/3;
+      aspect-ratio: 3/2;
     }
 
-    .konzept-image img {
+    .foto-img-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.8s ease;
+      transition: transform 1s var(--ease);
     }
 
-    .konzept-image:hover img { transform: scale(1.04); }
+    .foto-img-wrap:hover img { transform: scale(1.04); }
 
-    .konzept-text .eyebrow { margin-bottom: 1.25rem; }
+    .foto-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--gold-line);
+      border-radius: 4px;
+      pointer-events: none;
+    }
 
-    .konzept-pills {
+    .foto-text .eyebrow { margin-bottom: 1.5rem; }
+
+    .foto-text h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 200;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .foto-text h2 strong { font-weight: 500; color: var(--gold); }
+
+    .foto-text p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .pill-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
@@ -370,18 +352,25 @@
     }
 
     .pill {
-      background: var(--off-white);
-      border: 0.5px solid var(--light-gray);
-      border-radius: 980px;
-      padding: 0.4rem 1rem;
-      font-size: 0.8rem;
-      color: var(--dark-gray);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: border-color 0.3s, color 0.3s;
     }
 
-    /* ── FEATURE GRID ── */
-    .features-bg {
-      background: var(--dark-gray);
-      padding: 8rem 3rem;
+    .pill:hover { border-color: var(--gold-line); color: var(--gold); }
+
+    /* ── FEATURES ── */
+    .features-wrap {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 8rem 2.5rem;
     }
 
     .features-inner {
@@ -389,99 +378,95 @@
       margin: 0 auto;
     }
 
-    .features-inner .eyebrow { color: rgba(255,255,255,0.5); }
-    .features-inner .section-h { color: #fff; }
-    .features-inner .section-lead { color: rgba(255,255,255,0.5); margin-bottom: 4rem; }
+    .features-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 5rem;
+      align-items: end;
+    }
+
+    .features-header h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 200;
+      letter-spacing: -1px;
+      line-height: 1.15;
+    }
+
+    .features-header h2 strong { font-weight: 500; color: var(--gold); }
+
+    .features-header p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
+    }
 
     .features-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius);
-      overflow: hidden;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
 
     .feature-card {
-      background: #1a1a1a;
+      background: var(--bg2);
       padding: 2.5rem 2rem;
-      transition: background var(--transition);
+      transition: background 0.3s;
     }
 
-    .feature-card:hover { background: #222; }
+    .feature-card:hover { background: var(--bg3); }
 
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      display: block;
+    .feature-num {
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 2rem;
     }
 
     .feature-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.05rem;
       font-weight: 400;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 0.75rem;
-      line-height: 1.3;
+      letter-spacing: -0.3px;
     }
 
     .feature-card p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.75;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
     }
-
-    /* ── GALERIE ── */
-    .galerie-wrap {
-      padding: 8rem 3rem;
-      background: var(--off-white);
-    }
-
-    .galerie-inner { max-width: 1100px; margin: 0 auto; }
-
-    .galerie-masonry {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: auto;
-      gap: 0.75rem;
-      margin-top: 3rem;
-    }
-
-    .galerie-masonry img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      display: block;
-    }
-
-    .galerie-masonry img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    }
-
-    .g1 { grid-column: 1 / 8; grid-row: 1; height: 320px; }
-    .g2 { grid-column: 8 / 13; grid-row: 1; height: 320px; }
-    .g3 { grid-column: 1 / 5; grid-row: 2; height: 240px; }
-    .g4 { grid-column: 5 / 9; grid-row: 2; height: 240px; }
-    .g5 { grid-column: 9 / 13; grid-row: 2; height: 240px; }
 
     /* ── 3D MODELL ── */
     .modell-wrap {
-      padding: 8rem 3rem;
+      padding: 8rem 2.5rem;
       max-width: 1100px;
       margin: 0 auto;
     }
 
+    .modell-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .modell-header p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 360px;
+      line-height: 1.7;
+    }
+
     .modell-embed {
-      margin-top: 3rem;
-      border-radius: var(--radius);
+      border-radius: 4px;
       overflow: hidden;
-      border: 0.5px solid var(--light-gray);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
       aspect-ratio: 16/9;
       position: relative;
     }
@@ -495,9 +480,10 @@
     }
 
     /* ── GRUNDRISSE ── */
-    .grundriss-bg {
-      background: var(--dark-gray);
-      padding: 8rem 3rem;
+    .grundriss-wrap {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 8rem 2.5rem;
     }
 
     .grundriss-inner {
@@ -505,21 +491,23 @@
       margin: 0 auto;
     }
 
-    .grundriss-inner .eyebrow { color: rgba(255,255,255,0.45); }
-    .grundriss-inner .section-h { color: #fff; margin-bottom: 0.75rem; }
-    .grundriss-inner .section-lead { color: rgba(255,255,255,0.45); margin-bottom: 3rem; }
+    .grundriss-header {
+      margin-bottom: 3rem;
+    }
 
     .grundriss-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
     }
 
     .grundriss-card {
-      border-radius: var(--radius);
+      background: var(--bg2);
       overflow: hidden;
-      background: #1a1a1a;
-      border: 0.5px solid rgba(255,255,255,0.08);
     }
 
     .grundriss-card img {
@@ -527,76 +515,86 @@
       height: 280px;
       object-fit: cover;
       cursor: pointer;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s var(--ease), opacity 0.3s;
       display: block;
+      filter: brightness(0.9);
     }
 
-    .grundriss-card img:hover { transform: scale(1.03); }
+    .grundriss-card img:hover {
+      transform: scale(1.03);
+      filter: brightness(1);
+    }
 
     .grundriss-label {
       padding: 1rem 1.5rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 1.5px;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: var(--muted);
+      border-top: 1px solid var(--border);
     }
 
     /* ── FAQ ── */
     .faq-wrap {
-      padding: 8rem 3rem;
-      max-width: 720px;
+      padding: 8rem 2.5rem;
+      max-width: 800px;
       margin: 0 auto;
     }
 
-    .faq-item {
-      border-bottom: 0.5px solid var(--light-gray);
+    .faq-intro {
+      margin-bottom: 4rem;
     }
 
-    .faq-item:first-of-type { border-top: 0.5px solid var(--light-gray); }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:first-of-type { border-top: 1px solid var(--border); }
 
     .faq-q {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 400;
+      font-size: 0.95rem;
+      font-weight: 300;
+      letter-spacing: 0.2px;
       padding: 1.5rem 0;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 1.5rem;
-      color: var(--dark-gray);
-      user-select: none;
+      color: var(--text);
+      transition: color 0.3s;
     }
 
-    .faq-chevron {
-      width: 20px;
-      height: 20px;
+    .faq-q:hover { color: var(--gold); }
+
+    .faq-icon {
+      width: 22px; height: 22px;
+      border: 1px solid var(--faint);
       border-radius: 50%;
-      border: 1px solid var(--light-gray);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 0.8rem;
+      color: var(--muted);
       flex-shrink: 0;
-      font-size: 0.75rem;
-      color: var(--mid-gray);
-      transition: transform var(--transition), background var(--transition);
+      transition: all 0.3s;
     }
 
-    .faq-item.open .faq-chevron {
+    .faq-item.open .faq-icon {
+      border-color: var(--gold);
+      color: var(--gold);
       transform: rotate(45deg);
-      background: var(--dark-gray);
-      border-color: var(--dark-gray);
-      color: #fff;
     }
 
     .faq-a {
-      font-size: 0.92rem;
-      color: var(--mid-gray);
-      line-height: 1.8;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.5s ease, padding 0.3s ease;
+      transition: max-height 0.5s ease, padding 0.3s;
     }
 
     .faq-item.open .faq-a {
@@ -605,180 +603,192 @@
     }
 
     /* ── KONTAKT ── */
-    .kontakt-wrap {
-      background: var(--off-white);
-      border-top: 0.5px solid var(--light-gray);
-      padding: 8rem 3rem;
+    .kontakt-bg {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 8rem 2.5rem;
     }
 
     .kontakt-inner {
-      max-width: 560px;
+      max-width: 600px;
       margin: 0 auto;
       text-align: center;
     }
 
-    .kontakt-inner .section-h { margin-bottom: 0.75rem; }
-    .kontakt-inner .section-lead { margin: 0 auto 3rem; }
+    .kontakt-inner h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 200;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .kontakt-inner h2 strong { font-weight: 500; color: var(--gold); }
+
+    .kontakt-inner > p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
 
     .kontakt-card {
-      background: #fff;
-      border-radius: var(--radius);
-      border: 0.5px solid var(--light-gray);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
       overflow: hidden;
+      text-align: left;
     }
 
     .kontakt-row {
       display: flex;
       align-items: center;
       gap: 1.25rem;
-      padding: 1.25rem 2rem;
-      border-bottom: 0.5px solid var(--light-gray);
-      text-align: left;
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid var(--border2);
     }
 
     .kontakt-row:last-child { border-bottom: none; }
 
-    .kontakt-icon {
-      width: 40px; height: 40px;
-      background: var(--off-white);
-      border-radius: 10px;
+    .k-icon {
+      width: 36px; height: 36px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-line);
+      border-radius: 2px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       flex-shrink: 0;
     }
 
-    .kontakt-row-text strong {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--mid-gray);
-      letter-spacing: 0.5px;
-      margin-bottom: 2px;
+    .k-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3px;
     }
 
-    .kontakt-row-text span, .kontakt-row-text a {
-      font-size: 0.92rem;
-      color: var(--dark-gray);
-      text-decoration: none;
+    .k-value {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text);
     }
 
-    .kontakt-row-text a:hover { color: var(--blue); }
+    .k-value a { color: var(--text); text-decoration: none; transition: color 0.3s; }
+    .k-value a:hover { color: var(--gold); }
 
     /* ── IMPRESSUM ── */
     .impressum-wrap {
-      padding: 4rem 3rem;
+      padding: 3rem 2.5rem;
       max-width: 1100px;
       margin: 0 auto;
-      border-top: 0.5px solid var(--light-gray);
+      border-top: 1px solid var(--border);
     }
 
     .impressum-wrap h3 {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 1px;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--mid-gray);
-      margin-bottom: 1rem;
+      color: var(--faint);
+      margin-bottom: 0.75rem;
     }
 
     .impressum-wrap p {
-      font-size: 0.82rem;
-      color: var(--light-gray);
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--faint);
       line-height: 1.8;
     }
 
-    .impressum-wrap a { color: var(--blue); text-decoration: none; }
+    .impressum-wrap a { color: var(--faint); text-decoration: none; }
+    .impressum-wrap a:hover { color: var(--muted); }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--dark-gray);
-      padding: 2.5rem 3rem;
+      background: #060606;
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.3);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      color: var(--faint);
     }
 
-    footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
-    footer a:hover { color: rgba(255,255,255,0.6); }
+    footer a { color: var(--faint); text-decoration: none; }
+    footer a:hover { color: var(--muted); }
 
     /* ── LIGHTBOX ── */
     .lightbox {
       display: none;
       position: fixed; inset: 0;
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.95);
       z-index: 999;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
     .lightbox.open { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 4px; }
     .lightbox-close {
       position: absolute; top: 1.5rem; right: 2rem;
-      font-size: 1.5rem; cursor: pointer;
-      color: rgba(255,255,255,0.6);
+      font-size: 1.2rem; cursor: pointer;
+      color: var(--muted);
       width: 36px; height: 36px;
-      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--border);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      transition: background var(--transition);
+      transition: all 0.3s;
     }
-    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+    .lightbox-close:hover { color: #fff; border-color: var(--muted); }
 
-    /* ── SCROLL REVEAL ── */
+    /* ── REVEAL ── */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(24px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       header { padding: 0 1.25rem; }
       nav { display: none; }
       .hero-content { padding: 0 1.5rem 5rem; }
-      .section { padding: 5rem 1.5rem; }
-      .konzept-layout { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
-      .features-bg { padding: 5rem 1.5rem; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .stat-item { border-bottom: 1px solid var(--border); }
+      .foto-wrap { padding: 5rem 1.5rem; }
+      .foto-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .features-wrap { padding: 5rem 1.5rem; }
+      .features-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
       .features-grid { grid-template-columns: 1fr 1fr; }
-      .galerie-wrap { padding: 5rem 1.5rem; }
-      .galerie-masonry { grid-template-columns: 1fr 1fr; }
-      .g1 { grid-column: 1 / 3; }
-      .g2 { grid-column: 1 / 3; }
-      .g3 { grid-column: 1; }
-      .g4 { grid-column: 2; }
-      .g5 { grid-column: 1 / 3; }
       .modell-wrap { padding: 5rem 1.5rem; }
-      .grundriss-bg { padding: 5rem 1.5rem; }
+      .modell-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .grundriss-wrap { padding: 5rem 1.5rem; }
       .grundriss-grid { grid-template-columns: 1fr; }
       .faq-wrap { padding: 5rem 1.5rem; }
-      .kontakt-wrap { padding: 5rem 1.5rem; }
-      .impressum-wrap { padding: 3rem 1.5rem; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
-      .stats-inner { flex-wrap: wrap; justify-content: center; }
+      .kontakt-bg { padding: 5rem 1.5rem; }
+      .impressum-wrap { padding: 2.5rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.75rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header id="mainHeader" class="dark">
+  <header id="mainHeader">
     <a href="#" class="logo-wrap">
       <img src="logo.png" alt="zwei | fünf | null">
-      <span class="brand-name">zwei<span class="brand-sep"> | </span>fünf<span class="brand-sep"> | </span>null</span>
+      <span class="brand-name">zwei<span class="brand-sep">|</span>fünf<span class="brand-sep">|</span>null</span>
     </a>
     <nav aria-label="Hauptnavigation">
       <a href="#konzept" class="nav-link">Konzept</a>
-      <a href="#galerie" class="nav-link">Galerie</a>
       <a href="#modell" class="nav-link">3D Modell</a>
       <a href="#grundrisse" class="nav-link">Grundrisse</a>
       <a href="#faq" class="nav-link">FAQ</a>
@@ -787,8 +797,9 @@
   </header>
 
   <main>
+
     <!-- HERO -->
-    <section class="hero" aria-label="Hero">
+    <section class="hero">
       <div class="hero-video-wrap">
         <iframe
           src="https://www.youtube.com/embed/cW-5Dw1rB9E?autoplay=1&mute=1&loop=1&playlist=cW-5Dw1rB9E&controls=0&showinfo=0&rel=0&modestbranding=1"
@@ -798,16 +809,14 @@
           aria-hidden="true">
         </iframe>
       </div>
-      <!-- Fallback Bild wenn Video nicht lädt -->
-      <img class="hero-img" src="haus_real.png" alt="zwei | fünf | null Holzrahmenbau auf 250 m²" style="z-index:0; opacity:0.001;">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <p class="hero-eyebrow">Wohnen auf kleinem Grund</p>
-        <h1>Man braucht kein<br>großes Grundstück<br>um <em>schön zu wohnen.</em></h1>
+        <p class="eyebrow">Wohnen auf kleinem Grund</p>
+        <h1>Man braucht kein<br>großes Grundstück<br>um <strong>schön zu wohnen.</strong></h1>
         <p class="hero-sub">250 m² reichen — wenn man es richtig plant. Moderner Holzrahmenbau, durchdacht bis ins letzte Detail.</p>
         <div class="hero-actions">
-          <a href="#kontakt" class="btn-primary">Gespräch anfragen →</a>
-          <a href="#konzept" class="btn-ghost-light">Mehr erfahren</a>
+          <a href="#kontakt" class="btn-gold">Gespräch anfragen</a>
+          <a href="#konzept" class="btn-outline">Mehr erfahren</a>
         </div>
       </div>
     </section>
@@ -825,7 +834,7 @@
         </div>
         <div class="stat-item reveal">
           <div class="stat-num">A+</div>
-          <div class="stat-label">Energieeffizienzklasse</div>
+          <div class="stat-label">Energieeffizienz</div>
         </div>
         <div class="stat-item reveal">
           <div class="stat-num">100%</div>
@@ -834,77 +843,72 @@
       </div>
     </div>
 
-    <!-- KONZEPT -->
-    <article class="konzept-layout" id="konzept">
-      <div class="konzept-image reveal">
-        <img src="haus_real.png" alt="Moderner Holzrahmenbau auf 250 m² Grundstück mit Photovoltaik" loading="lazy">
-      </div>
-      <div class="konzept-text reveal">
-        <p class="eyebrow">Das Konzept</p>
-        <h2 class="section-h">Wohnen auf<br><em>250 m²</em> — neu gedacht.</h2>
-        <p class="section-lead" style="margin-bottom:1.5rem">zwei | fünf | null steht für 250 m² Grundstück. Nicht weniger — aber auch nicht mehr als man wirklich braucht. Wer gut plant, wohnt besser.</p>
-        <p style="font-size:0.9rem; color:var(--mid-gray); line-height:1.8;">Ideal für Paare, Berufstätige und alle, die schön wohnen möchten — ohne Garten als Vollzeitjob. Unsere Zielgruppe schätzt Qualität über Quantität.</p>
-        <div class="konzept-pills">
-          <span class="pill">Holzrahmenbau</span>
-          <span class="pill">Photovoltaik</span>
-          <span class="pill">Wärmerückgewinnung</span>
-          <span class="pill">Niedersachsen</span>
-          <span class="pill">Schlüsselfertig</span>
+    <!-- FOTO + KONZEPT -->
+    <article class="foto-wrap" id="konzept">
+      <div class="foto-layout">
+        <div class="foto-img-wrap reveal">
+          <img src="haus_real.png" alt="Moderner Holzrahmenbau auf 250 m² Grundstück mit Photovoltaik, Rotenburg Niedersachsen" loading="lazy">
+        </div>
+        <div class="foto-text">
+          <p class="eyebrow">Das Konzept</p>
+          <h2>Wohnen auf <strong>250 m²</strong> —<br>neu gedacht.</h2>
+          <p>zwei | fünf | null steht für 250 m² Grundstück. Nicht weniger — aber auch nicht mehr als man wirklich braucht. Wer gut plant, wohnt besser.</p>
+          <p>Ideal für Paare, Berufstätige und alle, die schön wohnen möchten — ohne Garten als Vollzeitjob. Qualität statt Quantität.</p>
+          <div class="pill-row">
+            <span class="pill">Holzrahmenbau</span>
+            <span class="pill">Photovoltaik</span>
+            <span class="pill">Wärmerückgewinnung</span>
+            <span class="pill">Niedersachsen</span>
+            <span class="pill">Schlüsselfertig</span>
+          </div>
         </div>
       </div>
     </article>
 
     <!-- FEATURES -->
-    <section class="features-bg">
+    <section class="features-wrap">
       <div class="features-inner">
-        <p class="eyebrow">Warum zwei | fünf | null</p>
-        <h2 class="section-h" style="color:#fff; margin-bottom:1rem">Vier gute Gründe.</h2>
-        <p class="section-lead">Kein Kompromiss — eine bewusste Entscheidung für das Wesentliche.</p>
+        <div class="features-header">
+          <div>
+            <p class="eyebrow">Warum zwei | fünf | null</p>
+            <h2>Vier gute<br><strong>Gründe.</strong></h2>
+          </div>
+          <p>Kein Kompromiss — eine bewusste Entscheidung für das Wesentliche. Jeder Punkt steht für sich.</p>
+        </div>
         <div class="features-grid">
           <div class="feature-card reveal">
-            <span class="feature-icon">🏡</span>
+            <div class="feature-num">01</div>
             <h3>Kompakt & clever</h3>
             <p>250 m² bedeutet keine Rasenmäherei am Wochenende. Nur das, was wirklich zählt — gepflegtes Zuhause, mehr Freizeit.</p>
           </div>
           <div class="feature-card reveal">
-            <span class="feature-icon">🌲</span>
+            <div class="feature-num">02</div>
             <h3>Holz als Zukunft</h3>
-            <p>CO₂-speichernd, schnell verarbeitbar, hervorragend gedämmt. Holzrahmenbau ist leiser, wärmer und gesünder.</p>
+            <p>CO₂-speichernd, schnell verarbeitbar, hervorragend gedämmt. Holzrahmenbau ist leiser, wärmer und wohngesunder.</p>
           </div>
           <div class="feature-card reveal">
-            <span class="feature-icon">☀️</span>
+            <div class="feature-num">03</div>
             <h3>Energieautark</h3>
             <p>Photovoltaik, Wärmerückgewinnung, smarte Haustechnik — das Haus produziert mehr Energie als es verbraucht.</p>
           </div>
           <div class="feature-card reveal">
-            <span class="feature-icon">📐</span>
+            <div class="feature-num">04</div>
             <h3>Aus einer Hand</h3>
-            <p>Von der Planung bis zur Schlüsselübergabe — mit langjähriger Erfahrung im Holzbau und Vertrieb. Keine Überraschungen.</p>
+            <p>Von der Planung bis zur Schlüsselübergabe — mit langjähriger Erfahrung im Holzbau. Keine bösen Überraschungen.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALERIE -->
-    <section class="galerie-wrap" id="galerie">
-      <div class="galerie-inner">
-        <p class="eyebrow">Visualisierungen</p>
-        <h2 class="section-h">Das Haus im <em>Überblick.</em></h2>
-        <div class="galerie-masonry">
-          <img class="g1" src="haus3.jpg" alt="Außenansicht Holzrahmenbau Photovoltaik" onclick="openLightbox(this.src)" loading="lazy">
-          <img class="g2" src="haus1.jpg" alt="Seitenansicht moderner Holzrahmenbau" onclick="openLightbox(this.src)" loading="lazy">
-          <img class="g3" src="haus2.jpg" alt="Holzrahmenbau Visualisierung" onclick="openLightbox(this.src)" loading="lazy">
-          <img class="g4" src="haus4.jpg" alt="3D-Ansicht Kompakthaus" onclick="openLightbox(this.src)" loading="lazy">
-          <img class="g5" src="haus5.jpg" alt="Frontansicht Kompakthaus Satteldach" onclick="openLightbox(this.src)" loading="lazy">
         </div>
       </div>
     </section>
 
     <!-- 3D MODELL -->
     <section class="modell-wrap" id="modell">
-      <p class="eyebrow">Interaktiv</p>
-      <h2 class="section-h">Das Haus in <em>3D erkunden.</em></h2>
-      <p class="section-lead" style="margin-bottom:0">Drehen, zoomen, von allen Seiten anschauen — das Modell lässt sich frei bewegen.</p>
+      <div class="modell-header">
+        <div>
+          <p class="eyebrow">Interaktiv</p>
+          <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:200;letter-spacing:-1px;">Das Haus in <strong style="font-weight:500;color:var(--gold);">3D erkunden.</strong></h2>
+        </div>
+        <p>Drehen, zoomen, von allen Seiten anschauen — das Modell lässt sich frei bewegen.</p>
+      </div>
       <div class="modell-embed reveal">
         <iframe
           src="https://3dwarehouse.sketchup.com/embed/0dfadf65-a7e7-4189-9648-2d6cd3684d69?token=mIB7zunk64I=&binaryName=s21"
@@ -915,18 +919,20 @@
     </section>
 
     <!-- GRUNDRISSE -->
-    <section class="grundriss-bg" id="grundrisse">
+    <section class="grundriss-wrap" id="grundrisse">
       <div class="grundriss-inner">
-        <p class="eyebrow">Grundrisse</p>
-        <h2 class="section-h">Erdgeschoss &amp; <em>Obergeschoss.</em></h2>
-        <p class="section-lead">Zwei vollwertige Etagen auf 250 m² Grundstück. Jeder Quadratmeter ist gedacht — nichts ist verschwendet.</p>
+        <div class="grundriss-header">
+          <p class="eyebrow">Grundrisse</p>
+          <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:200;letter-spacing:-1px;margin-bottom:0.5rem;">Erdgeschoss &amp; <strong style="font-weight:500;color:var(--gold);">Obergeschoss.</strong></h2>
+          <p style="font-size:0.88rem;font-weight:300;color:var(--muted);line-height:1.7;">Zwei vollwertige Etagen auf 250 m² — jeder Quadratmeter ist gedacht.</p>
+        </div>
         <div class="grundriss-grid">
           <div class="grundriss-card reveal">
-            <img src="eg.jpg" alt="Grundriss Erdgeschoss" onclick="openLightbox(this.src)" loading="lazy">
+            <img src="eg.jpg" alt="Grundriss Erdgeschoss zweifünfnull" onclick="openLightbox(this.src)" loading="lazy">
             <div class="grundriss-label">Erdgeschoss</div>
           </div>
           <div class="grundriss-card reveal">
-            <img src="og.jpg" alt="Grundriss Obergeschoss" onclick="openLightbox(this.src)" loading="lazy">
+            <img src="og.jpg" alt="Grundriss Obergeschoss zweifünfnull" onclick="openLightbox(this.src)" loading="lazy">
             <div class="grundriss-label">Obergeschoss</div>
           </div>
         </div>
@@ -935,50 +941,51 @@
 
     <!-- FAQ -->
     <section class="faq-wrap" id="faq">
-      <p class="eyebrow">FAQ</p>
-      <h2 class="section-h" style="margin-bottom:3rem">Häufig gestellte <em>Fragen.</em></h2>
-
+      <div class="faq-intro">
+        <p class="eyebrow">FAQ</p>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:200;letter-spacing:-1px;">Häufig gestellte <strong style="font-weight:500;color:var(--gold);">Fragen.</strong></h2>
+      </div>
       <div class="faq-item">
-        <div class="faq-q">Reichen 250 m² Grundstück für ein vollwertiges Haus? <span class="faq-chevron">+</span></div>
+        <div class="faq-q">Reichen 250 m² Grundstück für ein vollwertiges Haus? <span class="faq-icon">+</span></div>
         <div class="faq-a">Ja — mit durchdachter Planung entstehen auf 250 m² vollwertige Einfamilienhäuser mit Wohnflächen von 100 bis 130 m² auf zwei Etagen. Holzrahmenbau ermöglicht dabei maximale Raumnutzung bei minimalem Fußabdruck.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Für wen ist das zwei | fünf | null Konzept geeignet? <span class="faq-chevron">+</span></div>
+        <div class="faq-q">Für wen ist das zwei | fünf | null Konzept geeignet? <span class="faq-icon">+</span></div>
         <div class="faq-a">Für Paare und Berufstätige im mittleren Alter, die schön wohnen möchten — ohne großen Gartenpflege-Aufwand. Ideal für alle, die Wert auf Qualität statt Quantität legen.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Warum Holzrahmenbau? <span class="faq-chevron">+</span></div>
-        <div class="faq-a">Holz ist der nachhaltigste Baustoff — CO₂-speichernd, schnell verarbeitbar, hervorragend dämmend. Holzrahmenbau ist leiser, wärmer und gesünder als konventionelle Bauweisen. Und er sieht gut aus.</div>
+        <div class="faq-q">Warum Holzrahmenbau? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Holz ist der nachhaltigste Baustoff — CO₂-speichernd, schnell verarbeitbar, hervorragend dämmend. Holzrahmenbau ist leiser, wärmer und gesünder als konventionelle Bauweisen.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Wie läuft ein Projekt ab? <span class="faq-chevron">+</span></div>
+        <div class="faq-q">Wie läuft ein Projekt ab? <span class="faq-icon">+</span></div>
         <div class="faq-a">Von der ersten Idee bis zur Schlüsselübergabe begleiten wir das Projekt. Planung, Leistungsverzeichnis, Ausführung — alles aus einer Hand, mit langjähriger Erfahrung im Holzbau und Vertrieb.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Wo ist das Projekt angesiedelt? <span class="faq-chevron">+</span></div>
+        <div class="faq-q">Wo ist das Projekt angesiedelt? <span class="faq-icon">+</span></div>
         <div class="faq-a">Unser Standort ist Rotenburg an der Wümme in Niedersachsen. Wir sind regional tätig und kennen den norddeutschen Markt — Grundstückspreise, Baubehörden und lokale Handwerker inklusive.</div>
       </div>
     </section>
 
     <!-- KONTAKT -->
-    <section class="kontakt-wrap" id="kontakt">
+    <section class="kontakt-bg" id="kontakt">
       <div class="kontakt-inner">
         <p class="eyebrow">Kontakt</p>
-        <h2 class="section-h">Interesse? <em>Sprechen wir.</em></h2>
-        <p class="section-lead">Schreib uns einfach eine Mail — ob Fragen zum Konzept, zum Grundstück oder zum Bauprozess.</p>
+        <h2>Interesse?<br><strong>Sprechen wir.</strong></h2>
+        <p>Schreib uns einfach eine Mail — ob Fragen zum Konzept, zum Grundstück oder zum Bauprozess.</p>
         <div class="kontakt-card reveal">
           <div class="kontakt-row">
-            <div class="kontakt-icon">✉️</div>
-            <div class="kontakt-row-text">
-              <strong>E-Mail</strong>
-              <a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a>
+            <div class="k-icon">✉️</div>
+            <div>
+              <div class="k-label">E-Mail</div>
+              <div class="k-value"><a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a></div>
             </div>
           </div>
           <div class="kontakt-row">
-            <div class="kontakt-icon">📍</div>
-            <div class="kontakt-row-text">
-              <strong>Standort</strong>
-              <span>Rotenburg (Wümme), Niedersachsen</span>
+            <div class="k-icon">📍</div>
+            <div>
+              <div class="k-label">Standort</div>
+              <div class="k-value">Rotenburg (Wümme), Niedersachsen</div>
             </div>
           </div>
         </div>
@@ -990,10 +997,11 @@
       <h3>Impressum</h3>
       <p>
         Angaben gemäß § 5 TMG · zwei | fünf | null · Fischotterweg 4 · 27356 Rotenburg (Wümme)<br>
-        E-Mail: <a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a><br><br>
-        Haftung für Inhalte: Die Inhalte dieser Seite wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität übernehmen wir keine Gewähr.
+        E-Mail: <a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a> ·
+        Haftung für Inhalte: Die Inhalte wurden mit größter Sorgfalt erstellt. Für die Richtigkeit übernehmen wir keine Gewähr.
       </p>
     </div>
+
   </main>
 
   <!-- FOOTER -->
@@ -1003,44 +1011,36 @@
   </footer>
 
   <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()" role="dialog">
-    <span class="lightbox-close" aria-label="Schließen">✕</span>
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">✕</span>
     <img id="lightboxImg" src="" alt="">
   </div>
 
   <script>
-    // Header transparent/weiß beim Scrollen
+    // Header scroll
     const header = document.getElementById('mainHeader');
-    const hero = document.querySelector('.hero');
-
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        header.classList.add('dark');
-      } else {
-        header.classList.remove('dark');
-      }
-    }, { threshold: 0.1 });
-    observer.observe(hero);
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    });
 
     // Scroll Reveal
-    const revealObserver = new IntersectionObserver((entries) => {
+    const ro = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('visible');
-          revealObserver.unobserve(e.target);
+          ro.unobserve(e.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // FAQ Accordion
+    // FAQ
     document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
         const item = q.closest('.faq-item');
-        const isOpen = item.classList.contains('open');
+        const open = item.classList.contains('open');
         document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
+        if (!open) item.classList.add('open');
       });
     });
 
@@ -1054,9 +1054,7 @@
       document.getElementById('lightbox').classList.remove('open');
       document.body.style.overflow = '';
     }
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLightbox();
-    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 
 </body>
