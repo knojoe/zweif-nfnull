@@ -7,11 +7,12 @@
   <meta name="description" content="250 m² Grundstück reicht. Moderner Holzrahmenbau für Paare und Familien, die clever statt groß wohnen möchten. Nachhaltig, effizient, durchdacht.">
   <link rel="canonical" href="https://zweifünfnull.de/">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#F3EEE6">
   <meta property="og:title" content="Wohnen auf kleinem Grund — zwei | fünf | null">
   <meta property="og:description" content="250 m² Grundstück reicht. Moderner Holzrahmenbau — nachhaltig, effizient, durchdacht geplant.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zweifünfnull.de/">
-  <meta property="og:image" content="https://zweifünfnull.de/haus_real.png">
+  <meta property="og:image" content="https://zweifünfnull.de/haus_real.jpg">
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Wohnen auf kleinem Grund — zwei | fünf | null","description":"250 m² Grundstück reicht für ein modernes, nachhaltiges Zuhause im Holzrahmenbau.","url":"https://zweifünfnull.de/","publisher":{"@type":"Organization","name":"zwei | fünf | null","url":"https://zweifünfnull.de","contactPoint":{"@type":"ContactPoint","email":"info@zweifünfnull.de","contactType":"Kundenservice"}}}
@@ -22,1133 +23,802 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg:        #0a0a0a;
-      --bg2:       #111111;
-      --bg3:       #161616;
-      --surface:   #1a1a1a;
-      --border:    rgba(255,255,255,0.08);
-      --border2:   rgba(255,255,255,0.04);
-      --gold:      #C9A96E;
-      --gold-dim:  rgba(201,169,110,0.15);
-      --gold-line: rgba(201,169,110,0.3);
-      --text:      #f0f0f0;
-      --muted:     #888;
-      --faint:     #444;
-      --font: 'Outfit', -apple-system, sans-serif;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --paper:    #F3EEE6;
+      --paper-2:  #EAE3D7;
+      --ink:      #1E1C19;
+      --ink-2:    #4A463F;
+      --ink-3:    #8A8378;
+      --line:     rgba(30,28,25,0.14);
+      --larch:    #B0703F;
+      --larch-2:  #D9A273;
+      --fir:      #233B2F;
+      --fir-2:    #2E4B3C;
+      --serif: 'Fraunces', Georgia, serif;
+      --sans:  'Instrument Sans', -apple-system, 'Segoe UI', sans-serif;
+      --mono:  'JetBrains Mono', ui-monospace, monospace;
+      --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+      --gut:   clamp(1rem, 4vw, 3rem);
+      --max:   1240px;
     }
 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      background: var(--paper);
+      color: var(--ink);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+    /* feines Papierkorn */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: .35;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid var(--larch); outline-offset: 3px; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut); }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--larch);
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .tag::before { content: ''; width: 18px; height: 1px; background: currentColor; }
+
+    h1, h2, h3 { font-family: var(--serif); font-weight: 300; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.02; }
+    h2 em, h1 em { font-style: italic; color: var(--larch); }
 
     /* ── HEADER ── */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: fixed; top: 0; left: 0; right: 0;
       z-index: 200;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      transition: background 0.5s ease, border-color 0.5s ease;
-      border-bottom: 1px solid transparent;
+      transition: background .4s, box-shadow .4s;
     }
-
     header.scrolled {
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(20px);
-      border-color: var(--border);
+      background: rgba(243,238,230,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 var(--line);
     }
-
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
+    .head-in {
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 var(--gut);
+      height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .logo-wrap img { height: 40px; width: auto; }
-
-    .brand-name {
-      font-size: 1rem;
-      font-weight: 300;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
-    .brand-sep { color: var(--gold); padding: 0 4px; }
+    .brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+    .brand img { height: 42px; width: auto; filter: brightness(.18); }
+    .brand span { font-family: var(--serif); font-size: 1.15rem; letter-spacing: .01em; }
+    .brand b { font-weight: 300; color: var(--larch); padding: 0 .15em; }
 
     nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      font-size: .9rem; font-weight: 500;
+      text-decoration: none; color: var(--ink-2);
+      position: relative;
+    }
+    nav a:not(.btn)::after {
+      content: ''; position: absolute; left: 0; right: 100%; bottom: -4px;
+      height: 1px; background: var(--larch);
+      transition: right .35s var(--ease);
+    }
+    nav a:not(.btn):hover { color: var(--ink); }
+    nav a:not(.btn):hover::after { right: 0; }
 
-    .nav-link {
-      font-size: 0.78rem;
-      font-weight: 300;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--muted);
+    .btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: var(--ink); color: var(--paper) !important;
+      padding: .8rem 1.4rem;
+      border-radius: 999px;
+      font-size: .9rem; font-weight: 500;
       text-decoration: none;
-      transition: color 0.3s;
+      transition: background .3s, transform .3s var(--ease);
     }
-
-    .nav-link:hover { color: var(--text); }
-
-    .nav-cta {
-      border: 1px solid var(--gold-line);
-      color: var(--gold) !important;
-      padding: 0.45rem 1.25rem;
-      border-radius: 2px;
-      font-size: 0.75rem;
-      letter-spacing: 1.5px;
+    .btn:hover { background: var(--fir); transform: translateY(-2px); }
+    .btn .arr { transition: transform .3s var(--ease); }
+    .btn:hover .arr { transform: translateX(4px); }
+    .btn-ghost {
+      font-weight: 500; text-decoration: none; color: var(--ink);
+      border-bottom: 1px solid var(--ink-3); padding-bottom: 2px;
     }
+    .btn-ghost:hover { border-color: var(--larch); color: var(--larch); }
 
-    .nav-cta:hover {
-      background: var(--gold-dim);
-      color: var(--gold) !important;
+    .burger { display: none; background: none; border: 0; cursor: pointer; width: 40px; height: 40px; position: relative; }
+    .burger span, .burger span::before, .burger span::after {
+      position: absolute; left: 9px; width: 22px; height: 1.5px; background: var(--ink); content: '';
+      transition: transform .3s, top .3s;
     }
+    .burger span { top: 19px; }
+    .burger span::before { left: 0; top: -7px; }
+    .burger span::after { left: 0; top: 7px; }
+    .menu-open .burger span { background: transparent; }
+    .menu-open .burger span::before { top: 0; transform: rotate(45deg); }
+    .menu-open .burger span::after { top: 0; transform: rotate(-45deg); }
 
     /* ── HERO ── */
-    .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 700px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .hero-video-wrap {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
-
-    .hero-video-wrap iframe {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 100vw;
-      height: 56.25vw;
-      min-height: 100vh;
-      min-width: 177.78vh;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        175deg,
-        rgba(0,0,0,0.2) 0%,
-        rgba(0,0,0,0.5) 50%,
-        rgba(10,10,10,0.95) 100%
-      );
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 2.5rem 8rem;
-      max-width: 900px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 2rem;
-    }
-
-    .eyebrow::before {
-      content: '';
-      width: 28px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 7vw, 6.5rem);
-      font-weight: 200;
-      line-height: 1.05;
-      letter-spacing: -2px;
-      color: #fff;
-      margin-bottom: 2rem;
-    }
-
-    .hero h1 strong {
-      font-weight: 500;
-      color: var(--gold);
-    }
-
-    .hero-sub {
-      font-size: 1rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.8;
-      max-width: 480px;
-      margin-bottom: 3rem;
-      letter-spacing: 0.2px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .btn-gold {
-      background: var(--gold);
-      color: #0a0a0a;
-      padding: 0.85rem 2.25rem;
-      border-radius: 2px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: opacity 0.3s;
-    }
-
-    .btn-gold:hover { opacity: 0.85; }
-
-    .btn-outline {
-      font-size: 0.78rem;
-      font-weight: 300;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 2px;
-      transition: color 0.3s, border-color 0.3s;
-    }
-
-    .btn-outline:hover {
-      color: #fff;
-      border-color: rgba(255,255,255,0.6);
-    }
-
-    /* ── STATS ── */
-    .stats-bar {
-      background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      padding: 0;
-    }
-
-    .stats-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+    .hero { padding: 120px 0 0; position: relative; }
+    .hero-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-    }
-
-    .stat-item {
-      padding: 2.5rem 2rem;
-      border-right: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .stat-item:last-child { border-right: none; }
-
-    .stat-num {
-      font-size: 3rem;
-      font-weight: 200;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-      letter-spacing: -1px;
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      font-weight: 300;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ── FOTO SECTION ── */
-    .foto-wrap {
-      padding: 8rem 2.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .foto-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    .foto-img-wrap {
-      position: relative;
-      border-radius: 4px;
-      overflow: hidden;
-      aspect-ratio: 3/2;
-    }
-
-    .foto-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1s var(--ease);
-    }
-
-    .foto-img-wrap:hover img { transform: scale(1.04); }
-
-    .foto-img-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 1px solid var(--gold-line);
-      border-radius: 4px;
-      pointer-events: none;
-    }
-
-    .foto-text .eyebrow { margin-bottom: 1.5rem; }
-
-    .foto-text h2 {
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 200;
-      line-height: 1.15;
-      letter-spacing: -1px;
-      margin-bottom: 1.5rem;
-      color: var(--text);
-    }
-
-    .foto-text h2 strong { font-weight: 500; color: var(--gold); }
-
-    .foto-text p {
-      font-size: 0.92rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.85;
-      margin-bottom: 1rem;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 2rem;
-    }
-
-    .pill {
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 0.35rem 0.9rem;
-      font-size: 0.72rem;
-      font-weight: 300;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: border-color 0.3s, color 0.3s;
-    }
-
-    .pill:hover { border-color: var(--gold-line); color: var(--gold); }
-
-    /* ── FEATURES ── */
-    .features-wrap {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 8rem 2.5rem;
-    }
-
-    .features-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .features-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      margin-bottom: 5rem;
+      grid-template-columns: 1.05fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
       align-items: end;
     }
-
-    .features-header h2 {
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 200;
-      letter-spacing: -1px;
-      line-height: 1.15;
+    .hero h1 {
+      font-size: clamp(2.8rem, 6.4vw, 6rem);
+      line-height: .98;
+      margin: 1.4rem 0 1.6rem;
     }
+    .hero-sub { font-size: 1.12rem; color: var(--ink-2); max-width: 34ch; margin-bottom: 2.2rem; }
+    .hero-actions { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
 
-    .features-header h2 strong { font-weight: 500; color: var(--gold); }
-
-    .features-header p {
-      font-size: 0.92rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.85;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    .feature-card {
-      background: var(--bg2);
-      padding: 2.5rem 2rem;
-      transition: background 0.3s;
-    }
-
-    .feature-card:hover { background: var(--bg3); }
-
-    .feature-num {
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 2px;
-      color: var(--gold);
-      margin-bottom: 2rem;
-    }
-
-    .feature-card h3 {
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.3px;
-    }
-
-    .feature-card p {
-      font-size: 0.82rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    /* ── 3D MODELL ── */
-    .modell-wrap {
-      padding: 8rem 2.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .modell-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 3rem;
-    }
-
-    .modell-header p {
-      font-size: 0.88rem;
-      font-weight: 300;
-      color: var(--muted);
-      max-width: 360px;
-      line-height: 1.7;
-    }
-
-    .modell-embed {
-      border-radius: 4px;
+    .hero-media { position: relative; padding: 0 0 2.4rem 2.4rem; }
+    .hero-frame {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border-radius: 6px 120px 6px 6px;
       overflow: hidden;
-      border: 1px solid var(--border);
-      aspect-ratio: 16/9;
+      background: var(--fir) url("haus_real.jpg") center top / auto 200% no-repeat;
+    }
+    .hero-frame iframe {
+      position: absolute; top: 50%; left: 50%;
+      height: 100%; width: auto;
+      aspect-ratio: 16 / 9;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      border: 0;
+    }
+    /* Bemaßung wie im Plan */
+    .dim { position: absolute; font-family: var(--mono); font-size: .7rem; color: var(--ink-3); }
+    .dim-v { left: 0; top: 0; bottom: 2.4rem; width: 1.4rem; border-right: 1px solid var(--ink-3); }
+    .dim-v::before, .dim-v::after, .dim-h::before, .dim-h::after { content: ''; position: absolute; background: var(--ink-3); }
+    .dim-v::before, .dim-v::after { right: -5px; width: 9px; height: 1px; }
+    .dim-v::before { top: 0; } .dim-v::after { bottom: 0; }
+    .dim-v i { position: absolute; top: 50%; left: -2px; transform: translateY(-50%) rotate(-90deg); white-space: nowrap; font-style: normal; background: var(--paper); padding: 0 .4rem; }
+    .dim-h { left: 2.4rem; right: 0; bottom: 0; height: 1.4rem; border-top: 1px solid var(--ink-3); }
+    .dim-h::before, .dim-h::after { top: -5px; width: 1px; height: 9px; }
+    .dim-h::before { left: 0; } .dim-h::after { right: 0; }
+    .dim-h i { position: absolute; left: 50%; top: -.65rem; transform: translateX(-50%); font-style: normal; background: var(--paper); padding: 0 .4rem; }
+
+    .hero-stamp {
+      position: absolute; left: 0; top: 14%;
+      transform: translateX(-30%);
+      width: 132px; height: 132px; border-radius: 50%;
+      background: var(--larch); color: var(--paper);
+      display: grid; place-items: center; text-align: center;
+      font-family: var(--serif); line-height: 1;
+      box-shadow: 0 20px 40px -18px rgba(90,50,20,.55);
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-stamp strong { display: block; font-size: 2.4rem; font-weight: 400; }
+    .hero-stamp small { font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
+    @keyframes float { 50% { transform: translateX(-30%) translateY(-8px) rotate(-4deg); } }
+
+    /* ── STATS ── */
+    .stats {
+      margin-top: clamp(3rem, 7vw, 6rem);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .stats-in { display: grid; grid-template-columns: repeat(5, 1fr); }
+    .stat { padding: 2rem 1.25rem; border-left: 1px solid var(--line); }
+    .stat:first-child { border-left: 0; padding-left: 0; }
+    .stat-n { font-family: var(--serif); font-size: clamp(2rem, 3.4vw, 2.9rem); font-weight: 300; line-height: 1; letter-spacing: -0.03em; }
+    .stat-n sup { font-size: .45em; color: var(--larch); margin-left: .1em; }
+    .stat-l { font-size: .85rem; color: var(--ink-3); margin-top: .5rem; }
+
+    /* ── KONZEPT ── */
+    .section { padding: clamp(5rem, 11vw, 9rem) 0; }
+    .konzept-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: clamp(2.5rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .konzept-text h2 { margin: 1.2rem 0 1.6rem; }
+    .konzept-text p { color: var(--ink-2); font-size: 1.05rem; max-width: 46ch; margin-bottom: 1rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
+    .chip { font-size: .82rem; padding: .4rem .9rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); background: rgba(255,255,255,.35); }
+
+    .plot-card {
+      background: var(--paper-2);
+      border-radius: 6px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
       position: relative;
     }
+    .plot-card svg { width: 100%; height: auto; display: block; }
+    .plot-card figcaption { font-family: var(--mono); font-size: .7rem; color: var(--ink-3); margin-top: 1rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .plot-house { fill: var(--larch); }
+    .plot-house-label, .plot-label { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+    .plot-house-label { fill: var(--paper); }
+    .plot-label { fill: var(--fir); }
+    .plot-big { font-family: var(--serif); font-size: 46px; fill: var(--fir); font-weight: 300; }
 
-    .modell-embed iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
+    .photos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .photo {
+      aspect-ratio: 4/3; border-radius: 6px; overflow: hidden; cursor: zoom-in;
+      background-image: url("haus_real.jpg");
+      background-size: auto 200%;
+      background-repeat: no-repeat;
+      transition: transform .6s var(--ease);
     }
+    .photo:hover { transform: scale(.985); }
+    .photo.top { background-position: 50% 0; }
+    .photo.bottom { background-position: 50% 100%; }
+
+    /* ── GRÜNDE (dunkler Block) ── */
+    .dark { background: var(--fir); color: var(--paper); position: relative; overflow: hidden; }
+    .dark::after {
+      /* Lattung wie Holzfassade */
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 28px);
+    }
+    .dark .tag { color: var(--larch-2); }
+    .dark h2 em { color: var(--larch-2); }
+    .gruende-head { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 4rem; position: relative; z-index: 1; }
+    .gruende-head p { color: rgba(243,238,230,.7); max-width: 40ch; justify-self: end; }
+    .gruende { list-style: none; position: relative; z-index: 1; }
+    .grund {
+      display: grid;
+      grid-template-columns: 5rem 1fr 1.3fr;
+      gap: 2rem;
+      padding: 2.2rem 0;
+      border-top: 1px solid rgba(243,238,230,.16);
+      align-items: baseline;
+      transition: padding .4s var(--ease);
+    }
+    .grund:last-child { border-bottom: 1px solid rgba(243,238,230,.16); }
+    .grund:hover { padding-left: 1rem; }
+    .grund-n { font-family: var(--mono); font-size: .8rem; color: var(--larch-2); }
+    .grund h3 { font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.05; }
+    .grund p { color: rgba(243,238,230,.72); }
+
+    /* ── 3D MODELL ── */
+    .modell-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .modell-head h2 { margin-top: 1.2rem; }
+    .modell-head p { color: var(--ink-2); max-width: 36ch; }
+    .modell-embed {
+      position: relative; aspect-ratio: 16/9;
+      border-radius: 6px; overflow: hidden;
+      background: var(--paper-2);
+      box-shadow: 0 30px 60px -40px rgba(30,28,25,.5);
+    }
+    .modell-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
     /* ── GRUNDRISSE ── */
-    .grundriss-wrap {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      padding: 8rem 2.5rem;
+    .gr-tabs { display: inline-flex; background: var(--paper-2); border-radius: 999px; padding: 4px; margin: 2rem 0 1.5rem; }
+    .gr-tabs button {
+      font: 500 .9rem var(--sans); color: var(--ink-2);
+      background: none; border: 0; cursor: pointer;
+      padding: .6rem 1.4rem; border-radius: 999px;
+      transition: background .3s, color .3s;
+    }
+    .gr-tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+    .gr-stage { position: relative; aspect-ratio: 1232 / 787; border-radius: 6px; overflow: hidden; cursor: zoom-in; background: var(--paper-2); }
+    .gr-stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .5s ease, transform .8s var(--ease); }
+    .gr-stage img[hidden] { display: block; opacity: 0; transform: scale(1.03); pointer-events: none; }
+    .gr-stage .zoom {
+      position: absolute; right: 1rem; bottom: 1rem;
+      font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase;
+      background: rgba(243,238,230,.9); color: var(--ink); padding: .45rem .8rem; border-radius: 999px;
     }
 
-    .grundriss-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+    /* ── LAGE ── */
+    .lage-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+    .lage-grid h2 { margin: 1.2rem 0 1.4rem; }
+    .lage-grid > div > p { color: var(--ink-2); max-width: 40ch; }
+    .bike { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.8rem; font-family: var(--mono); font-size: .75rem; color: var(--ink-3); }
+    .wege { list-style: none; }
+    .weg {
+      display: grid; grid-template-columns: 9rem 1fr 3.5rem;
+      gap: 1rem; align-items: center;
+      padding: .95rem 0; border-bottom: 1px solid var(--line);
     }
-
-    .grundriss-header {
-      margin-bottom: 3rem;
+    .weg:first-child { border-top: 1px solid var(--line); }
+    .weg-name { font-weight: 500; }
+    .weg-bar { height: 6px; background: var(--paper-2); border-radius: 3px; overflow: hidden; }
+    .weg-bar span {
+      display: block; height: 100%; width: 0;
+      background: linear-gradient(90deg, var(--fir-2), var(--larch));
+      border-radius: 3px;
+      transition: width 1.2s var(--ease);
     }
-
-    .grundriss-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .grundriss-card {
-      background: var(--bg2);
-      overflow: hidden;
-    }
-
-    .grundriss-card img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      cursor: pointer;
-      transition: transform 0.6s var(--ease), opacity 0.3s;
-      display: block;
-      filter: brightness(0.9);
-    }
-
-    .grundriss-card img:hover {
-      transform: scale(1.03);
-      filter: brightness(1);
-    }
-
-    .grundriss-label {
-      padding: 1rem 1.5rem;
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
+    .wege.visible .weg-bar span { width: calc(var(--m) * 10%); }
+    .weg-min { font-family: var(--serif); font-size: 1.35rem; text-align: right; }
+    .weg-min small { font-family: var(--sans); font-size: .75rem; color: var(--ink-3); margin-left: .15rem; }
 
     /* ── FAQ ── */
-    .faq-wrap {
-      padding: 8rem 2.5rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .faq-intro {
-      margin-bottom: 4rem;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .faq-item:first-of-type { border-top: 1px solid var(--border); }
-
-    .faq-q {
-      font-size: 0.95rem;
-      font-weight: 300;
-      letter-spacing: 0.2px;
+    .faq-grid { display: grid; grid-template-columns: 4fr 8fr; gap: clamp(2rem, 6vw, 6rem); }
+    .faq-grid h2 { margin-top: 1.2rem; }
+    details { border-bottom: 1px solid var(--line); }
+    details:first-of-type { border-top: 1px solid var(--line); }
+    summary {
+      list-style: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
       padding: 1.5rem 0;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-      color: var(--text);
-      transition: color 0.3s;
+      font-family: var(--serif); font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+      transition: color .3s;
     }
-
-    .faq-q:hover { color: var(--gold); }
-
-    .faq-icon {
-      width: 22px; height: 22px;
-      border: 1px solid var(--faint);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      flex-shrink: 0;
-      transition: all 0.3s;
+    summary::-webkit-details-marker { display: none; }
+    summary:hover { color: var(--larch); }
+    summary .pm {
+      flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--line); position: relative;
+      transition: background .3s, border-color .3s, transform .4s var(--ease);
     }
-
-    .faq-item.open .faq-icon {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: rotate(45deg);
-    }
-
-    .faq-a {
-      font-size: 0.88rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.85;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, padding 0.3s;
-    }
-
-    .faq-item.open .faq-a {
-      max-height: 300px;
-      padding-bottom: 1.5rem;
-    }
+    summary .pm::before, summary .pm::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 1.5px; background: currentColor; transform: translate(-50%,-50%); }
+    summary .pm::after { transform: translate(-50%,-50%) rotate(90deg); }
+    details[open] summary .pm { background: var(--larch); border-color: var(--larch); color: var(--paper); transform: rotate(45deg); }
+    details p { color: var(--ink-2); padding: 0 3rem 1.6rem 0; max-width: 62ch; }
 
     /* ── KONTAKT ── */
-    .kontakt-bg {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      padding: 8rem 2.5rem;
+    .kontakt { background: var(--ink); color: var(--paper); border-radius: 28px 28px 0 0; position: relative; overflow: hidden; }
+    .kontakt .tag { color: var(--larch-2); }
+    .kontakt-in { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: end; }
+    .kontakt h2 { font-size: clamp(2.8rem, 7vw, 6rem); margin-top: 1.2rem; }
+    .kontakt h2 em { color: var(--larch-2); }
+    .kontakt p { color: rgba(243,238,230,.65); margin-top: 1.4rem; max-width: 40ch; }
+    .mail {
+      display: block;
+      font-family: var(--serif); font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+      text-decoration: none; color: var(--paper);
+      border-bottom: 1px solid rgba(243,238,230,.25);
+      padding-bottom: .6rem; margin-bottom: 1.5rem;
+      transition: color .3s, border-color .3s;
+      overflow-wrap: anywhere;
     }
+    .mail:hover { color: var(--larch-2); border-color: var(--larch-2); }
+    .kontakt-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: .92rem; color: rgba(243,238,230,.7); }
+    .kontakt-meta b { display: block; font-family: var(--mono); font-weight: 400; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(243,238,230,.45); margin-bottom: .3rem; }
+    .kontakt-logo { position: absolute; right: -60px; bottom: -40px; width: 420px; opacity: .06; pointer-events: none; }
 
-    .kontakt-inner {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .kontakt-inner h2 {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 200;
-      letter-spacing: -1px;
-      margin-bottom: 1rem;
-    }
-
-    .kontakt-inner h2 strong { font-weight: 500; color: var(--gold); }
-
-    .kontakt-inner > p {
-      font-size: 0.9rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 3rem;
-    }
-
-    .kontakt-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      text-align: left;
-    }
-
-    .kontakt-row {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 1.25rem 1.75rem;
-      border-bottom: 1px solid var(--border2);
-    }
-
-    .kontakt-row:last-child { border-bottom: none; }
-
-    .k-icon {
-      width: 36px; height: 36px;
-      background: var(--gold-dim);
-      border: 1px solid var(--gold-line);
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.95rem;
-      flex-shrink: 0;
-    }
-
-    .k-label {
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 3px;
-    }
-
-    .k-value {
-      font-size: 0.9rem;
-      font-weight: 300;
-      color: var(--text);
-    }
-
-    .k-value a { color: var(--text); text-decoration: none; transition: color 0.3s; }
-    .k-value a:hover { color: var(--gold); }
-
-    /* ── IMPRESSUM ── */
-    .impressum-wrap {
-      padding: 3rem 2.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      border-top: 1px solid var(--border);
-    }
-
-    .impressum-wrap h3 {
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 0.75rem;
-    }
-
-    .impressum-wrap p {
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: var(--faint);
-      line-height: 1.8;
-    }
-
-    .impressum-wrap a { color: var(--faint); text-decoration: none; }
-    .impressum-wrap a:hover { color: var(--muted); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #060606;
-      border-top: 1px solid var(--border);
-      padding: 2rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.72rem;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-      color: var(--faint);
-    }
-
-    footer a { color: var(--faint); text-decoration: none; }
-    footer a:hover { color: var(--muted); }
+    /* ── FOOTER / IMPRESSUM ── */
+    footer { background: var(--ink); color: rgba(243,238,230,.5); font-size: .82rem; }
+    .foot-in { border-top: 1px solid rgba(243,238,230,.12); padding: 2.5rem 0 2rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
+    footer h3 { font-family: var(--mono); font-size: .7rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; color: rgba(243,238,230,.4); margin-bottom: .6rem; }
+    footer a { color: rgba(243,238,230,.7); text-decoration: none; }
+    footer a:hover { color: var(--paper); }
+    .foot-bottom { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 2rem; flex-wrap: wrap; }
 
     /* ── LIGHTBOX ── */
     .lightbox {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.95);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(12px);
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 4px; }
-    .lightbox-close {
-      position: absolute; top: 1.5rem; right: 2rem;
-      font-size: 1.2rem; cursor: pointer;
-      color: var(--muted);
-      width: 36px; height: 36px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(30,28,25,.94);
       display: flex; align-items: center; justify-content: center;
-      transition: all 0.3s;
+      opacity: 0; pointer-events: none; transition: opacity .35s;
+      padding: 1rem;
     }
-    .lightbox-close:hover { color: #fff; border-color: var(--muted); }
+    .lightbox.open { opacity: 1; pointer-events: auto; }
+    .lightbox img { max-width: 94vw; max-height: 88vh; border-radius: 6px; }
+    .lightbox button {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--paper); color: var(--ink); border: 0; cursor: pointer; font-size: 1.1rem;
+    }
 
-    /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
-    }
+    /* ── REVEAL & LOAD ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
     .reveal.visible { opacity: 1; transform: none; }
+    .load > * { opacity: 0; transform: translateY(20px); animation: up 1s var(--ease) forwards; }
+    .load > *:nth-child(2) { animation-delay: .12s; }
+    .load > *:nth-child(3) { animation-delay: .24s; }
+    .load > *:nth-child(4) { animation-delay: .36s; }
+    @keyframes up { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, .reveal, .load > * { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+      .wege .weg-bar span { width: calc(var(--m) * 10%); }
+    }
 
-    /* ── MOBILE ── */
-    @media (max-width: 768px) {
-      header { padding: 0 1.25rem; }
-      nav { display: none; }
-      .hero-content { padding: 0 1.5rem 5rem; }
-      .stats-inner { grid-template-columns: 1fr 1fr; }
-      .stat-item { border-bottom: 1px solid var(--border); }
-      .foto-wrap { padding: 5rem 1.5rem; }
-      .foto-layout { grid-template-columns: 1fr; gap: 3rem; }
-      .features-wrap { padding: 5rem 1.5rem; }
-      .features-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
-      .features-grid { grid-template-columns: 1fr 1fr; }
-      .modell-wrap { padding: 5rem 1.5rem; }
-      .modell-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .grundriss-wrap { padding: 5rem 1.5rem; }
-      .grundriss-grid { grid-template-columns: 1fr; }
-      .faq-wrap { padding: 5rem 1.5rem; }
-      .kontakt-bg { padding: 5rem 1.5rem; }
-      .impressum-wrap { padding: 2.5rem 1.5rem; }
-      footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.75rem 1.5rem; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-grid, .konzept-grid, .lage-grid, .faq-grid, .kontakt-in, .gruende-head { grid-template-columns: 1fr; }
+      .gruende-head p { justify-self: start; }
+      .hero-media { max-width: 560px; }
+      .stats-in { grid-template-columns: repeat(3, 1fr); }
+      .stat:nth-child(4) { border-left: 0; padding-left: 0; }
+      .stat:nth-child(n+4) { border-top: 1px solid var(--line); }
+    }
+    @media (max-width: 760px) {
+      .burger { display: block; }
+      nav {
+        position: fixed; inset: 72px 0 auto 0;
+        flex-direction: column; align-items: flex-start; gap: 0;
+        background: var(--paper);
+        padding: .5rem var(--gut) 1.5rem;
+        box-shadow: 0 20px 30px -20px rgba(30,28,25,.3);
+        opacity: 0; visibility: hidden; transform: translateY(-12px);
+        transition: opacity .3s, transform .4s var(--ease), visibility 0s .4s;
+      }
+      .menu-open nav { opacity: 1; visibility: visible; transform: none; transition: opacity .3s, transform .4s var(--ease); }
+      .hero-frame { aspect-ratio: 4 / 3.4; border-radius: 6px 70px 6px 6px; }
+      nav a { font-size: 1.1rem; padding: .85rem 0; width: 100%; border-bottom: 1px solid var(--line); }
+      nav a:not(.btn)::after { display: none; }
+      nav .btn { margin-top: 1rem; width: auto; border-bottom: 0; }
+      .brand span { display: none; }
+      .hero { padding-top: 96px; }
+      .hero-media { padding: 0 0 2rem 2rem; }
+      .dim-v { bottom: 2rem; } .dim-h { left: 2rem; }
+      .dim-v i { display: none; }
+      .hero-stamp { width: 100px; height: 100px; transform: translateX(-20%); }
+      .hero-stamp strong { font-size: 1.8rem; }
+      @keyframes float { 50% { transform: translateX(-20%) translateY(-6px) rotate(-4deg); } }
+      .stats-in { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 1.5rem 1rem; }
+      .stat:nth-child(odd) { border-left: 0; padding-left: 0; }
+      .stat:nth-child(4) { border-left: 1px solid var(--line); padding-left: 1rem; }
+      .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .stat:last-child { grid-column: span 2; }
+      .grund { grid-template-columns: 1fr; gap: .6rem; padding: 1.8rem 0; }
+      .grund:hover { padding-left: 0; }
+      .weg { grid-template-columns: 7rem 1fr 3rem; }
+      details p { padding-right: 0; }
+      .kontakt-meta, .foot-in { grid-template-columns: 1fr; }
+      .kontakt { border-radius: 20px 20px 0 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header id="mainHeader">
-    <a href="#" class="logo-wrap">
-      <img src="logo.png" alt="zwei | fünf | null">
-      <span class="brand-name">zwei<span class="brand-sep">|</span>fünf<span class="brand-sep">|</span>null</span>
-    </a>
-    <nav aria-label="Hauptnavigation">
-      <a href="#konzept" class="nav-link">Konzept</a>
-      <a href="#modell" class="nav-link">3D Modell</a>
-      <a href="#grundrisse" class="nav-link">Grundrisse</a>
-      <a href="#lage" class="nav-link">Lage</a>
-      <a href="#faq" class="nav-link">FAQ</a>
-      <a href="#kontakt" class="nav-link nav-cta">Kontakt</a>
-    </nav>
+    <div class="head-in">
+      <a href="#" class="brand" aria-label="zwei | fünf | null – zum Seitenanfang">
+        <img src="logo.png" alt="">
+        <span>zwei<b>|</b>fünf<b>|</b>null</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mainNav"><span></span></button>
+      <nav id="mainNav" aria-label="Hauptnavigation">
+        <a href="#konzept">Konzept</a>
+        <a href="#modell">3D Modell</a>
+        <a href="#grundrisse">Grundrisse</a>
+        <a href="#lage">Lage</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontakt" class="btn">Kontakt <span class="arr">→</span></a>
+      </nav>
+    </div>
   </header>
 
   <main>
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-video-wrap">
-        <iframe
-          src="https://www.youtube.com/embed/cW-5Dw1rB9E?autoplay=1&mute=1&loop=1&playlist=cW-5Dw1rB9E&controls=0&showinfo=0&rel=0&modestbranding=1"
-          title="zwei | fünf | null"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          aria-hidden="true">
-        </iframe>
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="load">
+            <p class="tag">Wohnen auf kleinem Grund</p>
+            <h1>Man braucht kein großes Grundstück, um <em>schön zu wohnen.</em></h1>
+            <p class="hero-sub">250&nbsp;m² reichen — wenn man es richtig plant. Moderner Holzrahmenbau, durchdacht bis ins letzte Detail.</p>
+            <div class="hero-actions">
+              <a href="#kontakt" class="btn">Gespräch anfragen <span class="arr">→</span></a>
+              <a href="#konzept" class="btn-ghost">Mehr erfahren</a>
+            </div>
+          </div>
+
+          <div class="hero-media load">
+            <div class="hero-frame">
+              <iframe
+                src="https://www.youtube.com/embed/cW-5Dw1rB9E?autoplay=1&mute=1&loop=1&playlist=cW-5Dw1rB9E&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                title="zwei | fünf | null – Video"
+                allow="autoplay; encrypted-media"
+                tabindex="-1"
+                aria-hidden="true"></iframe>
+            </div>
+            <div class="dim dim-v" aria-hidden="true"><i>zwei Etagen</i></div>
+            <div class="dim dim-h" aria-hidden="true"><i>Holzrahmenbau</i></div>
+            <div class="hero-stamp" aria-hidden="true">
+              <div><strong>250</strong><small>m² reichen</small></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <p class="eyebrow">Wohnen auf kleinem Grund</p>
-        <h1>Man braucht kein<br>großes Grundstück<br>um <strong>schön zu wohnen.</strong></h1>
-        <p class="hero-sub">250 m² reichen — wenn man es richtig plant. Moderner Holzrahmenbau, durchdacht bis ins letzte Detail.</p>
-        <div class="hero-actions">
-          <a href="#kontakt" class="btn-gold">Gespräch anfragen</a>
-          <a href="#konzept" class="btn-outline">Mehr erfahren</a>
+
+      <div class="stats">
+        <div class="wrap stats-in">
+          <div class="stat reveal"><div class="stat-n">250<sup>m²</sup></div><div class="stat-l">Grundstück</div></div>
+          <div class="stat reveal"><div class="stat-n">6</div><div class="stat-l">Zimmer · 2 Bäder</div></div>
+          <div class="stat reveal"><div class="stat-n">KfW55</div><div class="stat-l">Energieeffizienzhaus</div></div>
+          <div class="stat reveal"><div class="stat-n">100<sup>%</sup></div><div class="stat-l">Ökologischer Holzrahmenbau</div></div>
+          <div class="stat reveal"><div class="stat-n">18<sup>kW</sup></div><div class="stat-l">Photovoltaikanlage</div></div>
         </div>
       </div>
     </section>
 
-    <!-- STATS -->
-    <div class="stats-bar">
-      <div class="stats-inner">
-        <div class="stat-item reveal">
-          <div class="stat-num">250</div>
-          <div class="stat-label">m² Grundstück</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-num">6</div>
-          <div class="stat-label">Zimmer · 2 Badezimmer</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-num">KfW55</div>
-          <div class="stat-label">Energieeffizienzhaus</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Ökologischer Holzrahmenbau</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-num">18 kW</div>
-          <div class="stat-label">Photovoltaikanlage</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FOTO + KONZEPT -->
-    <article class="foto-wrap" id="konzept">
-      <div class="foto-layout">
-        <div class="foto-img-wrap reveal">
-          <img src="haus_real.png" alt="Moderner Holzrahmenbau auf 250 m² Grundstück mit Photovoltaik, Rotenburg Niedersachsen" loading="lazy">
-        </div>
-        <div class="foto-text">
-          <p class="eyebrow">Das Konzept</p>
-          <h2>Wohnen auf <strong>250 m²</strong> —<br>neu gedacht.</h2>
-          <p>zwei | fünf | null steht für 250 m² Grundstück. Nicht weniger — aber auch nicht mehr als man wirklich braucht. Wer gut plant, wohnt besser.</p>
+    <!-- KONZEPT -->
+    <article class="section" id="konzept">
+      <div class="wrap konzept-grid">
+        <div class="konzept-text reveal">
+          <p class="tag">Das Konzept</p>
+          <h2>Wohnen auf 250&nbsp;m² — <em>neu gedacht.</em></h2>
+          <p>zwei | fünf | null steht für 250 m² Grundstück. Nicht weniger — aber auch nicht mehr, als man wirklich braucht. Wer gut plant, wohnt besser.</p>
           <p>Ideal für Paare, Berufstätige und alle, die schön wohnen möchten — ohne Garten als Vollzeitjob. Qualität statt Quantität.</p>
-          <div class="pill-row">
-            <span class="pill">Holzrahmenbau</span>
-            <span class="pill">Photovoltaik</span>
-            <span class="pill">Wärmerückgewinnung</span>
-            <span class="pill">Niedersachsen</span>
-            <span class="pill">Schlüsselfertig</span>
+          <div class="chips">
+            <span class="chip">Holzrahmenbau</span>
+            <span class="chip">Photovoltaik</span>
+            <span class="chip">Wärmerückgewinnung</span>
+            <span class="chip">Niedersachsen</span>
+            <span class="chip">Schlüsselfertig</span>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <figure class="plot-card">
+            <svg viewBox="0 0 520 260" role="img" aria-label="Schema: Haus, Garten und Terrasse auf 250 m² Grundstück">
+              <defs>
+                <pattern id="gras" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <line x1="0" y1="0" x2="0" y2="8" stroke="#233B2F" stroke-opacity=".16" stroke-width="2"/>
+                </pattern>
+              </defs>
+              <rect x="20" y="20" width="480" height="200" fill="url(#gras)" stroke="#233B2F" stroke-width="1.5" stroke-dasharray="6 5"/>
+              <rect x="40" y="48" width="190" height="144" class="plot-house" rx="2"/>
+              <text x="135" y="125" text-anchor="middle" class="plot-house-label">Haus</text>
+              <rect x="230" y="78" width="70" height="84" fill="#D9A273" fill-opacity=".45"/>
+              <text x="265" y="124" text-anchor="middle" class="plot-label" style="font-size:9px">Terrasse</text>
+              <text x="410" y="118" text-anchor="middle" class="plot-big">250 m²</text>
+              <text x="410" y="142" text-anchor="middle" class="plot-label">Garten · Grün</text>
+              <line x1="20" y1="240" x2="500" y2="240" stroke="#8A8378"/>
+              <line x1="20" y1="234" x2="20" y2="246" stroke="#8A8378"/>
+              <line x1="500" y1="234" x2="500" y2="246" stroke="#8A8378"/>
+            </svg>
+            <figcaption><span>Grundstück · schematisch</span><span>Beispielaufteilung, nicht maßstäblich</span></figcaption>
+          </figure>
+          <div class="photos">
+            <div class="photo top" role="img" aria-label="Moderner Holzrahmenbau mit Photovoltaik – Straßenseite" data-lightbox="haus_real.jpg"></div>
+            <div class="photo bottom" role="img" aria-label="Moderner Holzrahmenbau – Gartenseite mit großen Fenstern" data-lightbox="haus_real.jpg"></div>
           </div>
         </div>
       </div>
     </article>
 
-    <!-- FEATURES -->
-    <section class="features-wrap">
-      <div class="features-inner">
-        <div class="features-header">
+    <!-- GRÜNDE -->
+    <section class="section dark">
+      <div class="wrap">
+        <div class="gruende-head reveal">
           <div>
-            <p class="eyebrow">Warum zwei | fünf | null</p>
-            <h2>Vier gute<br><strong>Gründe.</strong></h2>
+            <p class="tag">Warum zwei | fünf | null</p>
+            <h2 style="margin-top:1.2rem">Vier gute <em>Gründe.</em></h2>
           </div>
           <p>Kein Kompromiss — eine bewusste Entscheidung für das Wesentliche. Jeder Punkt steht für sich.</p>
         </div>
-        <div class="features-grid">
-          <div class="feature-card reveal">
-            <div class="feature-num">01</div>
-            <h3>Kompakt & clever</h3>
+        <ol class="gruende">
+          <li class="grund reveal">
+            <span class="grund-n">01</span>
+            <h3>Kompakt &amp; clever</h3>
             <p>250 m² bedeutet keine Rasenmäherei am Wochenende. Nur das, was wirklich zählt — gepflegtes Zuhause, mehr Freizeit.</p>
-          </div>
-          <div class="feature-card reveal">
-            <div class="feature-num">02</div>
+          </li>
+          <li class="grund reveal">
+            <span class="grund-n">02</span>
             <h3>Holz als Zukunft</h3>
-            <p>CO₂-speichernd, schnell verarbeitbar, hervorragend gedämmt. Holzrahmenbau ist leiser, wärmer und wohngesunder.</p>
-          </div>
-          <div class="feature-card reveal">
-            <div class="feature-num">03</div>
+            <p>CO₂-speichernd, schnell verarbeitbar, hervorragend gedämmt. Holzrahmenbau ist leiser, wärmer und wohngesünder.</p>
+          </li>
+          <li class="grund reveal">
+            <span class="grund-n">03</span>
             <h3>Energieautark</h3>
-            <p>Photovoltaik, Wärmerückgewinnung, smarte Haustechnik — das Haus produziert mehr Energie als es verbraucht.</p>
-          </div>
-          <div class="feature-card reveal">
-            <div class="feature-num">04</div>
+            <p>Photovoltaik, Wärmerückgewinnung, smarte Haustechnik — das Haus produziert mehr Energie, als es verbraucht.</p>
+          </li>
+          <li class="grund reveal">
+            <span class="grund-n">04</span>
             <h3>Aus einer Hand</h3>
             <p>Von der Planung bis zur Schlüsselübergabe — mit langjähriger Erfahrung im Holzbau. Keine bösen Überraschungen.</p>
-          </div>
-        </div>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- 3D MODELL -->
-    <section class="modell-wrap" id="modell">
-      <div class="modell-header">
-        <div>
-          <p class="eyebrow">Interaktiv</p>
-          <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:200;letter-spacing:-1px;">Das Haus in <strong style="font-weight:500;color:var(--gold);">3D erkunden.</strong></h2>
+    <section class="section" id="modell">
+      <div class="wrap">
+        <div class="modell-head reveal">
+          <div>
+            <p class="tag">Interaktiv</p>
+            <h2>Das Haus in <em>3D erkunden.</em></h2>
+          </div>
+          <p>Drehen, zoomen, von allen Seiten anschauen — das Modell lässt sich frei bewegen.</p>
         </div>
-        <p>Drehen, zoomen, von allen Seiten anschauen — das Modell lässt sich frei bewegen.</p>
-      </div>
-      <div class="modell-embed reveal">
-        <iframe
-          src="https://3dwarehouse.sketchup.com/embed/0dfadf65-a7e7-4189-9648-2d6cd3684d69?token=mIB7zunk64I=&binaryName=s21"
-          frameborder="0" scrolling="no" allowfullscreen
-          title="zwei | fünf | null 3D Modell">
-        </iframe>
+        <div class="modell-embed reveal">
+          <iframe
+            src="https://3dwarehouse.sketchup.com/embed/0dfadf65-a7e7-4189-9648-2d6cd3684d69?token=mIB7zunk64I=&binaryName=s21"
+            scrolling="no" allowfullscreen loading="lazy"
+            title="zwei | fünf | null 3D Modell"></iframe>
+        </div>
       </div>
     </section>
 
     <!-- GRUNDRISSE -->
-    <section class="grundriss-wrap" id="grundrisse">
-      <div class="grundriss-inner">
-        <div class="grundriss-header">
-          <p class="eyebrow">Grundrisse</p>
-          <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:200;letter-spacing:-1px;margin-bottom:0.5rem;">Erdgeschoss &amp; <strong style="font-weight:500;color:var(--gold);">Obergeschoss.</strong></h2>
-          <p style="font-size:0.88rem;font-weight:300;color:var(--muted);line-height:1.7;">Zwei vollwertige Etagen auf 250 m² — jeder Quadratmeter ist gedacht.</p>
+    <section class="section" id="grundrisse" style="padding-top:0">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="tag">Grundrisse</p>
+          <h2 style="margin-top:1.2rem">Erdgeschoss &amp; <em>Obergeschoss.</em></h2>
+          <p style="color:var(--ink-2);margin-top:1rem;max-width:46ch">Zwei vollwertige Etagen auf 250&nbsp;m² — jeder Quadratmeter ist gedacht.</p>
+          <div class="gr-tabs" role="tablist" aria-label="Geschoss wählen">
+            <button role="tab" aria-selected="true" aria-controls="grStage" data-floor="eg">Erdgeschoss</button>
+            <button role="tab" aria-selected="false" aria-controls="grStage" data-floor="og">Obergeschoss</button>
+          </div>
         </div>
-        <div class="grundriss-grid">
-          <div class="grundriss-card reveal">
-            <img src="eg.jpg" alt="Grundriss Erdgeschoss zweifünfnull" onclick="openLightbox(this.src)" loading="lazy">
-            <div class="grundriss-label">Erdgeschoss</div>
-          </div>
-          <div class="grundriss-card reveal">
-            <img src="og.jpg" alt="Grundriss Obergeschoss zweifünfnull" onclick="openLightbox(this.src)" loading="lazy">
-            <div class="grundriss-label">Obergeschoss</div>
-          </div>
+        <div class="gr-stage reveal" id="grStage" role="tabpanel">
+          <img src="eg.jpg" alt="Grundriss Erdgeschoss zweifünfnull" data-floor="eg" loading="lazy">
+          <img src="og.jpg" alt="Grundriss Obergeschoss zweifünfnull" data-floor="og" loading="lazy" hidden>
+          <span class="zoom">Klicken zum Vergrößern</span>
         </div>
       </div>
     </section>
 
     <!-- LAGE -->
-    <section class="features-wrap" id="lage">
-      <div class="features-inner">
-        <div class="features-header">
-          <div>
-            <p class="eyebrow">Lage</p>
-            <h2>Alles da —<br><strong>unter 10 Minuten.</strong></h2>
-          </div>
+    <section class="section" id="lage" style="background:var(--paper-2)">
+      <div class="wrap lage-grid">
+        <div class="reveal">
+          <p class="tag">Lage</p>
+          <h2>Alles da — <em>unter 10 Minuten.</em></h2>
           <p>Kein Auto nötig für den Alltag. Schulen, Einkauf, Sport und Bahnhof — alles mit dem Fahrrad in wenigen Minuten erreichbar.</p>
+          <p class="bike">
+            <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="4.5" cy="9.5" r="3.8"/><circle cx="17.5" cy="9.5" r="3.8"/><path d="M4.5 9.5 8 3h6l3.5 6.5M8 3 11 9.5h-6.5M12.5 1.5h3"/></svg>
+            Alle Angaben mit dem Fahrrad
+          </p>
         </div>
-        <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border);">
-
-          <div class="feature-card reveal" style="display:flex; align-items:center; gap:1.25rem; padding:1.75rem;">
-            <div style="font-size:1.6rem; flex-shrink:0;">🎒</div>
-            <div>
-              <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Grundschule</div>
-              <div style="font-size:1.5rem;font-weight:200;color:var(--text);">5 <span style="font-size:0.8rem;color:var(--muted);font-weight:300;">min</span></div>
-            </div>
-          </div>
-
-          <div class="feature-card reveal" style="display:flex; align-items:center; gap:1.25rem; padding:1.75rem;">
-            <div style="font-size:1.6rem; flex-shrink:0;">🏫</div>
-            <div>
-              <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Gymnasium</div>
-              <div style="font-size:1.5rem;font-weight:200;color:var(--text);">8 <span style="font-size:0.8rem;color:var(--muted);font-weight:300;">min</span></div>
-            </div>
-          </div>
-
-          <div class="feature-card reveal" style="display:flex; align-items:center; gap:1.25rem; padding:1.75rem;">
-            <div style="font-size:1.6rem; flex-shrink:0;">🛒</div>
-            <div>
-              <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Supermarkt</div>
-              <div style="font-size:1.5rem;font-weight:200;color:var(--text);">5 <span style="font-size:0.8rem;color:var(--muted);font-weight:300;">min</span></div>
-            </div>
-          </div>
-
-          <div class="feature-card reveal" style="display:flex; align-items:center; gap:1.25rem; padding:1.75rem;">
-            <div style="font-size:1.6rem; flex-shrink:0;">🧴</div>
-            <div>
-              <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Drogerie</div>
-              <div style="font-size:1.5rem;font-weight:200;color:var(--text);">10 <span style="font-size:0.8rem;color:var(--muted);font-weight:300;">min</span></div>
-            </div>
-          </div>
-
-          <div class="feature-card reveal" style="display:flex; align-items:center; gap:1.25rem; padding:1.75rem;">
-            <div style="font-size:1.6rem; flex-shrink:0;">🏙️</div>
-            <div>
-              <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Innenstadt</div>
-              <div style="font-size:1.5rem;font-weight:200;color:var(--text);">8 <span style="font-size:0.8rem;color:var(--muted);font-weight:300;">min</span></div>
-            </div>
-          </div>
-
-          <div class="feature-card reveal" style="display:flex; align-items:center; gap:1.25rem; padding:1.75rem;">
-            <div style="font-size:1.6rem; flex-shrink:0;">🎾</div>
-            <div>
-              <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Tennisclub</div>
-              <div style="font-size:1.5rem;font-weight:200;color:var(--text);">1 <span style="font-size:0.8rem;color:var(--muted);font-weight:300;">min</span></div>
-            </div>
-          </div>
-
-          <div class="feature-card reveal" style="display:flex; align-items:center; gap:1.25rem; padding:1.75rem;">
-            <div style="font-size:1.6rem; flex-shrink:0;">💪</div>
-            <div>
-              <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Fitness</div>
-              <div style="font-size:1.5rem;font-weight:200;color:var(--text);">10 <span style="font-size:0.8rem;color:var(--muted);font-weight:300;">min</span></div>
-            </div>
-          </div>
-
-          <div class="feature-card reveal" style="display:flex; align-items:center; gap:1.25rem; padding:1.75rem;">
-            <div style="font-size:1.6rem; flex-shrink:0;">🚉</div>
-            <div>
-              <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Bahnhof</div>
-              <div style="font-size:1.5rem;font-weight:200;color:var(--text);">9 <span style="font-size:0.8rem;color:var(--muted);font-weight:300;">min</span></div>
-            </div>
-          </div>
-
-          <div class="feature-card reveal" style="display:flex; align-items:center; gap:1.25rem; padding:1.75rem; grid-column: span 4; justify-content: center;">
-            <div style="font-size:1.6rem; flex-shrink:0;">🏊</div>
-            <div>
-              <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Schwimmbad</div>
-              <div style="font-size:1.5rem;font-weight:200;color:var(--text);">10 <span style="font-size:0.8rem;color:var(--muted);font-weight:300;">min</span></div>
-            </div>
-          </div>
-
-        </div>
-        <p style="text-align:center; margin-top:1.5rem; font-size:0.78rem; font-weight:300; letter-spacing:1px; color:var(--muted);">🚲 Alle Angaben mit dem Fahrrad</p>
+        <ul class="wege reveal" id="wege">
+          <li class="weg"><span class="weg-name">Tennisclub</span><span class="weg-bar"><span style="--m:1"></span></span><span class="weg-min">1<small>min</small></span></li>
+          <li class="weg"><span class="weg-name">Grundschule</span><span class="weg-bar"><span style="--m:5"></span></span><span class="weg-min">5<small>min</small></span></li>
+          <li class="weg"><span class="weg-name">Supermarkt</span><span class="weg-bar"><span style="--m:5"></span></span><span class="weg-min">5<small>min</small></span></li>
+          <li class="weg"><span class="weg-name">Gymnasium</span><span class="weg-bar"><span style="--m:8"></span></span><span class="weg-min">8<small>min</small></span></li>
+          <li class="weg"><span class="weg-name">Innenstadt</span><span class="weg-bar"><span style="--m:8"></span></span><span class="weg-min">8<small>min</small></span></li>
+          <li class="weg"><span class="weg-name">Bahnhof</span><span class="weg-bar"><span style="--m:9"></span></span><span class="weg-min">9<small>min</small></span></li>
+          <li class="weg"><span class="weg-name">Drogerie</span><span class="weg-bar"><span style="--m:10"></span></span><span class="weg-min">10<small>min</small></span></li>
+          <li class="weg"><span class="weg-name">Fitness</span><span class="weg-bar"><span style="--m:10"></span></span><span class="weg-min">10<small>min</small></span></li>
+          <li class="weg"><span class="weg-name">Schwimmbad</span><span class="weg-bar"><span style="--m:10"></span></span><span class="weg-min">10<small>min</small></span></li>
+        </ul>
       </div>
     </section>
 
-    
-    <section class="faq-wrap" id="faq">
-      <div class="faq-intro">
-        <p class="eyebrow">FAQ</p>
-        <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:200;letter-spacing:-1px;">Häufig gestellte <strong style="font-weight:500;color:var(--gold);">Fragen.</strong></h2>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Reichen 250 m² Grundstück für ein vollwertiges Haus? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Ja — mit durchdachter Planung entstehen auf 250 m² vollwertige Einfamilienhäuser mit Wohnflächen von 100 bis 130 m² auf zwei Etagen. Holzrahmenbau ermöglicht dabei maximale Raumnutzung bei minimalem Fußabdruck.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Für wen ist das zwei | fünf | null Konzept geeignet? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Für Paare und Berufstätige im mittleren Alter, die schön wohnen möchten — ohne großen Gartenpflege-Aufwand. Ideal für alle, die Wert auf Qualität statt Quantität legen.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Warum Holzrahmenbau? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Holz ist der nachhaltigste Baustoff — CO₂-speichernd, schnell verarbeitbar, hervorragend dämmend. Holzrahmenbau ist leiser, wärmer und gesünder als konventionelle Bauweisen.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Wie läuft ein Projekt ab? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Von der ersten Idee bis zur Schlüsselübergabe begleiten wir das Projekt. Planung, Leistungsverzeichnis, Ausführung — alles aus einer Hand, mit langjähriger Erfahrung im Holzbau und Vertrieb.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Wo ist das Projekt angesiedelt? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Unser Standort ist Rotenburg an der Wümme in Niedersachsen. Wir sind regional tätig und kennen den norddeutschen Markt — Grundstückspreise, Baubehörden und lokale Handwerker inklusive.</div>
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="wrap faq-grid">
+        <div class="reveal">
+          <p class="tag">FAQ</p>
+          <h2>Häufig gestellte <em>Fragen.</em></h2>
+        </div>
+        <div class="reveal">
+          <details>
+            <summary>Reichen 250 m² Grundstück für ein vollwertiges Haus? <span class="pm" aria-hidden="true"></span></summary>
+            <p>Ja — mit durchdachter Planung entstehen auf 250 m² vollwertige Einfamilienhäuser mit Wohnflächen von 100 bis 130 m² auf zwei Etagen. Holzrahmenbau ermöglicht dabei maximale Raumnutzung bei minimalem Fußabdruck.</p>
+          </details>
+          <details>
+            <summary>Für wen ist das zwei | fünf | null Konzept geeignet? <span class="pm" aria-hidden="true"></span></summary>
+            <p>Für Paare und Berufstätige im mittleren Alter, die schön wohnen möchten — ohne großen Gartenpflege-Aufwand. Ideal für alle, die Wert auf Qualität statt Quantität legen.</p>
+          </details>
+          <details>
+            <summary>Warum Holzrahmenbau? <span class="pm" aria-hidden="true"></span></summary>
+            <p>Holz ist der nachhaltigste Baustoff — CO₂-speichernd, schnell verarbeitbar, hervorragend dämmend. Holzrahmenbau ist leiser, wärmer und gesünder als konventionelle Bauweisen.</p>
+          </details>
+          <details>
+            <summary>Wie läuft ein Projekt ab? <span class="pm" aria-hidden="true"></span></summary>
+            <p>Von der ersten Idee bis zur Schlüsselübergabe begleiten wir das Projekt. Planung, Leistungsverzeichnis, Ausführung — alles aus einer Hand, mit langjähriger Erfahrung im Holzbau und Vertrieb.</p>
+          </details>
+          <details>
+            <summary>Wo ist das Projekt angesiedelt? <span class="pm" aria-hidden="true"></span></summary>
+            <p>Unser Standort ist Rotenburg an der Wümme in Niedersachsen. Wir sind regional tätig und kennen den norddeutschen Markt — Grundstückspreise, Baubehörden und lokale Handwerker inklusive.</p>
+          </details>
+        </div>
       </div>
     </section>
 
     <!-- KONTAKT -->
-    <section class="kontakt-bg" id="kontakt">
-      <div class="kontakt-inner">
-        <p class="eyebrow">Kontakt</p>
-        <h2>Interesse?<br><strong>Sprechen wir.</strong></h2>
-        <p>Schreib uns einfach eine Mail — ob Fragen zum Konzept, zum Grundstück oder zum Bauprozess.</p>
-        <div class="kontakt-card reveal">
-          <div class="kontakt-row">
-            <div class="k-icon">✉️</div>
-            <div>
-              <div class="k-label">E-Mail</div>
-              <div class="k-value"><a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a></div>
-            </div>
-          </div>
-          <div class="kontakt-row">
-            <div class="k-icon">📍</div>
-            <div>
-              <div class="k-label">Standort</div>
-              <div class="k-value">Rotenburg (Wümme), Niedersachsen</div>
-            </div>
+    <section class="section kontakt" id="kontakt">
+      <img src="logo.png" alt="" class="kontakt-logo" aria-hidden="true">
+      <div class="wrap kontakt-in">
+        <div class="reveal">
+          <p class="tag">Kontakt</p>
+          <h2>Interesse? <em>Sprechen wir.</em></h2>
+          <p>Schreib uns einfach eine Mail — ob Fragen zum Konzept, zum Grundstück oder zum Bauprozess.</p>
+        </div>
+        <div class="reveal">
+          <a class="mail" href="mailto:info@zweifünfnull.de">info@zweifünfnull.de →</a>
+          <div class="kontakt-meta">
+            <div><b>Standort</b>Rotenburg (Wümme), Niedersachsen</div>
+            <div><b>Adresse</b>Fischotterweg 4 · 27356 Rotenburg (Wümme)</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- IMPRESSUM -->
-    <div class="impressum-wrap">
-      <h3>Impressum</h3>
-      <p>
-        Angaben gemäß § 5 TMG · zwei | fünf | null · Fischotterweg 4 · 27356 Rotenburg (Wümme)<br>
-        E-Mail: <a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a> ·
-        Haftung für Inhalte: Die Inhalte wurden mit größter Sorgfalt erstellt. Für die Richtigkeit übernehmen wir keine Gewähr.
-      </p>
-    </div>
-
   </main>
 
-  <!-- FOOTER -->
   <footer>
-    <span>© 2026 zwei | fünf | null</span>
-    <span>Fischotterweg 4 · 27356 Rotenburg (Wümme) · <a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a></span>
+    <div class="wrap">
+      <div class="foot-in" id="impressum">
+        <h3>Impressum</h3>
+        <p>
+          Angaben gemäß § 5 DDG · zwei | fünf | null · Fischotterweg 4 · 27356 Rotenburg (Wümme)<br>
+          E-Mail: <a href="mailto:info@zweifünfnull.de">info@zweifünfnull.de</a> ·
+          Haftung für Inhalte: Die Inhalte wurden mit größter Sorgfalt erstellt. Für die Richtigkeit übernehmen wir keine Gewähr.
+        </p>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 zwei | fünf | null</span>
+        <a href="#">Nach oben ↑</a>
+      </div>
+    </div>
   </footer>
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <span class="lightbox-close">✕</span>
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button type="button" aria-label="Schließen">✕</button>
     <img id="lightboxImg" src="" alt="">
   </div>
 
   <script>
-    // Header scroll
+    // Header beim Scrollen
     const header = document.getElementById('mainHeader');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 30);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-    // Scroll Reveal
-    const ro = new IntersectionObserver((entries) => {
+    // Mobiles Menü
+    const burger = document.getElementById('burger');
+    const toggleMenu = (open) => {
+      document.body.classList.toggle('menu-open', open);
+      burger.setAttribute('aria-expanded', open);
+    };
+    burger.addEventListener('click', () => toggleMenu(!document.body.classList.contains('menu-open')));
+    document.querySelectorAll('#mainNav a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+    // Scroll-Reveal
+    const ro = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          ro.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-    // FAQ
-    document.querySelectorAll('.faq-q').forEach(q => {
-      q.addEventListener('click', () => {
-        const item = q.closest('.faq-item');
-        const open = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!open) item.classList.add('open');
-      });
-    });
+    // FAQ: immer nur eine Antwort offen
+    document.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => {
+      if (d.open) document.querySelectorAll('details').forEach(o => { if (o !== d) o.open = false; });
+    }));
+
+    // Grundriss-Umschalter
+    const tabs = document.querySelectorAll('.gr-tabs button');
+    const plans = document.querySelectorAll('.gr-stage img');
+    tabs.forEach(t => t.addEventListener('click', () => {
+      tabs.forEach(b => b.setAttribute('aria-selected', b === t));
+      plans.forEach(p => p.hidden = p.dataset.floor !== t.dataset.floor);
+    }));
 
     // Lightbox
-    function openLightbox(src) {
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightbox').classList.add('open');
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    function openLightbox(src, alt) {
+      lbImg.src = src; lbImg.alt = alt || '';
+      lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
     function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
+      lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    document.getElementById('grStage').addEventListener('click', () => {
+      const img = [...plans].find(p => !p.hidden);
+      openLightbox(img.src, img.alt);
+    });
+    document.querySelectorAll('[data-lightbox]').forEach(el =>
+      el.addEventListener('click', () => openLightbox(el.dataset.lightbox, el.getAttribute('aria-label'))));
+    lb.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); toggleMenu(false); } });
   </script>
 
 </body>
