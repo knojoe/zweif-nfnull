@@ -17,9 +17,6 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Wohnen auf kleinem Grund — zwei | fünf | null","description":"250 m² Grundstück reicht für ein modernes, nachhaltiges Zuhause im Holzrahmenbau.","url":"https://zweifünfnull.de/","publisher":{"@type":"Organization","name":"zwei | fünf | null","url":"https://zweifünfnull.de","contactPoint":{"@type":"ContactPoint","email":"info@zweifünfnull.de","contactType":"Kundenservice"}}}
   </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Reichen 250 m² Grundstück für ein vollwertiges Haus?","acceptedAnswer":{"@type":"Answer","text":"Ja — mit durchdachter Planung entstehen auf 250 m² vollwertige Einfamilienhäuser mit Wohnflächen von 100 bis 130 m² auf zwei Etagen."}},{"@type":"Question","name":"Für wen ist das Konzept geeignet?","acceptedAnswer":{"@type":"Answer","text":"Paare und Berufstätige im mittleren Alter, die schön wohnen möchten ohne großen Gartenpflege-Aufwand."}},{"@type":"Question","name":"Warum Holzrahmenbau?","acceptedAnswer":{"@type":"Answer","text":"CO₂-speichernd, schnell verarbeitbar, hervorragend dämmend — nachhaltig und wohngesund."}}]}
-  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -242,16 +239,24 @@
     .plot-card {
       background: var(--paper-2);
       border-radius: 6px;
-      padding: clamp(1.5rem, 3vw, 2.5rem);
-      position: relative;
+      padding: clamp(1.25rem, 3vw, 2.25rem);
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: clamp(1.25rem, 3vw, 2.5rem);
+      align-items: center;
     }
-    .plot-card svg { width: 100%; height: auto; display: block; }
-    .plot-card figcaption { font-family: var(--mono); font-size: .7rem; color: var(--ink-3); margin-top: 1rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-    .plot-house { fill: var(--larch); }
-    .plot-house-label, .plot-label { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
-    .plot-house-label { fill: var(--paper); }
-    .plot-label { fill: var(--fir); }
-    .plot-big { font-family: var(--serif); font-size: 46px; fill: var(--fir); font-weight: 300; }
+    .plot-card svg { width: 100%; height: auto; display: block; max-height: 520px; }
+    .plot-dim { stroke: var(--ink-3); stroke-width: 1; }
+    .plot-dim-t { font-family: var(--mono); font-size: 13px; fill: var(--ink-2); }
+    .plot-house-label { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; fill: var(--paper); }
+    .plot-legend { list-style: none; font-size: .9rem; }
+    .plot-legend li { display: grid; grid-template-columns: 14px 1fr; gap: .75rem; padding: .85rem 0; border-bottom: 1px solid var(--line); }
+    .plot-legend li:first-child { padding-top: 0; }
+    .plot-legend .sw { width: 14px; height: 14px; border-radius: 3px; margin-top: .2rem; }
+    .plot-legend b { display: block; font-weight: 600; }
+    .plot-legend span.v { font-family: var(--mono); font-size: .78rem; color: var(--ink-2); }
+    .plot-total { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1; margin-bottom: 1.2rem; }
+    .plot-total small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin-top: .5rem; }
 
     .photos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
     .photo {
@@ -346,30 +351,6 @@
     .weg-min { font-family: var(--serif); font-size: 1.35rem; text-align: right; }
     .weg-min small { font-family: var(--sans); font-size: .75rem; color: var(--ink-3); margin-left: .15rem; }
 
-    /* ── FAQ ── */
-    .faq-grid { display: grid; grid-template-columns: 4fr 8fr; gap: clamp(2rem, 6vw, 6rem); }
-    .faq-grid h2 { margin-top: 1.2rem; }
-    details { border-bottom: 1px solid var(--line); }
-    details:first-of-type { border-top: 1px solid var(--line); }
-    summary {
-      list-style: none; cursor: pointer;
-      display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
-      padding: 1.5rem 0;
-      font-family: var(--serif); font-size: clamp(1.15rem, 1.8vw, 1.4rem);
-      transition: color .3s;
-    }
-    summary::-webkit-details-marker { display: none; }
-    summary:hover { color: var(--larch); }
-    summary .pm {
-      flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
-      border: 1px solid var(--line); position: relative;
-      transition: background .3s, border-color .3s, transform .4s var(--ease);
-    }
-    summary .pm::before, summary .pm::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 1.5px; background: currentColor; transform: translate(-50%,-50%); }
-    summary .pm::after { transform: translate(-50%,-50%) rotate(90deg); }
-    details[open] summary .pm { background: var(--larch); border-color: var(--larch); color: var(--paper); transform: rotate(45deg); }
-    details p { color: var(--ink-2); padding: 0 3rem 1.6rem 0; max-width: 62ch; }
-
     /* ── KONTAKT ── */
     .kontakt { background: var(--ink); color: var(--paper); border-radius: 28px 28px 0 0; position: relative; overflow: hidden; }
     .kontakt .tag { color: var(--larch-2); }
@@ -430,7 +411,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
-      .hero-grid, .konzept-grid, .lage-grid, .faq-grid, .kontakt-in, .gruende-head { grid-template-columns: 1fr; }
+      .hero-grid, .konzept-grid, .lage-grid, .kontakt-in, .gruende-head { grid-template-columns: 1fr; }
       .gruende-head p { justify-self: start; }
       .hero-media { max-width: 560px; }
       .stats-in { grid-template-columns: repeat(3, 1fr); }
@@ -470,9 +451,10 @@
       .grund { grid-template-columns: 1fr; gap: .6rem; padding: 1.8rem 0; }
       .grund:hover { padding-left: 0; }
       .weg { grid-template-columns: 7rem 1fr 3rem; }
-      details p { padding-right: 0; }
       .kontakt-meta, .foot-in { grid-template-columns: 1fr; }
       .kontakt { border-radius: 20px 20px 0 0; }
+      .plot-card { grid-template-columns: 1fr; }
+      .plot-card svg { max-width: 300px; margin: 0 auto; }
     }
   </style>
 </head>
@@ -490,7 +472,6 @@
         <a href="#modell">3D Modell</a>
         <a href="#grundrisse">Grundrisse</a>
         <a href="#lage">Lage</a>
-        <a href="#faq">FAQ</a>
         <a href="#kontakt" class="btn">Kontakt <span class="arr">→</span></a>
       </nav>
     </div>
@@ -560,24 +541,53 @@
 
         <div class="reveal">
           <figure class="plot-card">
-            <svg viewBox="0 0 520 260" role="img" aria-label="Schema: Haus, Garten und Terrasse auf 250 m² Grundstück">
+            <svg viewBox="0 0 350 452" role="img" aria-label="Lageplan: Grundstück 12,95 × 19,31 m mit Haus 6,75 × 13,11 m, Terrasse und Garten">
               <defs>
-                <pattern id="gras" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <line x1="0" y1="0" x2="0" y2="8" stroke="#233B2F" stroke-opacity=".16" stroke-width="2"/>
+                <pattern id="gras" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <rect width="7" height="7" fill="#C9D3B4"/>
+                  <line x1="0" y1="0" x2="0" y2="7" stroke="#233B2F" stroke-opacity=".14" stroke-width="2"/>
+                </pattern>
+                <pattern id="deck" width="10" height="4" patternUnits="userSpaceOnUse">
+                  <rect width="10" height="4" fill="#C79A72"/>
+                  <line x1="0" y1="3.5" x2="10" y2="3.5" stroke="#7A4E2C" stroke-opacity=".55" stroke-width="1"/>
+                </pattern>
+                <pattern id="pv" x="104" y="116" width="30.75" height="23.5" patternUnits="userSpaceOnUse">
+                  <rect x="1" y="1" width="28.75" height="21.5" fill="#33384A"/>
                 </pattern>
               </defs>
-              <rect x="20" y="20" width="480" height="200" fill="url(#gras)" stroke="#233B2F" stroke-width="1.5" stroke-dasharray="6 5"/>
-              <rect x="40" y="48" width="190" height="144" class="plot-house" rx="2"/>
-              <text x="135" y="125" text-anchor="middle" class="plot-house-label">Haus</text>
-              <rect x="230" y="78" width="70" height="84" fill="#D9A273" fill-opacity=".45"/>
-              <text x="265" y="124" text-anchor="middle" class="plot-label" style="font-size:9px">Terrasse</text>
-              <text x="410" y="118" text-anchor="middle" class="plot-big">250 m²</text>
-              <text x="410" y="142" text-anchor="middle" class="plot-label">Garten · Grün</text>
-              <line x1="20" y1="240" x2="500" y2="240" stroke="#8A8378"/>
-              <line x1="20" y1="234" x2="20" y2="246" stroke="#8A8378"/>
-              <line x1="500" y1="234" x2="500" y2="246" stroke="#8A8378"/>
+              <!-- Grundstück 12,95 × 19,31 m · Maßstab 20 px = 1 m -->
+              <rect x="40" y="40" width="259" height="386.2" fill="url(#gras)" stroke="#233B2F" stroke-width="1.5"/>
+              <!-- Terrasse (Holzdeck, L-förmig) -->
+              <path d="M40 234 H98 V362.2 H238 V426.2 H40 Z" fill="url(#deck)"/>
+              <!-- Haus 6,75 × 13,11 m mit PV-Dach -->
+              <rect x="98" y="100" width="135" height="262.2" fill="#2A2825" rx="1.5"/>
+              <rect x="104" y="116" width="123" height="235" fill="url(#pv)"/>
+              <line x1="165.5" y1="100" x2="165.5" y2="362.2" stroke="#1E1C19" stroke-width="3"/>
+              <rect x="131" y="221" width="69" height="20" rx="10" fill="#B0703F"/>
+              <text x="165.5" y="234.5" text-anchor="middle" class="plot-house-label">Haus</text>
+              <!-- Maßketten -->
+              <g class="plot-dim">
+                <line x1="40" y1="20" x2="299" y2="20"/><line x1="36" y1="24" x2="44" y2="16"/><line x1="295" y1="24" x2="303" y2="16"/>
+                <line x1="98" y1="78" x2="233" y2="78"/><line x1="94" y1="82" x2="102" y2="74"/><line x1="229" y1="82" x2="237" y2="74"/>
+                <line x1="325" y1="40" x2="325" y2="426.2"/><line x1="321" y1="44" x2="329" y2="36"/><line x1="321" y1="430.2" x2="329" y2="422.2"/>
+                <line x1="262" y1="100" x2="262" y2="362.2"/><line x1="258" y1="104" x2="266" y2="96"/><line x1="258" y1="366.2" x2="266" y2="358.2"/>
+              </g>
+              <g class="plot-dim-t" text-anchor="middle">
+                <text x="169.5" y="13">12,95 m</text>
+                <text x="165.5" y="72">6,75 m</text>
+                <text transform="translate(342 233) rotate(-90)">19,31 m</text>
+                <text transform="translate(279 231) rotate(-90)">13,11 m</text>
+              </g>
             </svg>
-            <figcaption><span>Grundstück · schematisch</span><span>Beispielaufteilung, nicht maßstäblich</span></figcaption>
+            <figcaption>
+              <div class="plot-total">250 m²<small>Grundstück · Lageplan</small></div>
+              <ul class="plot-legend">
+                <li><i class="sw" style="background:#C9D3B4;border:1px solid #233B2F"></i><div><b>Grundstück</b><span class="v">12,95 × 19,31 m</span></div></li>
+                <li><i class="sw" style="background:#2A2825"></i><div><b>Haus mit PV-Dach</b><span class="v">6,75 × 13,11 m · ca. 88 m² Grundfläche</span></div></li>
+                <li><i class="sw" style="background:#C79A72"></i><div><b>Terrasse</b><span class="v">Holzdeck, über Eck</span></div></li>
+                <li><i class="sw" style="background:#C9D3B4"></i><div><b>Garten</b><span class="v">pflegeleicht, rundum</span></div></li>
+              </ul>
+            </figcaption>
           </figure>
           <div class="photos">
             <div class="photo top" role="img" aria-label="Moderner Holzrahmenbau mit Photovoltaik – Straßenseite" data-lightbox="haus_real.jpg"></div>
@@ -687,38 +697,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="wrap faq-grid">
-        <div class="reveal">
-          <p class="tag">FAQ</p>
-          <h2>Häufig gestellte <em>Fragen.</em></h2>
-        </div>
-        <div class="reveal">
-          <details>
-            <summary>Reichen 250 m² Grundstück für ein vollwertiges Haus? <span class="pm" aria-hidden="true"></span></summary>
-            <p>Ja — mit durchdachter Planung entstehen auf 250 m² vollwertige Einfamilienhäuser mit Wohnflächen von 100 bis 130 m² auf zwei Etagen. Holzrahmenbau ermöglicht dabei maximale Raumnutzung bei minimalem Fußabdruck.</p>
-          </details>
-          <details>
-            <summary>Für wen ist das zwei | fünf | null Konzept geeignet? <span class="pm" aria-hidden="true"></span></summary>
-            <p>Für Paare und Berufstätige im mittleren Alter, die schön wohnen möchten — ohne großen Gartenpflege-Aufwand. Ideal für alle, die Wert auf Qualität statt Quantität legen.</p>
-          </details>
-          <details>
-            <summary>Warum Holzrahmenbau? <span class="pm" aria-hidden="true"></span></summary>
-            <p>Holz ist der nachhaltigste Baustoff — CO₂-speichernd, schnell verarbeitbar, hervorragend dämmend. Holzrahmenbau ist leiser, wärmer und gesünder als konventionelle Bauweisen.</p>
-          </details>
-          <details>
-            <summary>Wie läuft ein Projekt ab? <span class="pm" aria-hidden="true"></span></summary>
-            <p>Von der ersten Idee bis zur Schlüsselübergabe begleiten wir das Projekt. Planung, Leistungsverzeichnis, Ausführung — alles aus einer Hand, mit langjähriger Erfahrung im Holzbau und Vertrieb.</p>
-          </details>
-          <details>
-            <summary>Wo ist das Projekt angesiedelt? <span class="pm" aria-hidden="true"></span></summary>
-            <p>Unser Standort ist Rotenburg an der Wümme in Niedersachsen. Wir sind regional tätig und kennen den norddeutschen Markt — Grundstückspreise, Baubehörden und lokale Handwerker inklusive.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
     <!-- KONTAKT -->
     <section class="section kontakt" id="kontakt">
       <img src="logo.png" alt="" class="kontakt-logo" aria-hidden="true">
@@ -785,11 +763,6 @@
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
-
-    // FAQ: immer nur eine Antwort offen
-    document.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => {
-      if (d.open) document.querySelectorAll('details').forEach(o => { if (o !== d) o.open = false; });
-    }));
 
     // Grundriss-Umschalter
     const tabs = document.querySelectorAll('.gr-tabs button');
