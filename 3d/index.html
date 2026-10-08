@@ -128,6 +128,7 @@ h1 small{display:block;font-family:var(--f-body);font-weight:400;font-size:12px;
       <button class="btn" id="rotR" aria-label="Ansicht 90° nach rechts drehen">⟳</button>
       <button class="btn" id="persp" aria-pressed="false" title="Zwischen isometrischer Ansicht und Perspektive wechseln">3D</button>
       <button class="btn" id="reset" aria-label="Ansicht zurücksetzen">Reset</button>
+      <button class="btn" id="fs" title="Vollbild" hidden>Vollbild</button>
     </div>
     <div id="tip" hidden></div>
   </div>
@@ -369,6 +370,18 @@ canvas.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse"||e.buttons)
     const r=stage.getBoundingClientRect();tip.style.left=(e.clientX-r.left)+"px";tip.style.top=(e.clientY-r.top)+"px";}else tip.hidden=true;});
 canvas.addEventListener("pointerleave",()=>tip.hidden=true);
 canvas.addEventListener("pointerdown",()=>document.getElementById("hint")?.remove(),{once:true});
+/* ---------- Vollbild ---------- */
+{const fsBtn=document.getElementById("fs"),root=document.documentElement;
+ const req=root.requestFullscreen||root.webkitRequestFullscreen,exit=document.exitFullscreen||document.webkitExitFullscreen;
+ const cur=()=>document.fullscreenElement||document.webkitFullscreenElement;
+ const can=!!(req&&(document.fullscreenEnabled||document.webkitFullscreenEnabled));
+ const inFrame=(()=>{try{return window.self!==window.top}catch(e){return true}})();
+ if(can||inFrame){fsBtn.hidden=false;
+   fsBtn.onclick=()=>{
+     if(can){if(cur()){exit&&exit.call(document);}else{try{const r=req.call(root);if(r&&r.catch)r.catch(()=>{if(inFrame)window.open(location.href,"_blank");});}catch(e){if(inFrame)window.open(location.href,"_blank");}}}
+     else window.open(location.href,"_blank");};
+   const upd=()=>{const on=!!cur();fsBtn.textContent=on?"Vollbild beenden":"Vollbild";fsBtn.classList.toggle("on",on);setTimeout(resize,60);};
+   document.addEventListener("fullscreenchange",upd);document.addEventListener("webkitfullscreenchange",upd);}}
 window.__v={meshes,get cam(){return cam},get controls(){return controls},setCut,setPersp};
 
 /* ---------- Loop ---------- */
