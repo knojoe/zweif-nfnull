@@ -44,7 +44,9 @@ h1 small{display:block;font-family:var(--f-body);font-weight:400;font-size:12px;
 .cat input{margin:0;accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
 .sw{width:14px;height:14px;border-radius:4px;border:1px solid rgba(0,0,0,.18)}
 .cat .n{font-family:var(--f-data);font-size:12px;color:var(--ink-2)}
-#legendToggle{display:none}
+#legend{display:none}
+#legend.open{display:block}
+#legendToggle[aria-expanded="true"]{border-color:var(--accent);color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
 #info{right:16px;top:16px;width:340px;max-height:calc(100% - 120px);overflow:auto;padding:16px 16px 18px}
 #info[hidden]{display:none}
 .close{position:absolute;right:10px;top:10px;border:0;background:transparent;color:var(--ink-2);font-size:20px;line-height:1;cursor:pointer;padding:4px 8px;border-radius:6px}
@@ -68,7 +70,7 @@ h1 small{display:block;font-family:var(--f-body);font-weight:400;font-size:12px;
 .uval b{font-family:var(--f-data);font-size:20px;font-weight:500}
 .uval small{display:block;font-size:11px;opacity:.8}
 .note{font-size:12px;color:var(--ink-2);line-height:1.5;margin:10px 0 0}
-#dock{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:6px;z-index:2;flex-wrap:wrap;justify-content:center;max-width:calc(100% - 32px)}
+#dock{position:absolute;left:16px;right:16px;margin-inline:auto;width:fit-content;bottom:16px;display:flex;align-items:center;gap:6px;padding:6px;z-index:2;flex-wrap:wrap;justify-content:center;max-width:calc(100% - 32px)}
 .btn{font-family:var(--f-body);font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:8px 12px;cursor:pointer;min-width:40px}
 .btn:hover{border-color:var(--accent)}
 .btn.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
@@ -84,12 +86,10 @@ h1 small{display:block;font-family:var(--f-body);font-weight:400;font-size:12px;
   header{padding:10px 16px}
   .kpis{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap}
   .kpi{flex:0 0 auto}
-  #legend{width:auto;right:16px;top:auto;bottom:118px;max-height:45%;display:none}
-  #legend.open{display:block}
-  #legendToggle{display:inline-block}
+  #legend{width:auto;right:16px;top:auto;bottom:118px;max-height:45%}
   #info{left:16px;right:16px;width:auto;top:auto;bottom:118px;max-height:55%}
   #hint{display:none}
-  #dock{left:16px;right:16px;transform:none;max-width:none;bottom:12px}
+  #dock{width:auto;max-width:none;bottom:12px}
   #cutWrap{flex:1 1 100%;order:5}
   #cutH{flex:1;width:auto}
   .sep{display:none}
@@ -118,7 +118,7 @@ h1 small{display:block;font-family:var(--f-body);font-weight:400;font-size:12px;
       <div id="infoBody"></div>
     </aside>
     <div class="panel" id="dock" role="toolbar" aria-label="Ansicht">
-      <button class="btn" id="legendToggle">Bauteile</button>
+      <button class="btn" id="legendToggle" aria-expanded="false" aria-controls="legend">Bauteile</button>
       <button class="btn on" data-cut="99" id="cutAll">Haus</button>
       <button class="btn" data-cut="4.65">OG</button>
       <button class="btn" data-cut="1.75">EG</button>
@@ -128,6 +128,7 @@ h1 small{display:block;font-family:var(--f-body);font-weight:400;font-size:12px;
       <button class="btn" id="rotR" aria-label="Ansicht 90° nach rechts drehen">⟳</button>
       <button class="btn" id="persp" aria-pressed="false" title="Zwischen isometrischer Ansicht und Perspektive wechseln">3D</button>
       <button class="btn" id="reset" aria-label="Ansicht zurücksetzen">Reset</button>
+      <button class="btn" id="fs" title="Vollbild" hidden>Vollbild</button>
     </div>
     <div id="tip" hidden></div>
   </div>
@@ -298,7 +299,7 @@ for(const k of order){const c=CATS[k]||{n:k,grp:"Sonstiges"};
 catsEl.addEventListener("click",ev=>{const row=ev.target.closest(".cat");if(!row)return;const k=row.dataset.k;
   if(ev.target.tagName==="INPUT"){catOn[k]=ev.target.checked;setCut(cutPlane.constant);return;}select(null,k);});
 catsEl.addEventListener("keydown",ev=>{if(ev.key==="Enter"){const row=ev.target.closest(".cat");if(row)select(null,row.dataset.k);}});
-document.getElementById("legendToggle").onclick=()=>document.getElementById("legend").classList.toggle("open");
+{const lt=document.getElementById("legendToggle"),lg=document.getElementById("legend");lt.onclick=()=>{const o=lg.classList.toggle("open");lt.setAttribute("aria-expanded",o);};}
 
 /* ---------- Auswahl + Infokarte ---------- */
 
@@ -369,6 +370,18 @@ canvas.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse"||e.buttons)
     const r=stage.getBoundingClientRect();tip.style.left=(e.clientX-r.left)+"px";tip.style.top=(e.clientY-r.top)+"px";}else tip.hidden=true;});
 canvas.addEventListener("pointerleave",()=>tip.hidden=true);
 canvas.addEventListener("pointerdown",()=>document.getElementById("hint")?.remove(),{once:true});
+/* ---------- Vollbild ---------- */
+{const fsBtn=document.getElementById("fs"),root=document.documentElement;
+ const req=root.requestFullscreen||root.webkitRequestFullscreen,exit=document.exitFullscreen||document.webkitExitFullscreen;
+ const cur=()=>document.fullscreenElement||document.webkitFullscreenElement;
+ const can=!!(req&&(document.fullscreenEnabled||document.webkitFullscreenEnabled));
+ const inFrame=(()=>{try{return window.self!==window.top}catch(e){return true}})();
+ if(can||inFrame){fsBtn.hidden=false;
+   fsBtn.onclick=()=>{
+     if(can){if(cur()){exit&&exit.call(document);}else{try{const r=req.call(root);if(r&&r.catch)r.catch(()=>{if(inFrame)window.open(location.href,"_blank");});}catch(e){if(inFrame)window.open(location.href,"_blank");}}}
+     else window.open(location.href,"_blank");};
+   const upd=()=>{const on=!!cur();fsBtn.textContent=on?"Vollbild beenden":"Vollbild";fsBtn.classList.toggle("on",on);setTimeout(resize,60);};
+   document.addEventListener("fullscreenchange",upd);document.addEventListener("webkitfullscreenchange",upd);}}
 window.__v={meshes,get cam(){return cam},get controls(){return controls},setCut,setPersp};
 
 /* ---------- Loop ---------- */
