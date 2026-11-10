@@ -105,7 +105,7 @@ const cache = {};
 export function makeTex(kind, hex, size, aniso) {
   const key = kind + hex + size; if (cache[key]) return cache[key];
   const b = hexRGB(hex || "#888888");
-  const d = kind === "facade" ? facade(size, b) : kind === "deck" ? planks(size, b, .145, 2.32, 21, .55) : kind === "parquet" ? planks(size, [196, 168, 128], .22, 2.2, 31, .12, .05, 3)
+  const d = kind === "facade" ? facade(size, b) : kind === "deck" ? planks(size, b, .145, 2.32, 21, .55) : kind === "parquet" ? planks(size, [176, 146, 106], .22, 2.2, 31, .12, .05, 3)
     : kind === "fence" ? facade(size, b) : kind === "seam" ? seam(size, b) : kind === "lawn" ? lawn(size) : pv(size);
   const mk = (canvas, srgb) => { if (!canvas) return null; const t = new THREE.CanvasTexture(canvas); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1 / d.tile, 1 / d.tile); t.anisotropy = aniso; if (srgb) t.colorSpace = THREE.SRGBColorSpace; return t; };
   return cache[key] = { map: mk(d.map, true), normalMap: mk(d.nrm, false), rough: d.rough, metal: d.metal || 0 };
