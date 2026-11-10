@@ -69,7 +69,7 @@ const canvas=document.getElementById("c"),stage=document.getElementById("stage")
 const MOBILE=matchMedia("(max-width:760px), (pointer:coarse)").matches;
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:"high-performance"});
 renderer.setPixelRatio(Math.min(devicePixelRatio,MOBILE?1.5:2));
-renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 renderer.localClippingEnabled=true;
 const cutPlane=new THREE.Plane(new THREE.Vector3(0,-1,0),99);const CLIP=[cutPlane];
@@ -84,9 +84,9 @@ const sky=(()=>{const c=document.createElement("canvas");c.width=512;c.height=25
   const t=new THREE.CanvasTexture(c);t.mapping=THREE.EquirectangularReflectionMapping;t.colorSpace=THREE.SRGBColorSpace;return t;})();
 scene.background=sky;
 const pmrem=new THREE.PMREMGenerator(renderer);
-scene.environment=pmrem.fromEquirectangular(sky).texture;scene.environmentIntensity=1.45;
+scene.environment=pmrem.fromEquirectangular(sky).texture;scene.environmentIntensity=1.05;
 scene.fog=new THREE.Fog(0xdfe7ec,70,190);
-const sun=new THREE.DirectionalLight(0xfff4e6,2.1);sun.position.set(18,26,12);
+const sun=new THREE.DirectionalLight(0xfff4e6,2.3);sun.position.set(18,26,12);
 sun.castShadow=true;sun.shadow.mapSize.set(MOBILE?2048:4096,MOBILE?2048:4096);
 sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.025;scene.add(sun,sun.target);
 const ANISO=renderer.capabilities.getMaxAnisotropy(),TEXSIZE=MOBILE?512:1024;
@@ -126,7 +126,7 @@ function mat(cat,hex,op){
   else if(kind!=="std"){const t=makeTex(kind,hex,TEXSIZE,ANISO);
     m=new THREE.MeshStandardMaterial({color:kind==="lawn"?0xbcc4a8:0xffffff,map:t.map,normalMap:t.normalMap,roughness:t.rough,metalness:t.metal,side:THREE.DoubleSide});
     if(t.normalMap)m.normalScale.set(.8,.8);}
-  else m=new THREE.MeshStandardMaterial({color:hex,roughness:lum(hex)>.85?.92:.8,metalness:0,side:THREE.DoubleSide});
+  else{const c=new THREE.Color(hex);if(lum(hex)>.85)c.multiplyScalar(.8);m=new THREE.MeshStandardMaterial({color:c,roughness:lum(hex)>.85?.92:.8,metalness:0,side:THREE.DoubleSide});}
   m.clippingPlanes=CLIP;m.userData.kind=kind;m.polygonOffset=true;m.polygonOffsetFactor=1;m.polygonOffsetUnits=1;
   return matCache[k]=m;
 }
@@ -242,7 +242,7 @@ function setCut(h,ro=roofOff){roofOff=ro;cutPlane.constant=h;const off=h>7.3;cut
   document.querySelectorAll("[data-cut]").forEach(b=>b.classList.toggle("on",b.dataset.cut==="og"?roofOff:(!roofOff&&Math.abs(+b.dataset.cut-h)<.01)));
   const clipOn=h<90;
   meshes.forEach(m=>{const c=m.userData.el.cat,u=m.userData;m.visible=catOn[c]&&u.el.bb[2]<h&&!(roofOff&&ROOF.has(c));
-    if(u.front){u.capMesh.visible=clipOn;u.base=clipOn?u.front:u.ptMats;m.material=selected.includes(m)?HL:u.base;}});}
+    if(u.front){const cut=clipOn&&u.el.bb[5]>h+0.005;u.capMesh.visible=cut;u.base=cut?u.front:u.ptMats;m.material=selected.includes(m)?HL:u.base;}});}
 cutH.oninput=()=>{const v=+cutH.value;setCut(v>=7.4?99:v,false)};
 /* Geschoss-Knöpfe: Blick steiler von oben in die Räume, Haus wieder in Normalansicht */
 function viewFor(top){sun.castShadow=!top;const az0=Math.atan2(cam.position.x-ctr.x,cam.position.z-ctr.z);ELEV=top?.95:.4;DIST=top?.82:1;setView(az0);}
