@@ -7,10 +7,12 @@ Klickbares 3D-Modell für die Homepage. Läuft ohne externe Dienste
 
 | Datei | Zweck |
 |---|---|
-| `index.html` | Viewer |
+| `index.html` | Viewer (Oberfläche) |
+| `app.js`, `tex.js` | Viewer-Logik, prozedurale Materialtexturen |
+| `vendor.js` | three.js 0.165 + three-gpu-pathtracer 0.0.23 (Foto-Modus), gebündelt |
 | `bauteile.xlsx` | **Steuerdatei**: Texte, Sichtbarkeit, Schichtaufbauten, Kennzahlen |
 | `model.bin` | Geometrie, aus der IFC aufbereitet |
-| `lib/` | three.js 0.147.0 (MIT), SheetJS 0.18.5 (Apache 2.0) |
+| `lib/` | SheetJS 0.18.5 (Apache 2.0) und Lizenzen von three.js, three-mesh-bvh, three-gpu-pathtracer (MIT) |
 | `fonts/` | Bricolage Grotesque, Figtree, JetBrains Mono (SIL OFL) |
 
 ## Inhalte ändern
