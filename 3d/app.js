@@ -102,6 +102,8 @@ const meshes=[],catColor={};
 const edgeMat=new THREE.LineBasicMaterial({color:0x2a3338,transparent:true,opacity:.14,clippingPlanes:CLIP});
 const HL=new THREE.MeshStandardMaterial({color:0x3fbf7f,emissive:0x1d6b45,roughness:.7,side:THREE.DoubleSide,clippingPlanes:CLIP,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1});
 const HLF=HL.clone();HLF.side=THREE.FrontSide;HLF.clippingPlanes=CLIP;
+/* Schnittflächen: im Schnitt werden die Innenseiten der Bauteile einheitlich dunkel gezeigt, die Wände wirken dadurch geschlossen */
+const CAPM=new THREE.MeshBasicMaterial({color:0x4a4f55,toneMapped:false,side:THREE.BackSide,clippingPlanes:CLIP});
 const lum=h=>{const c=new THREE.Color(h);return .3*c.r+.59*c.g+.11*c.b};
 const brownish=h=>{const c=new THREE.Color(h);return c.r>c.g&&c.g>=c.b&&c.r-c.b>.08};
 /* Material je Bauteilkategorie und Farbgruppe aus der IFC */
@@ -135,7 +137,7 @@ function boxUV(g){const p=g.attributes.position,uv=new Float32Array(p.count*2),a
       if(ay>=ax&&ay>=az){u=x;v=z}else if(ax>=az){u=z;v=y}else{u=x;v=y}uv[(i+j)*2]=u;uv[(i+j)*2+1]=v;}}
   g.setAttribute("uv",new THREE.BufferAttribute(uv,2));}
 /* Falsch herum gewickelte Dreiecke umdrehen: Strahl entlang der Normalen, ungerade Trefferzahl = Normale zeigt nach innen */
-function fixWinding(g){const p=g.attributes.position,a=p.array,n=p.count/3;if(n>4000)return 0;
+function fixWinding(g){const p=g.attributes.position,a=p.array,n=p.count/3;if(n>6000)return 0;
   const T=new Float32Array(n*9);T.set(a.subarray(0,n*9));let flipped=0;
   const e1=[0,0,0],e2=[0,0,0],N=[0,0,0],O=[0,0,0],h=[0,0,0],s=[0,0,0],q=[0,0,0];
   for(let i=0;i<n;i++){const o=i*9;
@@ -155,6 +157,18 @@ function fixWinding(g){const p=g.attributes.position,a=p.array,n=p.count/3;if(n>
       if(f*(e2[0]*q[0]+e2[1]*q[1]+e2[2]*q[2])>1e-6)hits++;}
     if(hits%2===1){for(let k=0;k<3;k++){const tmp=a[o+3+k];a[o+3+k]=a[o+6+k];a[o+6+k]=tmp;}flipped++;}}
   if(flipped)p.needsUpdate=true;return flipped;}
+/* Dreiecke innerhalb eines Quaders entfernen (flacher SketchUp-Baum) */
+function dropBox(g,bx){const P=g.attributes.position,names=Object.keys(g.attributes),src=names.map(n=>g.attributes[n]),out=names.map(()=>[]),groups=[];let removed=0;
+  for(const gr of g.groups){const st=out[0].length/3;
+    for(let i=gr.start;i<gr.start+gr.count;i+=3){const cx=(P.getX(i)+P.getX(i+1)+P.getX(i+2))/3,cy=(P.getY(i)+P.getY(i+1)+P.getY(i+2))/3,cz=(P.getZ(i)+P.getZ(i+1)+P.getZ(i+2))/3;
+      if(cx>bx[0]&&cx<bx[3]&&cy>bx[1]&&cy<bx[4]&&cz>bx[2]&&cz<bx[5]){removed++;continue;}
+      for(let j=0;j<3;j++)src.forEach((a,k)=>{for(let c=0;c<a.itemSize;c++)out[k].push(a.array[(i+j)*a.itemSize+c]);});}
+    groups.push([st,out[0].length/3-st,gr.materialIndex]);}
+  if(!removed)return g;const o=new THREE.BufferGeometry();names.forEach((n,k)=>o.setAttribute(n,new THREE.Float32BufferAttribute(out[k],src[k].itemSize)));
+  groups.forEach(([s,c,m])=>o.addGroup(s,c,m));return o;}
+const ifc2three=(x,y,z)=>[x-meta.center[0],z,-(y-meta.center[1])];
+const TREE_IFC=[1.45,0.35,-0.05,2.15,2.45,3.9];
+const TREE_BOX=(()=>{const a=ifc2three(TREE_IFC[0],TREE_IFC[4],TREE_IFC[2]),b=ifc2three(TREE_IFC[3],TREE_IFC[1],TREE_IFC[5]);return [a[0],a[1],a[2],b[0],b[1],b[2]];})();
 function keepGroups(src,dst){dst.clearGroups();src.groups.forEach(x=>dst.addGroup(x.start,x.count,x.materialIndex));return dst}
 for(const e of els){
   const q16=new Int16Array(bin,e.p[0],e.p[1]*3),pos=new Float32Array(q16.length);for(let j=0;j<q16.length;j++)pos[j]=q16[j]*meta.q;
@@ -164,12 +178,13 @@ for(const e of els){
   const smooth=e.merged&&!FLATMERGE.has(e.cat);
   g=smooth?keepGroups(g,BufferGeometryUtils.toCreasedNormals(g,Math.PI/5)):keepGroups(g,g.toNonIndexed());
   if(!smooth){if(SECTION[e.cat]!==undefined)e.flipped=fixWinding(g);g.computeVertexNormals();}
+  if(e.merged)g=dropBox(g,TREE_BOX);
   boxUV(g);
   const mats=e.g.map(gr=>mat(e.cat,gr[2],gr[3]));
   const m=new THREE.Mesh(g,mats);m.userData.el=e;m.userData.base=mats;m.userData.ptMats=mats;
   m.castShadow=e.cat!=="grundstueck";m.receiveShadow=true;
   const sec=SECTION[e.cat];
-  if(sec!==undefined){const back=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:sec,side:THREE.BackSide,clippingPlanes:CLIP}));back.raycast=()=>{};back.userData.cap=true;m.add(back);
+  if(sec!==undefined){const back=new THREE.Mesh(g,CAPM);back.raycast=()=>{};back.userData.cap=true;back.visible=false;m.add(back);
     m.userData.front=mats.map(x=>{const y=x.clone();y.side=THREE.FrontSide;y.clippingPlanes=CLIP;return y});m.userData.capMesh=back;}
   if(!NOEDGE.has(e.cat)&&!e.merged&&e.i[1]<6000){const ed=new THREE.LineSegments(new THREE.EdgesGeometry(g,25),edgeMat);ed.raycast=()=>{};ed.userData.cap=true;m.add(ed);}
   const big=e.g.reduce((a,b)=>b[1]>a[1]?b:a);catColor[e.cat]=catColor[e.cat]||big[2];
@@ -177,6 +192,29 @@ for(const e of els){
 }
 catColor.fenster_eg=catColor.fenster_og="#9fb8cc";
 document.getElementById("loading").remove();
+/* Prozeduraler 3D-Baum: Stamm, Äste, Blattballen */
+const extras=[];
+function makeTree(x,z,H,seed){let s=seed;const r=()=>{s=(s*16807)%2147483647;return s/2147483647;};
+  const bark=new THREE.MeshStandardMaterial({color:0x6a5846,roughness:.95});
+  const leafA=new THREE.MeshStandardMaterial({color:0x4d6a2c,roughness:.85}),leafB=new THREE.MeshStandardMaterial({color:0x62803a,roughness:.85});
+  const wood=[],la=[],lb=[];const up=new THREE.Vector3(0,1,0);
+  const limb=(p0,p1,r0,r1)=>{const d=new THREE.Vector3().subVectors(p1,p0),L=d.length();const c=new THREE.CylinderGeometry(r1,r0,L,8,1);
+    c.applyQuaternion(new THREE.Quaternion().setFromUnitVectors(up,d.normalize()));c.translate((p0.x+p1.x)/2,(p0.y+p1.y)/2,(p0.z+p1.z)/2);wood.push(c.toNonIndexed());};
+  const base=new THREE.Vector3(x,0,z),top=new THREE.Vector3(x+.1,H*.62,z-.05);limb(base,top,.17,.09);
+  const crown=new THREE.Vector3(x,H*.66,z),R=H*.31;
+  for(let i=0;i<6;i++){const a=i/6*Math.PI*2+r()*.6,h0=H*(.38+r()*.2);const p0=new THREE.Vector3(x,h0,z);
+    const p1=new THREE.Vector3(x+Math.cos(a)*R*.85,h0+H*(.14+r()*.12),z+Math.sin(a)*R*.85);limb(p0,p1,.07,.03);}
+  for(let i=0;i<72;i++){const t=r()*Math.PI*2,ph=Math.acos(2*r()-1),k=Math.cbrt(r());
+    const c=new THREE.Vector3(crown.x+Math.sin(ph)*Math.cos(t)*R*k,crown.y+Math.cos(ph)*R*1.15*k,crown.z+Math.sin(ph)*Math.sin(t)*R*k);
+    const rad=.24+r()*.26;let ge=new THREE.IcosahedronGeometry(rad,2);ge=BufferGeometryUtils.mergeVertices(ge.deleteAttribute("normal").deleteAttribute("uv"));
+    const ps=ge.attributes.position,ph0=r()*9;for(let j=0;j<ps.count;j++){const vx=ps.getX(j),vy=ps.getY(j),vz=ps.getZ(j);
+      const n=1+.22*Math.sin(vx*17+ph0)*Math.cos(vy*15-ph0)+.14*Math.sin(vz*21+ph0*2);ps.setXYZ(j,vx*n,vy*n*.9,vz*n);}
+    ge.translate(c.x,c.y,c.z);ge.computeVertexNormals();ge=ge.toNonIndexed();
+    const uv=new Float32Array(ge.attributes.position.count*2);ge.setAttribute("uv",new THREE.BufferAttribute(uv,2));(r()<.5?la:lb).push(ge);}
+  for(const [arr,m] of [[wood,bark],[la,leafA],[lb,leafB]]){if(!arr.length)continue;const g=BufferGeometryUtils.mergeGeometries(arr);g.computeVertexNormals&&0;
+    const mesh=new THREE.Mesh(g,m);mesh.castShadow=true;mesh.receiveShadow=true;mesh.raycast=()=>{};scene.add(mesh);extras.push(mesh);}}
+{const c=ifc2three((TREE_IFC[0]+TREE_IFC[3])/2,(TREE_IFC[1]+TREE_IFC[4])/2,0);makeTree(c[0],c[2],4.6,4711);}
+
 
 /* ---------- Kamera: immer perspektivisch ---------- */
 const box=new THREE.Box3();meshes.forEach(m=>box.expandByObject(m));const bsz=box.getSize(new THREE.Vector3());
@@ -204,14 +242,17 @@ function setCut(h,ro=roofOff){roofOff=ro;cutPlane.constant=h;const off=h>7.3;cut
   document.querySelectorAll("[data-cut]").forEach(b=>b.classList.toggle("on",b.dataset.cut==="og"?roofOff:(!roofOff&&Math.abs(+b.dataset.cut-h)<.01)));
   const clipOn=h<90;
   meshes.forEach(m=>{const c=m.userData.el.cat,u=m.userData;m.visible=catOn[c]&&u.el.bb[2]<h&&!(roofOff&&ROOF.has(c));
-    if(u.front){u.capMesh.visible=clipOn;u.base=clipOn?u.front:u.ptMats;u.hl=clipOn?HLF:HL;m.material=selected.includes(m)?u.hl:u.base;}});photoDirty();}
+    if(u.front){u.capMesh.visible=clipOn;u.base=clipOn?u.front:u.ptMats;m.material=selected.includes(m)?HL:u.base;}});photoDirty();}
 cutH.oninput=()=>{const v=+cutH.value;setCut(v>=7.4?99:v,false)};
 /* Geschoss-Knöpfe: Blick steiler von oben in die Räume, Haus wieder in Normalansicht */
 function viewFor(top){const az0=Math.atan2(cam.position.x-ctr.x,cam.position.z-ctr.z);ELEV=top?.95:.4;DIST=top?.82:1;setView(az0);}
 /* Möbel des gewählten Geschosses einblenden; "Haus" stellt die Startwerte aus der Excel wieder her */
-const FURN={og:["zimmer","bad"],eg:["wohnen","kueche","garderobe","bad"]};
-function furnFor(c){const all=[...new Set([...FURN.og,...FURN.eg])].filter(k=>k in catOn);
-  all.forEach(k=>{const on=c==="99"?(CATS[k]?CATS[k].on:true):(FURN[c==="og"?"og":"eg"].includes(k)||catOn[k]);catOn[k]=on;const cb=document.getElementById("cb_"+k);if(cb)cb.checked=on;});}
+/* EG: Schnitt 3,25 m, Decke/OG-Fußboden/OG-Innenwände aus, damit man in den Grundriss schaut */
+const FLOOR={og:{on:["zimmer","bad","decke","boden_og","iw_og"],off:[]},eg:{on:["wohnen","kueche","garderobe","bad"],off:["decke","boden_og","iw_og"]}};
+function furnFor(c){const keys=new Set([...FLOOR.og.on,...FLOOR.eg.on,...FLOOR.eg.off]);
+  keys.forEach(k=>{if(!(k in catOn))return;let on;if(c==="99")on=CATS[k]?CATS[k].on:true;
+    else{const f=FLOOR[c==="og"?"og":"eg"];on=f.on.includes(k)?true:f.off.includes(k)?false:catOn[k];}
+    catOn[k]=on;const cb=document.getElementById("cb_"+k);if(cb)cb.checked=on;});}
 document.querySelectorAll("[data-cut]").forEach(b=>b.onclick=()=>{const c=b.dataset.cut;furnFor(c);if(c==="og")setCut(99,true);else setCut(+c,false);viewFor(c!=="99");});
 
 /* ---------- Foto-Modus: Path-Tracing ---------- */
@@ -240,6 +281,7 @@ function buildPTScene(){
         for(let j=1;j+1<poly.length;j++){put(b,poly[0]);put(b,poly[j]);put(b,poly[j+1]);}}}};
   addMesh(ground.geometry.clone().applyMatrix4(ground.matrixWorld),groundMat,false);
   for(const m of meshes){if(!m.visible)continue;addMesh(m.geometry,m.userData.ptMats,clip&&m.userData.el.bb[5]>h);}
+  for(const x of extras)addMesh(x.geometry,x.material,false);
   for(const [mat,b] of buckets){if(!b.p.length)continue;const g=new THREE.BufferGeometry();
     g.setAttribute("position",new THREE.Float32BufferAttribute(b.p,3));g.setAttribute("normal",new THREE.Float32BufferAttribute(b.n,3));g.setAttribute("uv",new THREE.Float32BufferAttribute(b.u,2));
     const mm=new THREE.Mesh(g,mat);mm.userData.tmp=true;s.add(mm);}
