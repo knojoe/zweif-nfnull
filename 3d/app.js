@@ -84,9 +84,9 @@ const sky=(()=>{const c=document.createElement("canvas");c.width=512;c.height=25
   const t=new THREE.CanvasTexture(c);t.mapping=THREE.EquirectangularReflectionMapping;t.colorSpace=THREE.SRGBColorSpace;return t;})();
 scene.background=sky;
 const pmrem=new THREE.PMREMGenerator(renderer);
-scene.environment=pmrem.fromEquirectangular(sky).texture;scene.environmentIntensity=.9;
+scene.environment=pmrem.fromEquirectangular(sky).texture;scene.environmentIntensity=1.45;
 scene.fog=new THREE.Fog(0xdfe7ec,70,190);
-const sun=new THREE.DirectionalLight(0xfff1dc,3.2);sun.position.set(18,26,12);
+const sun=new THREE.DirectionalLight(0xfff4e6,2.1);sun.position.set(18,26,12);
 sun.castShadow=true;sun.shadow.mapSize.set(MOBILE?2048:4096,MOBILE?2048:4096);
 sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.025;scene.add(sun,sun.target);
 const ANISO=renderer.capabilities.getMaxAnisotropy(),TEXSIZE=MOBILE?512:1024;
@@ -221,7 +221,7 @@ function makeTree(x,z,H,seed){let s=seed;const r=()=>{s=(s*16807)%2147483647;ret
 const box=new THREE.Box3();meshes.forEach(m=>box.expandByObject(m));const bsz=box.getSize(new THREE.Vector3());
 const ctr=box.getCenter(new THREE.Vector3());ctr.y=2.6;
 {const r=Math.max(bsz.x,bsz.z)*.62;const sc=sun.shadow.camera;sc.left=-r;sc.right=r;sc.top=r;sc.bottom=-r;sc.near=1;sc.far=90;
- sun.target.position.set(ctr.x,0,ctr.z);sun.position.set(ctr.x+18,26,ctr.z+12);sc.updateProjectionMatrix();}
+ sun.target.position.set(ctr.x,0,ctr.z);sun.position.set(ctr.x+10,32,ctr.z+8);sc.updateProjectionMatrix();}
 let az=-Math.PI/4,anim=null,viewDist=40;
 let ELEV=.4,DIST=1;function viewPos(a,r){r*=DIST;return new THREE.Vector3(ctr.x+r*Math.sin(a)*Math.cos(ELEV),ctr.y+r*Math.sin(ELEV),ctr.z+r*Math.cos(a)*Math.cos(ELEV))}
 function setView(a,instant){az=a;const p=viewPos(az,viewDist);
@@ -232,7 +232,7 @@ function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSiz
 addEventListener("resize",resize);resize();setView(az,true);
 document.getElementById("rotL").onclick=()=>setView(az-Math.PI/2);
 document.getElementById("rotR").onclick=()=>setView(az+Math.PI/2);
-document.getElementById("reset").onclick=()=>{ELEV=.4;DIST=1;setView(-Math.PI/4);setCut(99,false);};
+document.getElementById("reset").onclick=()=>{ELEV=.4;DIST=1;sun.castShadow=true;setView(-Math.PI/4);setCut(99,false);};
 /* ---------- Schnitthöhe ---------- */
 const catOn={};Object.keys(byCat).forEach(k=>catOn[k]=CATS[k]?CATS[k].on:true);
 const cutH=document.getElementById("cutH"),cutV=document.getElementById("cutV");
@@ -245,7 +245,7 @@ function setCut(h,ro=roofOff){roofOff=ro;cutPlane.constant=h;const off=h>7.3;cut
     if(u.front){u.capMesh.visible=clipOn;u.base=clipOn?u.front:u.ptMats;m.material=selected.includes(m)?HL:u.base;}});}
 cutH.oninput=()=>{const v=+cutH.value;setCut(v>=7.4?99:v,false)};
 /* Geschoss-Knöpfe: Blick steiler von oben in die Räume, Haus wieder in Normalansicht */
-function viewFor(top){const az0=Math.atan2(cam.position.x-ctr.x,cam.position.z-ctr.z);ELEV=top?.95:.4;DIST=top?.82:1;setView(az0);}
+function viewFor(top){sun.castShadow=!top;const az0=Math.atan2(cam.position.x-ctr.x,cam.position.z-ctr.z);ELEV=top?.95:.4;DIST=top?.82:1;setView(az0);}
 /* Möbel des gewählten Geschosses einblenden; "Haus" stellt die Startwerte aus der Excel wieder her */
 /* EG: Schnitt 3,25 m, Decke/OG-Fußboden/OG-Innenwände aus, damit man in den Grundriss schaut */
 const FLOOR={og:{on:["zimmer","bad","decke","boden_og","iw_og"],off:[]},eg:{on:["wohnen","kueche","garderobe","bad"],off:["decke","boden_og","iw_og"]}};
