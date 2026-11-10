@@ -211,16 +211,16 @@ nav.on{
   position:relative;
   display:flex;justify-content:center;
 }
-.gr-img-wrap{
-  position:relative;
-  width:min(900px,100%);
-  margin-top:56px;
-  cursor:default;
-}
-.gr-img-wrap img{width:100%;display:block;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6)) drop-shadow(0 0 1px rgba(201,169,110,.25))}
-.gr-floor{position:absolute;top:-38px;transform:translateX(-50%);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);white-space:nowrap;display:flex;align-items:center;gap:12px}
+.gr-plans{display:flex;justify-content:center;gap:clamp(24px,6vw,96px);width:min(900px,100%);margin:56px auto 0}
+.gr-plan{flex:0 1 auto;width:calc((100% - clamp(24px,6vw,96px)) * .495);margin:0;display:flex;flex-direction:column;align-items:center}
+.gr-img-wrap{position:relative;width:100%;cursor:default}
+.gr-img-wrap img{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6)) drop-shadow(0 0 1px rgba(201,169,110,.25))}
+.gr-floor{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);white-space:nowrap;display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .gr-floor::before,.gr-floor::after{content:"";width:28px;height:1px;background:var(--gold-line)}
-@media(max-width:560px){.gr-floor{font-size:.56rem;letter-spacing:.18em;top:-30px}.gr-floor::before,.gr-floor::after{width:12px}}
+@media(max-width:640px){
+  .gr-plans{flex-direction:column;align-items:center;gap:48px;margin-top:40px}
+  .gr-plan{width:min(100%,420px)}
+}
 /* Hotspot pins */
 .pin{
   position:absolute;
@@ -477,25 +477,30 @@ body{overflow-x:clip}
     <h2 class="sec-title" data-reveal="up" data-delay="80">Erdgeschoss &amp; <em>Obergeschoss.</em></h2>
     <p class="sec-body" data-reveal="up" data-delay="160">6 Zimmer, 2 Bäder, durchdacht auf zwei Etagen — Wohnen · Essen · Kochen offen im EG, alle Schlaf- und Arbeitszimmer im OG.</p>
     <div class="gr-wrap" id="grWrap">
-      <div class="gr-img-wrap" id="grImg">
-        <div class="gr-floor" style="left:21.6%">Erdgeschoss</div>
-        <div class="gr-floor" style="left:78.2%">Obergeschoss</div>
-        <img decoding="async" src="img/grundrisse-eg-und-og-1082.webp" srcset="img/grundrisse-eg-und-og-800.webp 800w, img/grundrisse-eg-und-og-1082.webp 1082w" sizes="(max-width:960px) 100vw, 900px" width="1082" height="869" alt="Grundrisse EG und OG" loading="lazy">
-
-        <!-- EG Pins -->
-        <div class="pin" tabindex="0" role="button" style="left:15.8%;top:15.9%">1<div class="pin-tip">Büro · 10,5 m²</div></div>
-        <div class="pin" tabindex="0" role="button" style="left:32.5%;top:16.3%">2<div class="pin-tip">HWR · 11 m²</div></div>
-        <div class="pin" tabindex="0" role="button" style="left:34.7%;top:59.9%">3<div class="pin-tip">WC / Dusche · 4 m²</div></div>
-        <div class="pin" tabindex="0" role="button" style="left:27.9%;top:45.2%">4<div class="pin-tip">Flur EG · 10,5 m²</div></div>
-        <div class="pin" tabindex="0" role="button" style="left:18.7%;top:68.2%">5<div class="pin-tip">Wohnen · Essen · Kochen · 34 m²</div></div>
-
-        <!-- OG Pins -->
-        <div class="pin" tabindex="0" role="button" style="left:76.5%;top:17.4%">6<div class="pin-tip">Bad · 14,3 m²</div></div>
-        <div class="pin" tabindex="0" role="button" style="left:92.0%;top:25.6%">7<div class="pin-tip">Abstellraum · 10 m²</div></div>
-        <div class="pin" tabindex="0" role="button" style="left:73.1%;top:50.3%">8<div class="pin-tip">Flur OG inkl. Treppe · 16 m²</div></div>
-        <div class="pin" tabindex="0" role="button" style="left:87.0%;top:72.6%">10<div class="pin-tip">Zimmer 2 · 20 m²</div></div>
-        <div class="pin" tabindex="0" role="button" style="left:69.1%;top:78.0%">9<div class="pin-tip">Zimmer 1 · 14,8 m²</div></div>
+      <div class="gr-plans" id="grImg">
+    <figure class="gr-plan">
+      <figcaption class="gr-floor">Erdgeschoss</figcaption>
+      <div class="gr-img-wrap">
+        <img decoding="async" src="img/grundriss-erdgeschoss-467.webp" srcset="img/grundriss-erdgeschoss-467.webp 467w" sizes="(max-width:640px) min(100vw, 420px), 440px" width="467" height="869" alt="Grundriss Erdgeschoss" loading="lazy">
+        <div class="pin" tabindex="0" role="button" style="left:36.6%;top:15.9%">1<div class="pin-tip">Büro · 10,5 m²</div></div>
+        <div class="pin" tabindex="0" role="button" style="left:75.3%;top:16.3%">2<div class="pin-tip">HWR · 11 m²</div></div>
+        <div class="pin" tabindex="0" role="button" style="left:80.4%;top:59.9%">3<div class="pin-tip">WC / Dusche · 4 m²</div></div>
+        <div class="pin" tabindex="0" role="button" style="left:64.6%;top:45.2%">4<div class="pin-tip">Flur EG · 10,5 m²</div></div>
+        <div class="pin" tabindex="0" role="button" style="left:43.3%;top:68.2%">5<div class="pin-tip">Wohnen · Essen · Kochen · 34 m²</div></div>
       </div>
+    </figure>
+    <figure class="gr-plan">
+      <figcaption class="gr-floor">Obergeschoss</figcaption>
+      <div class="gr-img-wrap">
+        <img decoding="async" src="img/grundriss-obergeschoss-471.webp" srcset="img/grundriss-obergeschoss-471.webp 471w" sizes="(max-width:640px) min(100vw, 420px), 440px" width="471" height="869" alt="Grundriss Obergeschoss" loading="lazy">
+        <div class="pin" tabindex="0" role="button" style="left:46.0%;top:17.4%">6<div class="pin-tip">Bad · 14,3 m²</div></div>
+        <div class="pin" tabindex="0" role="button" style="left:81.6%;top:25.6%">7<div class="pin-tip">Abstellraum · 10 m²</div></div>
+        <div class="pin" tabindex="0" role="button" style="left:38.2%;top:50.3%">8<div class="pin-tip">Flur OG inkl. Treppe · 16 m²</div></div>
+        <div class="pin" tabindex="0" role="button" style="left:29.0%;top:78.0%">9<div class="pin-tip">Zimmer 1 · 14,8 m²</div></div>
+        <div class="pin" tabindex="0" role="button" style="left:70.1%;top:72.6%">10<div class="pin-tip">Zimmer 2 · 20 m²</div></div>
+      </div>
+    </figure>
+  </div>
     </div>
     <p class="gr-note">Unverbindliche Visualisierung · Einrichtungsvorschlag · Punkte antippen für Raum und Größe</p>
   </div>
@@ -706,10 +711,10 @@ document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 
 // ── Grundriss-Pins: Tippen zeigt den Raum, Ziehen verschiebt den Punkt ──
 (function(){
-  const wrap = document.getElementById('grImg');
-  if (!wrap) return;
-  const pins = [...wrap.querySelectorAll('.pin')];
-  const KEY = 'zfn-pins-v3';
+  const box = document.getElementById('grImg');
+  if (!box) return;
+  const pins = [...box.querySelectorAll('.pin')];
+  const KEY = 'zfn-pins-v4';
   let saved = {};
   try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
   function place(pin){
@@ -732,7 +737,7 @@ document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
       if (!down) return;
       if (!moved && Math.hypot(e.clientX - down.x, e.clientY - down.y) < 8) return;
       if (!moved) { moved = true; pin.classList.add('drag'); closeAll(pin); }
-      const r = wrap.getBoundingClientRect();
+      const r = pin.parentElement.getBoundingClientRect();
       const l = Math.min(98, Math.max(2, (e.clientX - r.left) / r.width * 100));
       const t = Math.min(98, Math.max(2, (e.clientY - r.top) / r.height * 100));
       pin.style.left = l.toFixed(1) + '%';
