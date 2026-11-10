@@ -60,7 +60,7 @@ nav.on{
 .nav-links{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);text-decoration:none;opacity:.75;transition:opacity .2s,color .2s}
 .nav-link:hover{opacity:1;color:var(--gold)}
-@media(max-width:420px){.nav-link{display:none}}
+@media(max-width:420px){.nav-links{gap:12px}.nav-link,.nav-contact{font-size:.62rem;letter-spacing:.08em}.nav-contact{padding:6px 10px}.nav-logo{font-size:1rem}}
 .nav-contact:hover{background:var(--gold-dim);border-color:var(--gold)}
 
 /* ── HERO ── */
@@ -180,13 +180,6 @@ nav.on{
 .feat-text{font-size:.82rem;color:var(--muted);line-height:1.65;font-weight:300}
 
 
-/* ── 3D MODELL ── */
-#modell{background:var(--bg2);border-top:1px solid var(--border)}
-.modell-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;flex-wrap:wrap;margin-bottom:44px}
-.modell-head .sec-body{max-width:40ch;margin-top:0}
-.modell-embed{position:relative;--mw:min(1680px,100vw - 48px);width:var(--mw);margin-inline:calc((100% - var(--mw)) / 2);aspect-ratio:16/8.5;min-height:640px;max-height:88vh;border:1px solid var(--gold-line);background:var(--bg);overflow:hidden}
-.modell-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-@media(max-width:760px){.modell-embed{--mw:calc(100vw - 32px);aspect-ratio:auto;height:82vh;min-height:520px;max-height:none}}
 /* ── GRUNDRISSE ── */
 #grundrisse{background:var(--bg)}
 .gr-wrap{
@@ -357,7 +350,7 @@ body{overflow-x:clip}
 <body>
 <nav id="nav">
   <a class="nav-logo" href="#">zwei<em>|</em>fünf<em>|</em>null</a>
-  <div class="nav-links"><a class="nav-link" href="#modell">3D-Modell</a><a class="nav-contact" href="#cta">Kontakt</a></div>
+  <div class="nav-links"><a class="nav-link" href="3d/">3D-Modell ↗</a><a class="nav-contact" href="#cta">Kontakt</a></div>
 </nav>
 
 <!-- HERO -->
@@ -442,22 +435,6 @@ body{overflow-x:clip}
         <div class="feat-title">Kompaktes Grundstück</div>
         <div class="feat-text">250 m² — kein unnötiger Pflegeaufwand, aber genau der Platz, den man wirklich braucht.</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- 3D MODELL -->
-<section class="sec" id="modell">
-  <div class="sec-inner">
-    <div class="modell-head">
-      <div>
-        <div class="eyebrow" data-reveal="up">Interaktiv</div>
-        <h2 class="sec-title" data-reveal="up" data-delay="80">Das Haus in <em>3D erkunden.</em></h2>
-      </div>
-      <p class="sec-body" data-reveal="up" data-delay="160">Drehen, zoomen, Geschosse aufschneiden und Bauteile anklicken: Wandaufbau, Dämmung, Fenster und Technik auf einen Blick.</p>
-    </div>
-    <div class="modell-embed" data-reveal="scale" data-delay="120">
-      <iframe src="3d/" allow="fullscreen" allowfullscreen loading="lazy" title="zwei | fünf | null 3D-Modell"></iframe>
     </div>
   </div>
 </section>
