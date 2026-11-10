@@ -134,6 +134,27 @@ function boxUV(g){const p=g.attributes.position,uv=new Float32Array(p.count*2),a
     for(let j=0;j<3;j++){const x=p.getX(i+j),y=p.getY(i+j),z=p.getZ(i+j);let u,v;
       if(ay>=ax&&ay>=az){u=x;v=z}else if(ax>=az){u=z;v=y}else{u=x;v=y}uv[(i+j)*2]=u;uv[(i+j)*2+1]=v;}}
   g.setAttribute("uv",new THREE.BufferAttribute(uv,2));}
+/* Falsch herum gewickelte Dreiecke umdrehen: Strahl entlang der Normalen, ungerade Trefferzahl = Normale zeigt nach innen */
+function fixWinding(g){const p=g.attributes.position,a=p.array,n=p.count/3;if(n>4000)return 0;
+  const T=new Float32Array(n*9);T.set(a.subarray(0,n*9));let flipped=0;
+  const e1=[0,0,0],e2=[0,0,0],N=[0,0,0],O=[0,0,0],h=[0,0,0],s=[0,0,0],q=[0,0,0];
+  for(let i=0;i<n;i++){const o=i*9;
+    for(let k=0;k<3;k++){e1[k]=T[o+3+k]-T[o+k];e2[k]=T[o+6+k]-T[o+k];}
+    N[0]=e1[1]*e2[2]-e1[2]*e2[1];N[1]=e1[2]*e2[0]-e1[0]*e2[2];N[2]=e1[0]*e2[1]-e1[1]*e2[0];
+    const l=Math.hypot(N[0],N[1],N[2]);if(l<1e-10)continue;N[0]/=l;N[1]/=l;N[2]/=l;
+    for(let k=0;k<3;k++)O[k]=(T[o+k]+T[o+3+k]+T[o+6+k])/3+N[k]*1e-4;
+    let hits=0;
+    for(let j=0;j<n;j++){if(j===i)continue;const b=j*9;
+      for(let k=0;k<3;k++){e1[k]=T[b+3+k]-T[b+k];e2[k]=T[b+6+k]-T[b+k];}
+      h[0]=N[1]*e2[2]-N[2]*e2[1];h[1]=N[2]*e2[0]-N[0]*e2[2];h[2]=N[0]*e2[1]-N[1]*e2[0];
+      const det=e1[0]*h[0]+e1[1]*h[1]+e1[2]*h[2];if(Math.abs(det)<1e-12)continue;const f=1/det;
+      for(let k=0;k<3;k++)s[k]=O[k]-T[b+k];
+      const u=f*(s[0]*h[0]+s[1]*h[1]+s[2]*h[2]);if(u<0||u>1)continue;
+      q[0]=s[1]*e1[2]-s[2]*e1[1];q[1]=s[2]*e1[0]-s[0]*e1[2];q[2]=s[0]*e1[1]-s[1]*e1[0];
+      const v=f*(N[0]*q[0]+N[1]*q[1]+N[2]*q[2]);if(v<0||u+v>1)continue;
+      if(f*(e2[0]*q[0]+e2[1]*q[1]+e2[2]*q[2])>1e-6)hits++;}
+    if(hits%2===1){for(let k=0;k<3;k++){const tmp=a[o+3+k];a[o+3+k]=a[o+6+k];a[o+6+k]=tmp;}flipped++;}}
+  if(flipped)p.needsUpdate=true;return flipped;}
 function keepGroups(src,dst){dst.clearGroups();src.groups.forEach(x=>dst.addGroup(x.start,x.count,x.materialIndex));return dst}
 for(const e of els){
   const q16=new Int16Array(bin,e.p[0],e.p[1]*3),pos=new Float32Array(q16.length);for(let j=0;j<q16.length;j++)pos[j]=q16[j]*meta.q;
@@ -142,14 +163,14 @@ for(const e of els){
   e.g.forEach((gr,k)=>g.addGroup(gr[0],gr[1],k));
   const smooth=e.merged&&!FLATMERGE.has(e.cat);
   g=smooth?keepGroups(g,BufferGeometryUtils.toCreasedNormals(g,Math.PI/5)):keepGroups(g,g.toNonIndexed());
-  if(!smooth)g.computeVertexNormals();
+  if(!smooth){if(SECTION[e.cat]!==undefined)e.flipped=fixWinding(g);g.computeVertexNormals();}
   boxUV(g);
   const mats=e.g.map(gr=>mat(e.cat,gr[2],gr[3]));
   const m=new THREE.Mesh(g,mats);m.userData.el=e;m.userData.base=mats;m.userData.ptMats=mats;
   m.castShadow=e.cat!=="grundstueck";m.receiveShadow=true;
   const sec=SECTION[e.cat];
   if(sec!==undefined){const back=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:sec,side:THREE.BackSide,clippingPlanes:CLIP}));back.raycast=()=>{};back.userData.cap=true;m.add(back);
-    m.userData.base=mats.map(x=>{const y=x.clone();y.side=THREE.FrontSide;y.clippingPlanes=CLIP;return y});m.material=m.userData.base;m.userData.hl=HLF;}
+    m.userData.front=mats.map(x=>{const y=x.clone();y.side=THREE.FrontSide;y.clippingPlanes=CLIP;return y});m.userData.capMesh=back;}
   if(!NOEDGE.has(e.cat)&&!e.merged&&e.i[1]<6000){const ed=new THREE.LineSegments(new THREE.EdgesGeometry(g,25),edgeMat);ed.raycast=()=>{};ed.userData.cap=true;m.add(ed);}
   const big=e.g.reduce((a,b)=>b[1]>a[1]?b:a);catColor[e.cat]=catColor[e.cat]||big[2];
   scene.add(m);meshes.push(m);
@@ -163,7 +184,7 @@ const ctr=box.getCenter(new THREE.Vector3());ctr.y=2.6;
 {const r=Math.max(bsz.x,bsz.z)*.62;const sc=sun.shadow.camera;sc.left=-r;sc.right=r;sc.top=r;sc.bottom=-r;sc.near=1;sc.far=90;
  sun.target.position.set(ctr.x,0,ctr.z);sun.position.set(ctr.x+18,26,ctr.z+12);sc.updateProjectionMatrix();}
 let az=-Math.PI/4,anim=null,viewDist=40;
-const ELEV=.4;function viewPos(a,r){return new THREE.Vector3(ctr.x+r*Math.sin(a)*Math.cos(ELEV),ctr.y+r*Math.sin(ELEV),ctr.z+r*Math.cos(a)*Math.cos(ELEV))}
+let ELEV=.4,DIST=1;function viewPos(a,r){r*=DIST;return new THREE.Vector3(ctr.x+r*Math.sin(a)*Math.cos(ELEV),ctr.y+r*Math.sin(ELEV),ctr.z+r*Math.cos(a)*Math.cos(ELEV))}
 function setView(a,instant){az=a;const p=viewPos(az,viewDist);
   if(instant){cam.position.copy(p);controls.target.copy(ctr);controls.update();}else anim={from:cam.position.clone(),to:p,tFrom:controls.target.clone(),t:0};}
 function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);const asp=w/h;
@@ -173,15 +194,25 @@ let photo=false,pt=null;
 addEventListener("resize",resize);resize();setView(az,true);
 document.getElementById("rotL").onclick=()=>setView(az-Math.PI/2);
 document.getElementById("rotR").onclick=()=>setView(az+Math.PI/2);
-document.getElementById("reset").onclick=()=>{setView(-Math.PI/4);setCut(99);};
+document.getElementById("reset").onclick=()=>{ELEV=.4;DIST=1;setView(-Math.PI/4);setCut(99,false);};
 /* ---------- Schnitthöhe ---------- */
 const catOn={};Object.keys(byCat).forEach(k=>catOn[k]=CATS[k]?CATS[k].on:true);
 const cutH=document.getElementById("cutH"),cutV=document.getElementById("cutV");
-function setCut(h){cutPlane.constant=h;const off=h>7.3;cutH.value=off?7.4:h;cutV.textContent=off?"aus":fmt(h,2)+" m";
-  document.querySelectorAll("[data-cut]").forEach(b=>b.classList.toggle("on",Math.abs(+b.dataset.cut-h)<.01));
-  meshes.forEach(m=>m.visible=catOn[m.userData.el.cat]&&m.userData.el.bb[2]<h);photoDirty();}
-cutH.oninput=()=>{const v=+cutH.value;setCut(v>=7.4?99:v)};
-document.querySelectorAll("[data-cut]").forEach(b=>b.onclick=()=>setCut(+b.dataset.cut));
+/* OG-Ansicht: Wände in voller Höhe, nur Dach, PV und Dachrinnen ausgeblendet */
+const ROOF=new Set(["dach","pv","rinne"]);let roofOff=false;
+function setCut(h,ro=roofOff){roofOff=ro;cutPlane.constant=h;const off=h>7.3;cutH.value=off?7.4:h;cutV.textContent=off?"aus":fmt(h,2)+" m";
+  document.querySelectorAll("[data-cut]").forEach(b=>b.classList.toggle("on",b.dataset.cut==="og"?roofOff:(!roofOff&&Math.abs(+b.dataset.cut-h)<.01)));
+  const clipOn=h<90;
+  meshes.forEach(m=>{const c=m.userData.el.cat,u=m.userData;m.visible=catOn[c]&&u.el.bb[2]<h&&!(roofOff&&ROOF.has(c));
+    if(u.front){u.capMesh.visible=clipOn;u.base=clipOn?u.front:u.ptMats;u.hl=clipOn?HLF:HL;m.material=selected.includes(m)?u.hl:u.base;}});photoDirty();}
+cutH.oninput=()=>{const v=+cutH.value;setCut(v>=7.4?99:v,false)};
+/* Geschoss-Knöpfe: Blick steiler von oben in die Räume, Haus wieder in Normalansicht */
+function viewFor(top){const az0=Math.atan2(cam.position.x-ctr.x,cam.position.z-ctr.z);ELEV=top?.95:.4;DIST=top?.82:1;setView(az0);}
+/* Möbel des gewählten Geschosses einblenden; "Haus" stellt die Startwerte aus der Excel wieder her */
+const FURN={og:["zimmer","bad"],eg:["wohnen","kueche","garderobe","bad"]};
+function furnFor(c){const all=[...new Set([...FURN.og,...FURN.eg])].filter(k=>k in catOn);
+  all.forEach(k=>{const on=c==="99"?(CATS[k]?CATS[k].on:true):(FURN[c==="og"?"og":"eg"].includes(k)||catOn[k]);catOn[k]=on;const cb=document.getElementById("cb_"+k);if(cb)cb.checked=on;});}
+document.querySelectorAll("[data-cut]").forEach(b=>b.onclick=()=>{const c=b.dataset.cut;furnFor(c);if(c==="og")setCut(99,true);else setCut(+c,false);viewFor(c!=="99");});
 
 /* ---------- Foto-Modus: Path-Tracing ---------- */
 const fBtn=document.getElementById("photo"),pBar=document.getElementById("pbar"),pText=document.getElementById("ptext"),pSave=document.getElementById("psave");
