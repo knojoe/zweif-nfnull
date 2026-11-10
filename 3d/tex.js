@@ -47,16 +47,16 @@ function facade(n, base) {
   return { map: c, nrm: normalFromHeight(h, 2.2), tile, rough: .82 };
 }
 /* Dielen / Parkett, Längsrichtung u */
-function planks(n, base, plankM, tile, seed, gapA) {
+function planks(n, base, plankM, tile, seed, gapA, vary = .26, grainN = 7) {
   const px = n / tile, c = cv(n), h = cv(n), C = c.getContext("2d"), Hh = h.getContext("2d"), r = rng(seed);
   C.fillStyle = rgb(base, .6); C.fillRect(0, 0, n, n); Hh.fillStyle = "#222"; Hh.fillRect(0, 0, n, n);
   const ph = plankM * px, rows = Math.round(n / ph), gap = Math.max(1.5, .006 * px);
   for (let j = 0; j < rows; j++) {
     const y = j * ph; let x = -r() * n;
     while (x < n) {
-      const len = (1.0 + r() * 1.4) * px, f = .86 + r() * .26;
+      const len = (1.0 + r() * 1.4) * px, f = 1 - vary / 2 + r() * vary;
       for (const ox of [0, -n, n]) {
-        C.fillStyle = rgb(base, f); C.fillRect(x + ox + gap / 2, y + gap / 2, len - gap, ph - gap); grain(C, x + ox, y + gap / 2, len, ph - gap, "h", base, r, 7);
+        C.fillStyle = rgb(base, f); C.fillRect(x + ox + gap / 2, y + gap / 2, len - gap, ph - gap); if (grainN) grain(C, x + ox, y + gap / 2, len, ph - gap, "h", base, r, grainN);
         Hh.fillStyle = "#bbb"; Hh.fillRect(x + ox + gap / 2, y + gap / 2, len - gap, ph - gap);
       }
       x += len;
@@ -105,7 +105,7 @@ const cache = {};
 export function makeTex(kind, hex, size, aniso) {
   const key = kind + hex + size; if (cache[key]) return cache[key];
   const b = hexRGB(hex || "#888888");
-  const d = kind === "facade" ? facade(size, b) : kind === "deck" ? planks(size, b, .145, 2.32, 21, .55) : kind === "parquet" ? planks(size, [Math.min(255, b[0] * 1.7), Math.min(255, b[1] * 1.6), Math.min(255, b[2] * 1.5)], .19, 2.28, 31, .35)
+  const d = kind === "facade" ? facade(size, b) : kind === "deck" ? planks(size, b, .145, 2.32, 21, .55) : kind === "parquet" ? planks(size, [196, 168, 128], .22, 2.2, 31, .12, .05, 3)
     : kind === "fence" ? facade(size, b) : kind === "seam" ? seam(size, b) : kind === "lawn" ? lawn(size) : pv(size);
   const mk = (canvas, srgb) => { if (!canvas) return null; const t = new THREE.CanvasTexture(canvas); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1 / d.tile, 1 / d.tile); t.anisotropy = aniso; if (srgb) t.colorSpace = THREE.SRGBColorSpace; return t; };
   return cache[key] = { map: mk(d.map, true), normalMap: mk(d.nrm, false), rough: d.rough, metal: d.metal || 0 };
