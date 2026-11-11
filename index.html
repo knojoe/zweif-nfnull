@@ -194,11 +194,13 @@ nav.on{
 /* ── FEATURES ── */
 #features{background:var(--bg2);border-top:1px solid var(--border)}
 .feat-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  display:grid;grid-template-columns:repeat(5,1fr);
   gap:1px;background:var(--border);border:1px solid var(--border);
   margin-top:52px;
 }
 .feat{background:var(--bg2);padding:40px 28px}
+@media(max-width:1100px){.feat-grid{grid-template-columns:repeat(2,1fr)}.feat-grid .feat:last-child{grid-column:1/-1}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
 .feat-icon{font-size:1.5rem;margin-bottom:18px}
 .feat-title{font-size:1rem;font-weight:500;margin-bottom:10px}
 .feat-text{font-size:.82rem;color:var(--muted);line-height:1.65;font-weight:300}
@@ -330,6 +332,56 @@ footer{
   }
 }
 .leaflet-image-layer,.leaflet-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane,.leaflet-pane>canvas,.leaflet-pane>svg,.leaflet-tile,.leaflet-tile-container,.leaflet-zoom-box{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-tile::selection{background:0 0}.leaflet-safari .leaflet-tile{image-rendering:-webkit-optimize-contrast}.leaflet-safari .leaflet-tile-container{width:1600px;height:1600px;-webkit-transform-origin:0 0}.leaflet-marker-icon,.leaflet-marker-shadow{display:block}.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important}.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer{max-width:none!important;max-height:none!important;width:auto;padding:0}.leaflet-container img.leaflet-tile{mix-blend-mode:plus-lighter}.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}.leaflet-container{-webkit-tap-highlight-color:transparent}.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}.leaflet-overlay-pane svg{-moz-user-select:none}.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}.leaflet-vml-shape{width:1px;height:1px}.lvml{behavior:url(#default#VML);display:inline-block;position:absolute}.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}.leaflet-bottom,.leaflet-top{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-popup{opacity:0;-webkit-transition:opacity .2s linear;-moz-transition:opacity .2s linear;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0}svg.leaflet-zoom-animated{will-change:transform}.leaflet-zoom-anim .leaflet-zoom-animated{-webkit-transition:-webkit-transform .25s cubic-bezier(0,0,.25,1);-moz-transition:-moz-transform .25s cubic-bezier(0,0,.25,1);transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-pan-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-tile{-webkit-transition:none;-moz-transition:none;transition:none}.leaflet-zoom-anim .leaflet-zoom-hide{visibility:hidden}.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:-webkit-grab;cursor:-moz-grab;cursor:grab}.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}.leaflet-control,.leaflet-popup-pane{cursor:auto}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:move;cursor:-webkit-grabbing;cursor:-moz-grabbing;cursor:grabbing}.leaflet-image-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-image-layer.leaflet-interactive,.leaflet-marker-icon.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive,svg.leaflet-image-layer.leaflet-interactive path{pointer-events:visiblePainted;pointer-events:auto}.leaflet-container{background:#ddd;outline-offset:1px}.leaflet-container a{color:#0078a8}.leaflet-zoom-box{border:2px dotted #38f;background:rgba(255,255,255,.5)}.leaflet-container{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;font-size:12px;font-size:.75rem;line-height:1.5}.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:#000}.leaflet-bar a,.leaflet-control-layers-toggle{background-position:50% 50%;background-repeat:no-repeat;display:block}.leaflet-bar a:focus,.leaflet-bar a:hover{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}.leaflet-touch .leaflet-bar a:first-child{border-top-left-radius:2px;border-top-right-radius:2px}.leaflet-touch .leaflet-bar a:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}.leaflet-control-zoom-in,.leaflet-control-zoom-out{font:bold 18px 'Lucida Console',Monaco,monospace;text-indent:1px}.leaflet-touch .leaflet-control-zoom-in,.leaflet-touch .leaflet-control-zoom-out{font-size:22px}.leaflet-control-layers{box-shadow:0 1px 5px rgba(0,0,0,.4);background:#fff;border-radius:5px}.leaflet-control-layers-toggle{background-image:url(images/layers.png);width:36px;height:36px}.leaflet-retina .leaflet-control-layers-toggle{background-image:url(images/layers-2x.png);background-size:26px 26px}.leaflet-touch .leaflet-control-layers-toggle{width:44px;height:44px}.leaflet-control-layers .leaflet-control-layers-list,.leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:none}.leaflet-control-layers-expanded .leaflet-control-layers-list{display:block;position:relative}.leaflet-control-layers-expanded{padding:6px 10px 6px 6px;color:#333;background:#fff}.leaflet-control-layers-scrollbar{overflow-y:scroll;overflow-x:hidden;padding-right:5px}.leaflet-control-layers-selector{margin-top:2px;position:relative;top:1px}.leaflet-control-layers label{display:block;font-size:13px;font-size:1.08333em}.leaflet-control-layers-separator{height:0;border-top:1px solid #ddd;margin:5px -10px 5px -6px}.leaflet-default-icon-path{background-image:url(images/marker-icon.png)}.leaflet-container .leaflet-control-attribution{background:#fff;background:rgba(255,255,255,.8);margin:0}.leaflet-control-attribution,.leaflet-control-scale-line{padding:0 5px;color:#333;line-height:1.4}.leaflet-control-attribution a{text-decoration:none}.leaflet-control-attribution a:focus,.leaflet-control-attribution a:hover{text-decoration:underline}.leaflet-attribution-flag{display:inline!important;vertical-align:baseline!important;width:1em;height:.6669em}.leaflet-left .leaflet-control-scale{margin-left:5px}.leaflet-bottom .leaflet-control-scale{margin-bottom:5px}.leaflet-control-scale-line{border:2px solid #777;border-top:none;line-height:1.1;padding:2px 5px 1px;white-space:nowrap;-moz-box-sizing:border-box;box-sizing:border-box;background:rgba(255,255,255,.8);text-shadow:1px 1px #fff}.leaflet-control-scale-line:not(:first-child){border-top:2px solid #777;border-bottom:none;margin-top:-2px}.leaflet-control-scale-line:not(:first-child):not(:last-child){border-bottom:2px solid #777}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-attribution,.leaflet-touch .leaflet-control-layers{box-shadow:none}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-layers{border:2px solid rgba(0,0,0,.2);background-clip:padding-box}.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px}.leaflet-popup-content{margin:13px 24px 13px 20px;line-height:1.3;font-size:13px;font-size:1.08333em;min-height:1px}.leaflet-popup-content p{margin:17px 0;margin:1.3em 0}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-top:-1px;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:0 0}.leaflet-container a.leaflet-popup-close-button:focus,.leaflet-container a.leaflet-popup-close-button:hover{color:#585858}.leaflet-popup-scrolled{overflow:auto}.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;margin:0 auto}.leaflet-oldie .leaflet-control-layers,.leaflet-oldie .leaflet-control-zoom,.leaflet-oldie .leaflet-popup-content-wrapper,.leaflet-oldie .leaflet-popup-tip{border:1px solid #999}.leaflet-div-icon{background:#fff;border:1px solid #666}.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}.leaflet-tooltip-bottom:before,.leaflet-tooltip-left:before,.leaflet-tooltip-right:before,.leaflet-tooltip-top:before{position:absolute;pointer-events:none;border:6px solid transparent;background:0 0;content:""}.leaflet-tooltip-bottom{margin-top:6px}.leaflet-tooltip-top{margin-top:-6px}.leaflet-tooltip-bottom:before,.leaflet-tooltip-top:before{left:50%;margin-left:-6px}.leaflet-tooltip-top:before{bottom:0;margin-bottom:-12px;border-top-color:#fff}.leaflet-tooltip-bottom:before{top:0;margin-top:-12px;margin-left:-6px;border-bottom-color:#fff}.leaflet-tooltip-left{margin-left:-6px}.leaflet-tooltip-right{margin-left:6px}.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{top:50%;margin-top:-6px}.leaflet-tooltip-left:before{right:0;margin-right:-12px;border-left-color:#fff}.leaflet-tooltip-right:before{left:0;margin-left:-12px;border-right-color:#fff}@media print{.leaflet-control{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* ── BAUGEBIET ── */
+#baugebiet{background:var(--bg2);border-top:1px solid var(--border)}
+.lp-legend{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:36px;font-size:.78rem;color:var(--muted);letter-spacing:.03em}
+.lp-legend span{display:flex;align-items:center;gap:10px}
+.lp-legend i{display:inline-block;width:14px;height:14px;border-radius:2px}
+.lg-house{background:var(--gold)}
+.lg-stall{border:1.5px solid var(--gold);background:var(--gold-dim)}
+.lp-scroll{margin-top:28px;overflow-x:auto;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.lp{display:block;width:100%;min-width:900px;height:auto;font-family:var(--s)}
+.lp-area{fill:#141414;stroke:var(--border)}
+.lp-park{fill:#121212;stroke:rgba(255,255,255,.08)}
+.lp-road{stroke:rgba(255,255,255,.12);stroke-width:22;stroke-linecap:round;fill:none}
+.lp-lbl{fill:#6f6f6f;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.lp-road-lbl{fill:#5a5a5a;font-size:10px}
+.st rect{fill:#1b1b1b;stroke:rgba(255,255,255,.14)}
+.st text{fill:#6f6f6f;font-size:10px}
+.st.mine rect{fill:rgba(201,169,110,.18);stroke:var(--gold);stroke-width:1.5}
+.st.mine text{fill:var(--gold);font-weight:600}
+.pl-lot{fill:#181818;stroke:rgba(255,255,255,.12);transition:fill .3s,stroke .3s}
+.pl-house{fill:#2a2a2a;transition:fill .3s}
+.pl-nr{fill:#7a7a7a;font-size:11px}
+.pl:hover .pl-lot{stroke:rgba(201,169,110,.5)}
+.pl:hover .pl-house{fill:#3a3a3a}
+.pl.mine .pl-lot{fill:rgba(201,169,110,.14);stroke:var(--gold);stroke-width:1.5}
+.pl.mine .pl-house{fill:var(--gold)}
+.pl.mine .pl-nr{fill:var(--gold);font-weight:600}
+.pl-tag{fill:#0a0a0a;font-size:9px;font-weight:600;letter-spacing:.12em}
+.lp-path{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:4 6;opacity:.9}
+.lp-dot{fill:none;stroke:var(--gold);stroke-width:1.5;opacity:.5}
+.lp-north path{fill:#6f6f6f}.lp-north text{fill:#6f6f6f;font-size:11px}
+.lp-note{margin-top:14px;font-size:.7rem;color:var(--muted);letter-spacing:.05em}
+/* Aufbau-Animation, sobald der Plan ins Bild kommt */
+.js-lp .pl{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .7s cubic-bezier(0.16,1,0.3,1);transition-delay:calc(var(--i) * 35ms)}
+.js-lp .pl.mine .pl-house,.js-lp .pl.mine .pl-lot,.js-lp .st.mine rect{transition:fill .8s ease 1.3s,stroke .8s ease 1.3s}
+.js-lp .pl.mine .pl-house{fill:#2a2a2a}
+.js-lp .pl.mine .pl-lot{fill:#181818}
+.js-lp .st.mine rect{fill:#1b1b1b}
+.js-lp .lp-path{stroke-dashoffset:600;opacity:0;transition:opacity .3s ease 1.9s}
+.lp.play .pl{opacity:1;transform:none}
+.lp.play .pl.mine .pl-house{fill:var(--gold)}
+.lp.play .pl.mine .pl-lot{fill:rgba(201,169,110,.14)}
+.lp.play .st.mine rect{fill:rgba(201,169,110,.18)}
+.lp.play .lp-path{opacity:.9;animation:lpDash 1.6s cubic-bezier(0.45,0,0.2,1) 1.9s forwards}
+.lp.play .lp-dot{animation:lpPulse 2.4s ease-in-out 3.4s infinite}
+@keyframes lpDash{from{stroke-dashoffset:600}to{stroke-dashoffset:0}}
+@keyframes lpPulse{0%,100%{opacity:.15;r:12}50%{opacity:.7;r:18}}
+.pl{transform-box:fill-box}
+@media(prefers-reduced-motion:reduce){.js-lp .pl{opacity:1;transform:none}.js-lp .lp-path{opacity:.9;stroke-dashoffset:0}}
+
 /* ── LAGE INTERAKTIV ── */
 .li svg,.feat-icon svg{fill:none;stroke:var(--gold);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:block}
 .li{display:flex;width:22px;height:22px;flex-shrink:0}
@@ -467,6 +519,11 @@ body{overflow-x:clip}
         <div class="feat-title">Kompaktes Grundstück</div>
         <div class="feat-text">250 m² — kein unnötiger Pflegeaufwand, aber genau der Platz, den man wirklich braucht.</div>
       </div>
+      <div class="feat" data-reveal="up" data-delay="360">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5"/><path d="M4 8v13M20 8v13"/><path d="M7 17h10l-1.2-3.4a1 1 0 0 0-.9-.6H9.1a1 1 0 0 0-.9.6z"/><path d="M7 17v2M17 17v2"/></svg></div>
+        <div class="feat-title">Carport-Stellplatz</div>
+        <div class="feat-text">Eigener Stellplatz im Carport inklusive, rund 250 m vom Haus entfernt.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -503,6 +560,167 @@ body{overflow-x:clip}
   </div>
     </div>
     <p class="gr-note">Unverbindliche Visualisierung · Einrichtungsvorschlag · Punkte antippen für Raum und Größe</p>
+  </div>
+</section>
+<!-- BAUGEBIET -->
+<section class="sec" id="baugebiet">
+  <div class="sec-inner">
+    <div class="eyebrow" data-reveal="up">Baugebiet · Vor dem Stockforth</div>
+    <h2 class="sec-title" data-reveal="up" data-delay="80">26 Grundstücke.<br><em>Ein Quartier.</em></h2>
+    <p class="sec-body" data-reveal="up" data-delay="160">Das Baugebiet besteht aus 26 Grundstücken mit je rund 250&nbsp;m². Hier entsteht ein wohnliches Quartier zwischen Tiny House und Wohnen auf kleinem Raum. Direkt am Flora-Fauna-Habitat-Waldgebiet gelegen: ruhig und trotzdem nah an der Stadt.</p>
+    <div class="lp-legend" data-reveal="up" data-delay="200">
+      <span><i class="lg-house"></i>Ihr Haus · Grundstück 8</span>
+      <span><i class="lg-stall"></i>Ihr Carport-Stellplatz Nr. 2</span>
+    </div>
+    <div class="lp-scroll" id="lpScroll">
+      <svg class="lp" id="lpSvg" viewBox="0 0 1400 360" role="img" aria-label="Lageplan Baugebiet: 26 Grundstücke, Grundstück 8 und Stellplatz 2 hervorgehoben">
+  <rect class="lp-area" x="200" y="56" width="1072" height="240" rx="10"/>
+  <rect class="lp-park" x="14" y="106" width="182" height="156" rx="8"/>
+  <rect class="lp-park" x="1280" y="106" width="108" height="156" rx="8"/>
+  <path class="lp-road" d="M14 306 H1388"/>
+  <text class="lp-lbl" x="105" y="183" text-anchor="middle">19 Stellplätze</text>
+  <text class="lp-lbl" x="1334" y="183" text-anchor="middle">7 Stellplätze</text>
+  <text class="lp-lbl lp-road-lbl" x="700" y="330" text-anchor="middle">Zufahrt</text>
+  <g class="st"><rect x="24.0" y="118" width="15" height="34" rx="1.5"/><text x="31.5" y="139.0" text-anchor="middle">8</text></g>
+<g class="st"><rect x="41.0" y="118" width="15" height="34" rx="1.5"/><text x="48.5" y="139.0" text-anchor="middle">9</text></g>
+<g class="st"><rect x="58.0" y="118" width="15" height="34" rx="1.5"/><text x="65.5" y="139.0" text-anchor="middle">10</text></g>
+<g class="st"><rect x="75.0" y="118" width="15" height="34" rx="1.5"/><text x="82.5" y="139.0" text-anchor="middle">11</text></g>
+<g class="st"><rect x="92.0" y="118" width="15" height="34" rx="1.5"/><text x="99.5" y="139.0" text-anchor="middle">12</text></g>
+<g class="st"><rect x="109.0" y="118" width="15" height="34" rx="1.5"/><text x="116.5" y="139.0" text-anchor="middle">13</text></g>
+<g class="st"><rect x="126.0" y="118" width="15" height="34" rx="1.5"/><text x="133.5" y="139.0" text-anchor="middle">14</text></g>
+<g class="st"><rect x="143.0" y="118" width="15" height="34" rx="1.5"/><text x="150.5" y="139.0" text-anchor="middle">15</text></g>
+<g class="st"><rect x="160.0" y="118" width="15" height="34" rx="1.5"/><text x="167.5" y="139.0" text-anchor="middle">16</text></g>
+<g class="st"><rect x="177.0" y="118" width="15" height="34" rx="1.5"/><text x="184.5" y="139.0" text-anchor="middle">17</text></g>
+<g class="st"><rect x="24.0" y="214" width="15" height="34" rx="1.5"/><text x="31.5" y="235.0" text-anchor="middle">18</text></g>
+<g class="st"><rect x="41.0" y="214" width="15" height="34" rx="1.5"/><text x="48.5" y="235.0" text-anchor="middle">19</text></g>
+<g class="st"><rect x="58.0" y="214" width="15" height="34" rx="1.5"/><text x="65.5" y="235.0" text-anchor="middle">20</text></g>
+<g class="st"><rect x="75.0" y="214" width="15" height="34" rx="1.5"/><text x="82.5" y="235.0" text-anchor="middle">21</text></g>
+<g class="st"><rect x="92.0" y="214" width="15" height="34" rx="1.5"/><text x="99.5" y="235.0" text-anchor="middle">22</text></g>
+<g class="st"><rect x="109.0" y="214" width="15" height="34" rx="1.5"/><text x="116.5" y="235.0" text-anchor="middle">23</text></g>
+<g class="st"><rect x="126.0" y="214" width="15" height="34" rx="1.5"/><text x="133.5" y="235.0" text-anchor="middle">24</text></g>
+<g class="st"><rect x="143.0" y="214" width="15" height="34" rx="1.5"/><text x="150.5" y="235.0" text-anchor="middle">25</text></g>
+<g class="st"><rect x="160.0" y="214" width="15" height="34" rx="1.5"/><text x="167.5" y="235.0" text-anchor="middle">26</text></g>
+  <g class="st"><rect x="1288.0" y="118" width="24" height="34" rx="1.5"/><text x="1300.0" y="139.0" text-anchor="middle">1</text></g>
+<g class="st mine"><rect x="1314.0" y="118" width="24" height="34" rx="1.5"/><text x="1326.0" y="139.0" text-anchor="middle">2</text></g>
+<g class="st"><rect x="1340.0" y="118" width="24" height="34" rx="1.5"/><text x="1352.0" y="139.0" text-anchor="middle">3</text></g>
+<g class="st"><rect x="1288.0" y="214" width="19" height="34" rx="1.5"/><text x="1297.5" y="235.0" text-anchor="middle">4</text></g>
+<g class="st"><rect x="1309.0" y="214" width="19" height="34" rx="1.5"/><text x="1318.5" y="235.0" text-anchor="middle">5</text></g>
+<g class="st"><rect x="1330.0" y="214" width="19" height="34" rx="1.5"/><text x="1339.5" y="235.0" text-anchor="middle">6</text></g>
+<g class="st"><rect x="1351.0" y="214" width="19" height="34" rx="1.5"/><text x="1360.5" y="235.0" text-anchor="middle">7</text></g>
+  <g class="pl" style="--i:0"><title>Grundstück 26 · ca. 465 m²</title>
+      <rect class="pl-lot" x="210.0" y="66" width="84.0" height="220" rx="2"/>
+      <rect class="pl-house" x="225.6" y="140.8" width="52.8" height="96.8" rx="1"/>
+      <text class="pl-nr" x="216.0" y="83">Gr. 26</text></g>
+<g class="pl" style="--i:1"><title>Grundstück 24 · ca. 250 m²</title>
+      <rect class="pl-lot" x="302.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="314.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="308.0" y="83">Gr. 24</text></g>
+<g class="pl" style="--i:2"><title>Grundstück 25 · ca. 250 m²</title>
+      <rect class="pl-lot" x="302.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="314.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="308.0" y="197">Gr. 25</text></g>
+<g class="pl" style="--i:3"><title>Grundstück 22 · ca. 250 m²</title>
+      <rect class="pl-lot" x="376.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="388.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="382.0" y="83">Gr. 22</text></g>
+<g class="pl" style="--i:4"><title>Grundstück 23 · ca. 250 m²</title>
+      <rect class="pl-lot" x="376.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="388.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="382.0" y="197">Gr. 23</text></g>
+<g class="pl" style="--i:5"><title>Grundstück 20 · ca. 250 m²</title>
+      <rect class="pl-lot" x="450.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="462.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="456.0" y="83">Gr. 20</text></g>
+<g class="pl" style="--i:6"><title>Grundstück 21 · ca. 250 m²</title>
+      <rect class="pl-lot" x="450.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="462.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="456.0" y="197">Gr. 21</text></g>
+<g class="pl" style="--i:7"><title>Grundstück 18 · ca. 250 m²</title>
+      <rect class="pl-lot" x="524.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="536.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="530.0" y="83">Gr. 18</text></g>
+<g class="pl" style="--i:8"><title>Grundstück 19 · ca. 250 m²</title>
+      <rect class="pl-lot" x="524.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="536.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="530.0" y="197">Gr. 19</text></g>
+<g class="pl" style="--i:9"><title>Grundstück 16 · ca. 250 m²</title>
+      <rect class="pl-lot" x="598.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="610.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="604.0" y="83">Gr. 16</text></g>
+<g class="pl" style="--i:10"><title>Grundstück 17 · ca. 250 m²</title>
+      <rect class="pl-lot" x="598.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="610.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="604.0" y="197">Gr. 17</text></g>
+<g class="pl" style="--i:11"><title>Grundstück 14 · ca. 250 m²</title>
+      <rect class="pl-lot" x="672.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="684.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="678.0" y="83">Gr. 14</text></g>
+<g class="pl" style="--i:12"><title>Grundstück 15 · ca. 250 m²</title>
+      <rect class="pl-lot" x="672.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="684.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="678.0" y="197">Gr. 15</text></g>
+<g class="pl" style="--i:13"><title>Grundstück 13 · ca. 250 m²</title>
+      <rect class="pl-lot" x="746.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="758.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="752.0" y="83">Gr. 13</text></g>
+<g class="pl" style="--i:14"><title>Grundstück 13G · ca. 250 m²</title>
+      <rect class="pl-lot" x="746.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="758.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="752.0" y="197">Gr. 13G</text></g>
+<g class="pl" style="--i:15"><title>Grundstück 11 · ca. 250 m²</title>
+      <rect class="pl-lot" x="820.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="832.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="826.0" y="83">Gr. 11</text></g>
+<g class="pl" style="--i:16"><title>Grundstück 12 · ca. 250 m²</title>
+      <rect class="pl-lot" x="820.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="832.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="826.0" y="197">Gr. 12</text></g>
+<g class="pl" style="--i:17"><title>Grundstück 9 · ca. 250 m²</title>
+      <rect class="pl-lot" x="894.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="906.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="900.0" y="83">Gr. 9</text></g>
+<g class="pl" style="--i:18"><title>Grundstück 10 · ca. 250 m²</title>
+      <rect class="pl-lot" x="894.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="906.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="900.0" y="197">Gr. 10</text></g>
+<g class="pl" style="--i:19"><title>Grundstück 7 · ca. 250 m²</title>
+      <rect class="pl-lot" x="968.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="980.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="974.0" y="83">Gr. 7</text></g>
+<g class="pl mine" style="--i:20"><title>Ihr Haus · Grundstück 8 · ca. 250 m²</title>
+      <rect class="pl-lot" x="968.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="980.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="974.0" y="197">Gr. 8</text></g>
+<g class="pl" style="--i:21"><title>Grundstück 5 · ca. 250 m²</title>
+      <rect class="pl-lot" x="1042.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="1054.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="1048.0" y="83">Gr. 5</text></g>
+<g class="pl" style="--i:22"><title>Grundstück 6 · ca. 250 m²</title>
+      <rect class="pl-lot" x="1042.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="1054.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="1048.0" y="197">Gr. 6</text></g>
+<g class="pl" style="--i:23"><title>Grundstück 3 · ca. 250 m²</title>
+      <rect class="pl-lot" x="1116.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="1128.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="1122.0" y="83">Gr. 3</text></g>
+<g class="pl" style="--i:24"><title>Grundstück 4 · ca. 250 m²</title>
+      <rect class="pl-lot" x="1116.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="1128.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="1122.0" y="197">Gr. 4</text></g>
+<g class="pl" style="--i:25"><title>Grundstück 1 · ca. 250 m²</title>
+      <rect class="pl-lot" x="1190.0" y="66" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="1202.8" y="102.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="1196.0" y="83">Gr. 1</text></g>
+<g class="pl" style="--i:26"><title>Grundstück 2 · ca. 250 m²</title>
+      <rect class="pl-lot" x="1190.0" y="180" width="70.0" height="106" rx="2"/>
+      <rect class="pl-house" x="1202.8" y="216.0" width="44.4" height="46.6" rx="1"/>
+      <text class="pl-nr" x="1196.0" y="197">Gr. 2</text></g>
+  <path class="lp-path" d="M1003.0 286 V306 H1279 V112 H1326.0 V118"/>
+  <circle class="lp-dot" cx="1326.0" cy="135" r="15"/>
+  <g class="lp-north" transform="translate(1360 34)"><path d="M0 -14 L6 8 L0 4 L-6 8 Z"/><text y="-18" text-anchor="middle">N</text></g>
+</svg>
+    </div>
+    <p class="lp-note">Schematische Darstellung nach Lageplankonzept, nicht maßstäblich</p>
   </div>
 </section>
 <!-- LAGE -->
@@ -693,6 +911,23 @@ window.addEventListener('scroll', () => {
   }
   function frame(now){ if (lenis) lenis.raf(now); update(); requestAnimationFrame(frame); }
   update(true); requestAnimationFrame(frame);
+})();
+
+
+// ── Lageplan: baut sich beim Hereinscrollen auf, Handy zentriert auf Grundstück 8 ──
+(function(){
+  const svg = document.getElementById('lpSvg'), box = document.getElementById('lpScroll');
+  if (!svg) return;
+  svg.classList.add('js-lp');
+  const center = () => {
+    if (box.scrollWidth <= box.clientWidth) return;
+    const mine = svg.querySelector('.pl.mine .pl-lot').getBoundingClientRect(), b = box.getBoundingClientRect();
+    box.scrollLeft += (mine.left + mine.width / 2) - (b.left + b.width / 2) + 60;
+  };
+  new IntersectionObserver((en, o) => {
+    if (!en[0].isIntersecting) return; o.disconnect();
+    center(); svg.classList.add('play');
+  }, { threshold: .2 }).observe(box);
 })();
 
 // ── Scroll-reveal via IntersectionObserver ──
