@@ -341,19 +341,20 @@ footer{
 .lg-house{background:var(--gold)}
 .lg-stall{border:1.5px solid var(--gold);background:var(--gold-dim)}
 .lp-scroll{margin-top:28px;overflow-x:auto;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
-.lp{display:block;width:100%;min-width:900px;height:auto;font-family:var(--s)}
+.lp{display:block;width:100%;min-width:980px;height:auto;font-family:var(--s)}
 .lp-area{fill:#141414;stroke:var(--border)}
 .lp-park{fill:#121212;stroke:rgba(255,255,255,.08)}
 .lp-road{stroke:rgba(255,255,255,.12);stroke-width:22;stroke-linecap:round;fill:none}
-.lp-lbl{fill:#6f6f6f;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-.lp-road-lbl{fill:#5a5a5a;font-size:10px}
+.lp-lbl{fill:#6f6f6f;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.lp-road-lbl{fill:#8a8a8a;font-size:10px;letter-spacing:.16em}
 .st rect{fill:#1b1b1b;stroke:rgba(255,255,255,.14)}
 .st text{fill:#6f6f6f;font-size:10px}
 .st.mine rect{fill:rgba(201,169,110,.18);stroke:var(--gold);stroke-width:1.5}
 .st.mine text{fill:var(--gold);font-weight:600}
 .pl-lot{fill:#181818;stroke:rgba(255,255,255,.12);transition:fill .3s,stroke .3s}
 .pl-house{fill:#2a2a2a;transition:fill .3s}
-.pl-nr{fill:#7a7a7a;font-size:11px}
+.pl-nr{fill:#7a7a7a;font-size:9.5px}
+.lp-scale path{fill:none;stroke:#6f6f6f;stroke-width:1}.lp-scale text{fill:#6f6f6f;font-size:9px}
 .pl:hover .pl-lot{stroke:rgba(201,169,110,.5)}
 .pl:hover .pl-house{fill:#3a3a3a}
 .pl.mine .pl-lot{fill:rgba(201,169,110,.14);stroke:var(--gold);stroke-width:1.5}
@@ -370,15 +371,15 @@ footer{
 .js-lp .pl.mine .pl-house{fill:#2a2a2a}
 .js-lp .pl.mine .pl-lot{fill:#181818}
 .js-lp .st.mine rect{fill:#1b1b1b}
-.js-lp .lp-path{stroke-dashoffset:600;opacity:0;transition:opacity .3s ease 1.9s}
+.js-lp .lp-path{stroke-dashoffset:900;opacity:0;transition:opacity .3s ease 1.9s}
 .lp.play .pl{opacity:1;transform:none}
 .lp.play .pl.mine .pl-house{fill:var(--gold)}
 .lp.play .pl.mine .pl-lot{fill:rgba(201,169,110,.14)}
 .lp.play .st.mine rect{fill:rgba(201,169,110,.18)}
 .lp.play .lp-path{opacity:.9;animation:lpDash 1.6s cubic-bezier(0.45,0,0.2,1) 1.9s forwards}
 .lp.play .lp-dot{animation:lpPulse 2.4s ease-in-out 3.4s infinite}
-@keyframes lpDash{from{stroke-dashoffset:600}to{stroke-dashoffset:0}}
-@keyframes lpPulse{0%,100%{opacity:.15;r:12}50%{opacity:.7;r:18}}
+@keyframes lpDash{from{stroke-dashoffset:900}to{stroke-dashoffset:0}}
+@keyframes lpPulse{0%,100%{opacity:.15;r:10}50%{opacity:.7;r:15}}
 .pl{transform-box:fill-box}
 @media(prefers-reduced-motion:reduce){.js-lp .pl{opacity:1;transform:none}.js-lp .lp-path{opacity:.9;stroke-dashoffset:0}}
 
@@ -443,7 +444,7 @@ body{overflow-x:clip}
   <div class="hero-shade" id="heroShade"></div>
   <div class="hero-veil"></div>
   <div class="hero-body" id="heroBody">
-    <div class="hero-eyebrow">Rotenburg an der Wümme · Zu vermieten ab 2028</div>
+    <div class="hero-eyebrow">Rotenburg an der Wümme – Vor dem Stockforth, ab 2028</div>
     <h1 class="hero-title">zwei<em>|</em>fünf<em>|</em>null</h1>
     <p class="hero-sub">Moderner Holzrahmenbau auf 250 m² — kompakt, energieeffizient und ruhig am grünen Stadtrand.</p>
   </div>
@@ -573,154 +574,24 @@ body{overflow-x:clip}
       <span><i class="lg-stall"></i>Ihr Carport-Stellplatz Nr. 2</span>
     </div>
     <div class="lp-scroll" id="lpScroll">
-      <svg class="lp" id="lpSvg" viewBox="0 0 1400 360" role="img" aria-label="Lageplan Baugebiet: 26 Grundstücke, Grundstück 8 und Stellplatz 2 hervorgehoben">
-  <rect class="lp-area" x="200" y="56" width="1072" height="240" rx="10"/>
-  <rect class="lp-park" x="14" y="106" width="182" height="156" rx="8"/>
-  <rect class="lp-park" x="1280" y="106" width="108" height="156" rx="8"/>
-  <path class="lp-road" d="M14 306 H1388"/>
-  <text class="lp-lbl" x="105" y="183" text-anchor="middle">19 Stellplätze</text>
-  <text class="lp-lbl" x="1334" y="183" text-anchor="middle">7 Stellplätze</text>
-  <text class="lp-lbl lp-road-lbl" x="700" y="330" text-anchor="middle">Zufahrt</text>
-  <g class="st"><rect x="24.0" y="118" width="15" height="34" rx="1.5"/><text x="31.5" y="139.0" text-anchor="middle">8</text></g>
-<g class="st"><rect x="41.0" y="118" width="15" height="34" rx="1.5"/><text x="48.5" y="139.0" text-anchor="middle">9</text></g>
-<g class="st"><rect x="58.0" y="118" width="15" height="34" rx="1.5"/><text x="65.5" y="139.0" text-anchor="middle">10</text></g>
-<g class="st"><rect x="75.0" y="118" width="15" height="34" rx="1.5"/><text x="82.5" y="139.0" text-anchor="middle">11</text></g>
-<g class="st"><rect x="92.0" y="118" width="15" height="34" rx="1.5"/><text x="99.5" y="139.0" text-anchor="middle">12</text></g>
-<g class="st"><rect x="109.0" y="118" width="15" height="34" rx="1.5"/><text x="116.5" y="139.0" text-anchor="middle">13</text></g>
-<g class="st"><rect x="126.0" y="118" width="15" height="34" rx="1.5"/><text x="133.5" y="139.0" text-anchor="middle">14</text></g>
-<g class="st"><rect x="143.0" y="118" width="15" height="34" rx="1.5"/><text x="150.5" y="139.0" text-anchor="middle">15</text></g>
-<g class="st"><rect x="160.0" y="118" width="15" height="34" rx="1.5"/><text x="167.5" y="139.0" text-anchor="middle">16</text></g>
-<g class="st"><rect x="177.0" y="118" width="15" height="34" rx="1.5"/><text x="184.5" y="139.0" text-anchor="middle">17</text></g>
-<g class="st"><rect x="24.0" y="214" width="15" height="34" rx="1.5"/><text x="31.5" y="235.0" text-anchor="middle">18</text></g>
-<g class="st"><rect x="41.0" y="214" width="15" height="34" rx="1.5"/><text x="48.5" y="235.0" text-anchor="middle">19</text></g>
-<g class="st"><rect x="58.0" y="214" width="15" height="34" rx="1.5"/><text x="65.5" y="235.0" text-anchor="middle">20</text></g>
-<g class="st"><rect x="75.0" y="214" width="15" height="34" rx="1.5"/><text x="82.5" y="235.0" text-anchor="middle">21</text></g>
-<g class="st"><rect x="92.0" y="214" width="15" height="34" rx="1.5"/><text x="99.5" y="235.0" text-anchor="middle">22</text></g>
-<g class="st"><rect x="109.0" y="214" width="15" height="34" rx="1.5"/><text x="116.5" y="235.0" text-anchor="middle">23</text></g>
-<g class="st"><rect x="126.0" y="214" width="15" height="34" rx="1.5"/><text x="133.5" y="235.0" text-anchor="middle">24</text></g>
-<g class="st"><rect x="143.0" y="214" width="15" height="34" rx="1.5"/><text x="150.5" y="235.0" text-anchor="middle">25</text></g>
-<g class="st"><rect x="160.0" y="214" width="15" height="34" rx="1.5"/><text x="167.5" y="235.0" text-anchor="middle">26</text></g>
-  <g class="st"><rect x="1288.0" y="118" width="24" height="34" rx="1.5"/><text x="1300.0" y="139.0" text-anchor="middle">1</text></g>
-<g class="st mine"><rect x="1314.0" y="118" width="24" height="34" rx="1.5"/><text x="1326.0" y="139.0" text-anchor="middle">2</text></g>
-<g class="st"><rect x="1340.0" y="118" width="24" height="34" rx="1.5"/><text x="1352.0" y="139.0" text-anchor="middle">3</text></g>
-<g class="st"><rect x="1288.0" y="214" width="19" height="34" rx="1.5"/><text x="1297.5" y="235.0" text-anchor="middle">4</text></g>
-<g class="st"><rect x="1309.0" y="214" width="19" height="34" rx="1.5"/><text x="1318.5" y="235.0" text-anchor="middle">5</text></g>
-<g class="st"><rect x="1330.0" y="214" width="19" height="34" rx="1.5"/><text x="1339.5" y="235.0" text-anchor="middle">6</text></g>
-<g class="st"><rect x="1351.0" y="214" width="19" height="34" rx="1.5"/><text x="1360.5" y="235.0" text-anchor="middle">7</text></g>
-  <g class="pl" style="--i:0"><title>Grundstück 26 · ca. 465 m²</title>
-      <rect class="pl-lot" x="210.0" y="66" width="84.0" height="220" rx="2"/>
-      <rect class="pl-house" x="225.6" y="140.8" width="52.8" height="96.8" rx="1"/>
-      <text class="pl-nr" x="216.0" y="83">Gr. 26</text></g>
-<g class="pl" style="--i:1"><title>Grundstück 24 · ca. 250 m²</title>
-      <rect class="pl-lot" x="302.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="314.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="308.0" y="83">Gr. 24</text></g>
-<g class="pl" style="--i:2"><title>Grundstück 25 · ca. 250 m²</title>
-      <rect class="pl-lot" x="302.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="314.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="308.0" y="197">Gr. 25</text></g>
-<g class="pl" style="--i:3"><title>Grundstück 22 · ca. 250 m²</title>
-      <rect class="pl-lot" x="376.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="388.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="382.0" y="83">Gr. 22</text></g>
-<g class="pl" style="--i:4"><title>Grundstück 23 · ca. 250 m²</title>
-      <rect class="pl-lot" x="376.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="388.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="382.0" y="197">Gr. 23</text></g>
-<g class="pl" style="--i:5"><title>Grundstück 20 · ca. 250 m²</title>
-      <rect class="pl-lot" x="450.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="462.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="456.0" y="83">Gr. 20</text></g>
-<g class="pl" style="--i:6"><title>Grundstück 21 · ca. 250 m²</title>
-      <rect class="pl-lot" x="450.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="462.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="456.0" y="197">Gr. 21</text></g>
-<g class="pl" style="--i:7"><title>Grundstück 18 · ca. 250 m²</title>
-      <rect class="pl-lot" x="524.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="536.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="530.0" y="83">Gr. 18</text></g>
-<g class="pl" style="--i:8"><title>Grundstück 19 · ca. 250 m²</title>
-      <rect class="pl-lot" x="524.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="536.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="530.0" y="197">Gr. 19</text></g>
-<g class="pl" style="--i:9"><title>Grundstück 16 · ca. 250 m²</title>
-      <rect class="pl-lot" x="598.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="610.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="604.0" y="83">Gr. 16</text></g>
-<g class="pl" style="--i:10"><title>Grundstück 17 · ca. 250 m²</title>
-      <rect class="pl-lot" x="598.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="610.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="604.0" y="197">Gr. 17</text></g>
-<g class="pl" style="--i:11"><title>Grundstück 14 · ca. 250 m²</title>
-      <rect class="pl-lot" x="672.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="684.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="678.0" y="83">Gr. 14</text></g>
-<g class="pl" style="--i:12"><title>Grundstück 15 · ca. 250 m²</title>
-      <rect class="pl-lot" x="672.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="684.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="678.0" y="197">Gr. 15</text></g>
-<g class="pl" style="--i:13"><title>Grundstück 13 · ca. 250 m²</title>
-      <rect class="pl-lot" x="746.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="758.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="752.0" y="83">Gr. 13</text></g>
-<g class="pl" style="--i:14"><title>Grundstück 13G · ca. 250 m²</title>
-      <rect class="pl-lot" x="746.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="758.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="752.0" y="197">Gr. 13G</text></g>
-<g class="pl" style="--i:15"><title>Grundstück 11 · ca. 250 m²</title>
-      <rect class="pl-lot" x="820.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="832.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="826.0" y="83">Gr. 11</text></g>
-<g class="pl" style="--i:16"><title>Grundstück 12 · ca. 250 m²</title>
-      <rect class="pl-lot" x="820.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="832.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="826.0" y="197">Gr. 12</text></g>
-<g class="pl" style="--i:17"><title>Grundstück 9 · ca. 250 m²</title>
-      <rect class="pl-lot" x="894.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="906.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="900.0" y="83">Gr. 9</text></g>
-<g class="pl" style="--i:18"><title>Grundstück 10 · ca. 250 m²</title>
-      <rect class="pl-lot" x="894.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="906.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="900.0" y="197">Gr. 10</text></g>
-<g class="pl" style="--i:19"><title>Grundstück 7 · ca. 250 m²</title>
-      <rect class="pl-lot" x="968.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="980.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="974.0" y="83">Gr. 7</text></g>
-<g class="pl mine" style="--i:20"><title>Ihr Haus · Grundstück 8 · ca. 250 m²</title>
-      <rect class="pl-lot" x="968.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="980.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="974.0" y="197">Gr. 8</text></g>
-<g class="pl" style="--i:21"><title>Grundstück 5 · ca. 250 m²</title>
-      <rect class="pl-lot" x="1042.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="1054.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="1048.0" y="83">Gr. 5</text></g>
-<g class="pl" style="--i:22"><title>Grundstück 6 · ca. 250 m²</title>
-      <rect class="pl-lot" x="1042.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="1054.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="1048.0" y="197">Gr. 6</text></g>
-<g class="pl" style="--i:23"><title>Grundstück 3 · ca. 250 m²</title>
-      <rect class="pl-lot" x="1116.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="1128.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="1122.0" y="83">Gr. 3</text></g>
-<g class="pl" style="--i:24"><title>Grundstück 4 · ca. 250 m²</title>
-      <rect class="pl-lot" x="1116.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="1128.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="1122.0" y="197">Gr. 4</text></g>
-<g class="pl" style="--i:25"><title>Grundstück 1 · ca. 250 m²</title>
-      <rect class="pl-lot" x="1190.0" y="66" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="1202.8" y="102.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="1196.0" y="83">Gr. 1</text></g>
-<g class="pl" style="--i:26"><title>Grundstück 2 · ca. 250 m²</title>
-      <rect class="pl-lot" x="1190.0" y="180" width="70.0" height="106" rx="2"/>
-      <rect class="pl-house" x="1202.8" y="216.0" width="44.4" height="46.6" rx="1"/>
-      <text class="pl-nr" x="1196.0" y="197">Gr. 2</text></g>
-  <path class="lp-path" d="M1003.0 286 V306 H1279 V112 H1326.0 V118"/>
-  <circle class="lp-dot" cx="1326.0" cy="135" r="15"/>
-  <g class="lp-north" transform="translate(1360 34)"><path d="M0 -14 L6 8 L0 4 L-6 8 Z"/><text y="-18" text-anchor="middle">N</text></g>
+      <svg class="lp" id="lpSvg" viewBox="0 0 1356 202" role="img" aria-label="Lageplan Baugebiet: Grundstücke je 19,3 × 13 m, Grundstück 8 und Stellplatz 2 hervorgehoben">
+  <rect class="lp-area" x="154" y="40" width="1087.6" height="116.0" rx="6"/>
+  <rect class="lp-park" x="12" y="46" width="132" height="104.0" rx="5"/>
+  <rect class="lp-park" x="1253.6" y="46" width="64" height="104.0" rx="5"/>
+  <path class="lp-road" d="M12 172.0 H1335.6"/>
+  <text class="lp-lbl" x="78.0" y="32" text-anchor="middle">19 Stellplätze</text>
+  <text class="lp-lbl" x="1285.6" y="32" text-anchor="middle">7 Stellplätze</text>
+  <text class="lp-lbl lp-road-lbl" x="697.8" y="196.0" text-anchor="middle">Vor dem Stockforth</text>
+  <g class="lp-scale" transform="translate(160 20)"><path d="M0 0 V5 H80.0 V0 M40.0 2 V5"/><text x="88.0" y="6">20 m</text></g>
+  <g class="st"><rect x="18.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="23.0" y="70.5" text-anchor="middle" style="font-size:7.5px">8</text></g><g class="st"><rect x="30.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="35.0" y="70.5" text-anchor="middle" style="font-size:7.5px">9</text></g><g class="st"><rect x="42.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="47.0" y="70.5" text-anchor="middle" style="font-size:7.5px">10</text></g><g class="st"><rect x="54.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="59.0" y="70.5" text-anchor="middle" style="font-size:7.5px">11</text></g><g class="st"><rect x="66.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="71.0" y="70.5" text-anchor="middle" style="font-size:7.5px">12</text></g><g class="st"><rect x="78.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="83.0" y="70.5" text-anchor="middle" style="font-size:7.5px">13</text></g><g class="st"><rect x="90.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="95.0" y="70.5" text-anchor="middle" style="font-size:7.5px">14</text></g><g class="st"><rect x="102.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="107.0" y="70.5" text-anchor="middle" style="font-size:7.5px">15</text></g><g class="st"><rect x="114.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="119.0" y="70.5" text-anchor="middle" style="font-size:7.5px">16</text></g><g class="st"><rect x="126.0" y="52.0" width="10.0" height="30" rx="1.5"/><text x="131.0" y="70.5" text-anchor="middle" style="font-size:7.5px">17</text></g><g class="st"><rect x="18.0" y="114.0" width="10.0" height="30" rx="1.5"/><text x="23.0" y="132.5" text-anchor="middle" style="font-size:7.5px">18</text></g><g class="st"><rect x="30.0" y="114.0" width="10.0" height="30" rx="1.5"/><text x="35.0" y="132.5" text-anchor="middle" style="font-size:7.5px">19</text></g><g class="st"><rect x="42.0" y="114.0" width="10.0" height="30" rx="1.5"/><text x="47.0" y="132.5" text-anchor="middle" style="font-size:7.5px">20</text></g><g class="st"><rect x="54.0" y="114.0" width="10.0" height="30" rx="1.5"/><text x="59.0" y="132.5" text-anchor="middle" style="font-size:7.5px">21</text></g><g class="st"><rect x="66.0" y="114.0" width="10.0" height="30" rx="1.5"/><text x="71.0" y="132.5" text-anchor="middle" style="font-size:7.5px">22</text></g><g class="st"><rect x="78.0" y="114.0" width="10.0" height="30" rx="1.5"/><text x="83.0" y="132.5" text-anchor="middle" style="font-size:7.5px">23</text></g><g class="st"><rect x="90.0" y="114.0" width="10.0" height="30" rx="1.5"/><text x="95.0" y="132.5" text-anchor="middle" style="font-size:7.5px">24</text></g><g class="st"><rect x="102.0" y="114.0" width="10.0" height="30" rx="1.5"/><text x="107.0" y="132.5" text-anchor="middle" style="font-size:7.5px">25</text></g><g class="st"><rect x="114.0" y="114.0" width="10.0" height="30" rx="1.5"/><text x="119.0" y="132.5" text-anchor="middle" style="font-size:7.5px">26</text></g>
+  <g class="st"><rect x="1257.6" y="52.0" width="16.7" height="30" rx="1.5"/><text x="1265.9" y="70.5" text-anchor="middle" style="font-size:9px">1</text></g><g class="st mine"><rect x="1276.3" y="52.0" width="16.7" height="30" rx="1.5"/><text x="1284.6" y="70.5" text-anchor="middle" style="font-size:9px">2</text></g><g class="st"><rect x="1294.9" y="52.0" width="16.7" height="30" rx="1.5"/><text x="1303.3" y="70.5" text-anchor="middle" style="font-size:9px">3</text></g><g class="st"><rect x="1257.6" y="114.0" width="12.0" height="30" rx="1.5"/><text x="1263.6" y="132.5" text-anchor="middle" style="font-size:9px">4</text></g><g class="st"><rect x="1271.6" y="114.0" width="12.0" height="30" rx="1.5"/><text x="1277.6" y="132.5" text-anchor="middle" style="font-size:9px">5</text></g><g class="st"><rect x="1285.6" y="114.0" width="12.0" height="30" rx="1.5"/><text x="1291.6" y="132.5" text-anchor="middle" style="font-size:9px">6</text></g><g class="st"><rect x="1299.6" y="114.0" width="12.0" height="30" rx="1.5"/><text x="1305.6" y="132.5" text-anchor="middle" style="font-size:9px">7</text></g>
+  <g class="pl" style="--i:0"><title>Grundstück 26 · ca. 465 m²</title><rect class="pl-lot" x="160.0" y="46.0" width="72.0" height="104.0"/><rect class="pl-house" x="176.0" y="68.0" width="40.0" height="68.0" rx="1"/><text class="pl-nr" x="165.0" y="58.0">Gr. 26</text></g><g class="pl" style="--i:1"><title>Grundstück 24 · ca. 250 m²</title><rect class="pl-lot" x="232.0" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="245.6" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="237.0" y="58.0">Gr. 24</text></g><g class="pl" style="--i:2"><title>Grundstück 25 · ca. 250 m²</title><rect class="pl-lot" x="232.0" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="245.6" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="237.0" y="110.0">Gr. 25</text></g><g class="pl" style="--i:3"><title>Grundstück 22 · ca. 250 m²</title><rect class="pl-lot" x="309.2" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="322.8" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="314.2" y="58.0">Gr. 22</text></g><g class="pl" style="--i:4"><title>Grundstück 23 · ca. 250 m²</title><rect class="pl-lot" x="309.2" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="322.8" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="314.2" y="110.0">Gr. 23</text></g><g class="pl" style="--i:5"><title>Grundstück 20 · ca. 250 m²</title><rect class="pl-lot" x="386.4" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="400.0" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="391.4" y="58.0">Gr. 20</text></g><g class="pl" style="--i:6"><title>Grundstück 21 · ca. 250 m²</title><rect class="pl-lot" x="386.4" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="400.0" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="391.4" y="110.0">Gr. 21</text></g><g class="pl" style="--i:7"><title>Grundstück 18 · ca. 250 m²</title><rect class="pl-lot" x="463.6" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="477.2" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="468.6" y="58.0">Gr. 18</text></g><g class="pl" style="--i:8"><title>Grundstück 19 · ca. 250 m²</title><rect class="pl-lot" x="463.6" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="477.2" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="468.6" y="110.0">Gr. 19</text></g><g class="pl" style="--i:9"><title>Grundstück 16 · ca. 250 m²</title><rect class="pl-lot" x="540.8" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="554.4" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="545.8" y="58.0">Gr. 16</text></g><g class="pl" style="--i:10"><title>Grundstück 17 · ca. 250 m²</title><rect class="pl-lot" x="540.8" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="554.4" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="545.8" y="110.0">Gr. 17</text></g><g class="pl" style="--i:11"><title>Grundstück 14 · ca. 250 m²</title><rect class="pl-lot" x="618.0" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="631.6" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="623.0" y="58.0">Gr. 14</text></g><g class="pl" style="--i:12"><title>Grundstück 15 · ca. 250 m²</title><rect class="pl-lot" x="618.0" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="631.6" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="623.0" y="110.0">Gr. 15</text></g><g class="pl" style="--i:13"><title>Grundstück 13 · ca. 250 m²</title><rect class="pl-lot" x="695.2" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="708.8" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="700.2" y="58.0">Gr. 13</text></g><g class="pl" style="--i:14"><title>Grundstück 13G · ca. 250 m²</title><rect class="pl-lot" x="695.2" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="708.8" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="700.2" y="110.0">Gr. 13G</text></g><g class="pl" style="--i:15"><title>Grundstück 11 · ca. 250 m²</title><rect class="pl-lot" x="772.4" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="786.0" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="777.4" y="58.0">Gr. 11</text></g><g class="pl" style="--i:16"><title>Grundstück 12 · ca. 250 m²</title><rect class="pl-lot" x="772.4" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="786.0" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="777.4" y="110.0">Gr. 12</text></g><g class="pl" style="--i:17"><title>Grundstück 9 · ca. 250 m²</title><rect class="pl-lot" x="849.6" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="863.2" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="854.6" y="58.0">Gr. 9</text></g><g class="pl" style="--i:18"><title>Grundstück 10 · ca. 250 m²</title><rect class="pl-lot" x="849.6" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="863.2" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="854.6" y="110.0">Gr. 10</text></g><g class="pl" style="--i:19"><title>Grundstück 7 · ca. 250 m²</title><rect class="pl-lot" x="926.8" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="940.4" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="931.8" y="58.0">Gr. 7</text></g><g class="pl mine" style="--i:20"><title>Ihr Haus · Grundstück 8 · ca. 250 m²</title><rect class="pl-lot" x="926.8" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="940.4" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="931.8" y="110.0">Gr. 8</text></g><g class="pl" style="--i:21"><title>Grundstück 5 · ca. 250 m²</title><rect class="pl-lot" x="1004.0" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="1017.6" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="1009.0" y="58.0">Gr. 5</text></g><g class="pl" style="--i:22"><title>Grundstück 6 · ca. 250 m²</title><rect class="pl-lot" x="1004.0" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="1017.6" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="1009.0" y="110.0">Gr. 6</text></g><g class="pl" style="--i:23"><title>Grundstück 3 · ca. 250 m²</title><rect class="pl-lot" x="1081.2" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="1094.8" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="1086.2" y="58.0">Gr. 3</text></g><g class="pl" style="--i:24"><title>Grundstück 4 · ca. 250 m²</title><rect class="pl-lot" x="1081.2" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="1094.8" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="1086.2" y="110.0">Gr. 4</text></g><g class="pl" style="--i:25"><title>Grundstück 1 · ca. 250 m²</title><rect class="pl-lot" x="1158.4" y="46.0" width="77.2" height="52.0"/><rect class="pl-house" x="1172.0" y="62.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="1163.4" y="58.0">Gr. 1</text></g><g class="pl" style="--i:26"><title>Grundstück 2 · ca. 250 m²</title><rect class="pl-lot" x="1158.4" y="98.0" width="77.2" height="52.0"/><rect class="pl-house" x="1172.0" y="114.0" width="50.0" height="28.0" rx="1"/><text class="pl-nr" x="1163.4" y="110.0">Gr. 2</text></g>
+  <path class="lp-path" d="M965.4 150.0 V172.0 H1329.6 V98.0 H1284.6 V82.0"/>
+  <circle class="lp-dot" cx="1284.6" cy="67" r="12"/>
+  <g class="lp-north" transform="translate(1341.6 24)"><path d="M0 -12 L5 7 L0 3 L-5 7 Z"/><text y="-16" text-anchor="middle">N</text></g>
 </svg>
     </div>
-    <p class="lp-note">Schematische Darstellung nach Lageplankonzept, nicht maßstäblich</p>
+    <p class="lp-note">Nach Lageplankonzept · Grundstücke maßstäblich mit 19,3 × 13,0 m, Umgebung vereinfacht</p>
   </div>
 </section>
 <!-- LAGE -->
